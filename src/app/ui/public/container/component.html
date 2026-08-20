@@ -1,1 +1,258 @@
-<h2>Pagina publica</h2>
+<!-- NAVBAR -->
+<header
+  class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <!-- Logo & Main Nav -->
+      <div class="flex items-center">
+        <a
+          routerLink="/"
+          class="flex items-center space-x-2.5 text-brand-600 font-bold text-xl tracking-tight hover:opacity-90 transition"
+        >
+          <div
+            class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20"
+          >
+            <i data-lucide="briefcase" class="w-5 h-5"></i>
+          </div>
+          <span class="text-slate-900 font-extrabold text-2xl tracking-tight">Oportunidades</span>
+        </a>
+
+        <nav class="hidden md:ml-8 md:flex md:space-x-1 lg:space-x-2">
+          <a
+            routerLink="/"
+            routerLinkActive="text-brand-600 font-bold bg-brand-50"
+            class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition"
+          >
+            Inicio
+          </a>
+
+          <a
+            routerLink="/oportunidades"
+            routerLinkActive="text-brand-600 font-bold bg-brand-50"
+            class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition"
+          >
+            Oportunidades
+          </a>
+
+          <a
+            routerLink="/organizaciones"
+            routerLinkActive="text-brand-600 font-bold bg-brand-50"
+            class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition"
+          >
+            Organizaciones
+          </a>
+
+          <a
+            routerLink="/como-funciona"
+            routerLinkActive="text-brand-600 font-bold bg-brand-50"
+            class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition"
+          >
+            ¿Cómo funciona?
+          </a>
+
+          <a
+            routerLink="/acerca-de"
+            routerLinkActive="text-brand-600 font-bold bg-brand-50"
+            class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition"
+          >
+            Acerca de
+          </a>
+        </nav>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <button
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-brand-600 transition"
+        >
+          Iniciar sesión
+        </button>
+
+        <button
+          type="button"
+          class="px-4 py-2 rounded-xl text-sm font-semibold bg-brand-600 text-white shadow-md shadow-brand-500/20 hover:bg-brand-700 transition"
+        >
+          Registrarse
+        </button>
+
+        <ng-template #loggedUser>
+          <a
+            routerLink="/dashboard"
+            class="px-4 py-2 rounded-xl text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200 hover:bg-brand-100 transition"
+          >
+            Mi Dashboard
+          </a>
+          <button type="button" class="text-xs font-semibold text-slate-500 hover:text-slate-900">
+            Salir
+          </button>
+        </ng-template>
+      </div>
+
+      <div class="flex items-center md:hidden">
+        <button type="button" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100">☰</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2">
+    <a routerLink="/" class="block px-3 py-2 rounded-md">Inicio</a>
+    <a routerLink="/oportunidades" class="block px-3 py-2 rounded-md">Oportunidades</a>
+    <a routerLink="/organizaciones" class="block px-3 py-2 rounded-md">Organizaciones</a>
+    <a routerLink="/como-funciona" class="block px-3 py-2 rounded-md">¿Cómo funciona?</a>
+    <a routerLink="/acerca-de" class="block px-3 py-2 rounded-md">Acerca de</a>
+
+    <div class="pt-2 border-t border-slate-100 grid gap-2">
+      <button type="button" class="w-full py-2.5 rounded-lg border border-slate-300">
+        Iniciar sesión
+      </button>
+      <button type="button" class="w-full py-2.5 rounded-lg bg-brand-600 text-white">
+        Registrarse
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- AQUÍ ANGULAR RENDERIZA LAS PÁGINAS -->
+<main class="grow">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 text-sm border-t border-slate-800 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div class="space-y-4">
+        <div class="flex items-center gap-2 text-white font-bold text-xl">
+          <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">💼</div>
+          <span>Oportunidades</span>
+        </div>
+        <p class="text-xs leading-relaxed">
+          Plataforma centralizada para conectar a estudiantes y recién egresados con oportunidades
+          de impacto profesional en Bolivia.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-3">Navegación</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a routerLink="/" class="hover:text-white">Inicio</a></li>
+          <li><a routerLink="/oportunidades" class="hover:text-white">Oportunidades</a></li>
+          <li><a routerLink="/organizaciones" class="hover:text-white">Organizaciones</a></li>
+          <li><a routerLink="/como-funciona" class="hover:text-white">¿Cómo funciona?</a></li>
+          <li><a routerLink="/acerca-de" class="hover:text-white">Acerca de</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-3">Categorías</h4>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <a routerLink="/oportunidades" class="hover:text-white"> Desarrollo Web </a>
+          </li>
+          <li>
+            <a routerLink="/oportunidades" class="hover:text-white"> Pasantías </a>
+          </li>
+          <li>
+            <a routerLink="/oportunidades" class="hover:text-white"> Becas </a>
+          </li>
+          <li>
+            <a routerLink="/oportunidades" class="hover:text-white"> Voluntariados </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-xs tracking-wider uppercase mb-3">Proyecto</h4>
+        <p class="text-xs">Angular · Signals · Tailwind · Firebase</p>
+      </div>
+    </div>
+
+    <div
+      class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between gap-4 text-xs text-slate-500"
+    >
+      <p>© 2026 Oportunidades. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <span>Términos de Servicio</span>
+        <span>Política de Privacidad</span>
+        <span>Ayuda</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL LOGIN / REGISTRO -->
+<div
+  class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4"
+>
+  <div
+    class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 animate-fade-in relative"
+  >
+    <button type="button" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+      ✕
+    </button>
+
+    <div class="text-center mb-6">
+      <div
+        class="w-12 h-12 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-3"
+      >
+        👤
+      </div>
+      <h3 class="text-xl font-bold text-slate-900">Iniciar sesion</h3>
+      <p class="text-xs text-slate-500 mt-1">Accede a tu cuenta de Oportunidades</p>
+    </div>
+
+    <div class="mb-5 bg-slate-100 p-1 rounded-xl flex gap-1">
+      <button type="button"></button>
+    </div>
+
+    <form class="space-y-4">
+      <div>
+        <label class="block text-xs font-medium text-slate-700 mb-1"> Correo electrónico </label>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="tu.correo@ejemplo.com"
+          class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-slate-700 mb-1"> Contraseña </label>
+        <input
+          type="password"
+          name="password"
+          required
+          placeholder="••••••••"
+          class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-slate-700 mb-1">
+          Nombre Completo / Institución
+        </label>
+        <input
+          type="text"
+          name="name"
+          class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-sm shadow-md shadow-brand-500/20 transition"
+      ></button>
+    </form>
+
+    <div class="mt-4 pt-4 border-t border-slate-100 text-center">
+      <button
+        type="button"
+        class="w-full py-2 border border-slate-300 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-50"
+      >
+        Ingresar con Google Auth
+      </button>
+    </div>
+  </div>
+</div>
