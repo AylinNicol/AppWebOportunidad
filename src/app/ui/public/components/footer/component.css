@@ -1,12 +1,6 @@
 .logo-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--mat-sys-primary);
-  color: var(--mat-sys-on-primary);
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
