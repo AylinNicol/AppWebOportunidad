@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'como-funciona',
-  standalone: true,
+  selector: 'not-found',
   templateUrl: './component.html',
   imports: [],
 })
-export class ComoFuncionaPublicComponent {}
+export class NotFoundPublicComponent {}
