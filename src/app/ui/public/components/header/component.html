@@ -1,0 +1,88 @@
+<!-- Header -->
+<header class="sticky top-0 z-40">
+  <mat-toolbar class="shadow-sm">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center gap-2 no-underline">
+        <button mat-icon-button type="button" tabindex="-1" aria-hidden="true" class="logo-icon">
+          <mat-icon fontIcon="work_outline"></mat-icon>
+        </button>
+        <span class="font-bold text-xl leading-5">
+          Conecta<br />
+          Oportunidades
+        </span>
+      </a>
+      <!-- Navegación escritorio -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a
+          mat-button
+          routerLink="./"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Inicio
+        </a>
+        <a mat-button routerLink="./oportunidades" routerLinkActive="active-link">
+          Oportunidades
+        </a>
+        <a mat-button routerLink="./organizaciones" routerLinkActive="active-link">
+          Organizaciones
+        </a>
+        <a mat-button routerLink="./como-funciona" routerLinkActive="active-link">
+          ¿Cómo funciona?
+        </a>
+        <a mat-button routerLink="./acerca-de" routerLinkActive="active-link"> Acerca de </a>
+      </nav>
+
+      <!-- Acciones escritorio -->
+      <div class="hidden md:flex items-center gap-2">
+        <button mat-button type="button" (click)="abrirLogin()">Iniciar sesión</button>
+        <button mat-flat-button type="button" (click)="abrirRegistrate()">Registrarse</button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="md:hidden">
+        <button
+          mat-icon-button
+          type="button"
+          [matMenuTriggerFor]="mobileMenu"
+          aria-label="Abrir menú"
+        >
+          <mat-icon fontIcon="menu"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+  <!-- Menú móvil -->
+  <mat-menu #mobileMenu="matMenu" class="mobile-menu">
+    <a mat-menu-item routerLink="./">
+      <mat-icon fontIcon="home"></mat-icon>
+      <span>Inicio</span>
+    </a>
+    <a mat-menu-item routerLink="/oportunidades">
+      <mat-icon fontIcon="work_outline"></mat-icon>
+      <span>Oportunidades</span>
+    </a>
+    <a mat-menu-item routerLink="/organizaciones">
+      <mat-icon fontIcon="business"></mat-icon>
+      <span>Organizaciones</span>
+    </a>
+    <a mat-menu-item routerLink="/como-funciona">
+      <mat-icon fontIcon="help_outline"></mat-icon>
+      <span>¿Cómo funciona?</span>
+    </a>
+    <a mat-menu-item routerLink="/acerca-de">
+      <mat-icon fontIcon="info_outline"></mat-icon>
+      <span>Acerca de</span>
+    </a>
+    <mat-divider></mat-divider>
+    <button mat-menu-item type="button" (click)="abrirLogin()">
+      <mat-icon fontIcon="login"></mat-icon>
+      <span>Iniciar sesión</span>
+    </button>
+    <button mat-menu-item type="button" (click)="abrirRegistrate()">
+      <mat-icon fontIcon="person_add"></mat-icon>
+      <span>Registrarse</span>
+    </button>
+  </mat-menu>
+</header>

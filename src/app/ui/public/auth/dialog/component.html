@@ -1,0 +1,121 @@
+<div class="auth-dialog">
+  <!-- Cerrar -->
+  <div class="flex justify-end">
+    <button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar">
+      <mat-icon fontIcon="close"></mat-icon>
+    </button>
+  </div>
+  <!-- Encabezado -->
+  <div class="text-center mb-3">
+    <div class="auth-icon mx-auto mb-1">
+      <mat-icon [fontIcon]="modo() === 'login' ? 'person' : 'person_add'"></mat-icon>
+    </div>
+    <h2 class="text-xl font-bold">
+      {{ modo() === 'login' ? 'Iniciar sesión' : 'Crear cuenta' }}
+    </h2>
+    <p class="text-sm text-gray-500 mt-1">
+      {{
+        modo() === 'login'
+          ? 'Accede a tu cuenta de Conecta Oportunidades'
+          : 'Regístrate para acceder a las Nuevas Oportunidades'
+      }}
+    </p>
+  </div>
+  <!-- Boton Login / Registro -->
+  <div class="auth-tabs">
+    <button
+      mat-button
+      type="button"
+      class="auth-tab"
+      [class.active-tab]="modo() === 'login'"
+      (click)="setModo('login')"
+    >
+      Iniciar sesión
+    </button>
+
+    <button
+      mat-button
+      type="button"
+      class="auth-tab"
+      [class.active-tab]="modo() === 'register'"
+      (click)="setModo('register')"
+    >
+      Registrarse
+    </button>
+  </div>
+
+  <mat-dialog-content class="content">
+    <form class="grid gap-0">
+      <!-- Solo registro -->
+      @if (modo() === 'register') {
+        <mat-radio-group
+          aria-label="Tipo de cuenta"
+          [value]="rolRegistro()"
+          (change)="setRolRegistro($event.value)"
+          class="flex justify-center gap-5 mb-3"
+        >
+          <mat-radio-button value="postulante"> Postulante </mat-radio-button>
+          <mat-radio-button value="organizacion"> Organización </mat-radio-button>
+        </mat-radio-group>
+
+        @if (rolRegistro() === 'postulante') {
+          <mat-form-field appearance="outline" class="w-full auth-field">
+            <mat-label>Nombre completo</mat-label>
+            <mat-icon matPrefix fontIcon="person"></mat-icon>
+            <input matInput type="text" />
+          </mat-form-field>
+        } @else {
+          <mat-form-field appearance="outline" class="w-full auth-field">
+            <mat-label>Nombre de la organización</mat-label>
+            <mat-icon matPrefix fontIcon="business"></mat-icon>
+            <input matInput type="text" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full auth-field">
+            <mat-label>Nombre del representante</mat-label>
+            <mat-icon matPrefix fontIcon="person"></mat-icon>
+            <input matInput type="text" />
+          </mat-form-field>
+        }
+      }
+
+      <!-- Correo -->
+      <mat-form-field appearance="outline" class="w-full auth-field">
+        <mat-label>Correo electrónico</mat-label>
+        <mat-icon matPrefix fontIcon="mail"></mat-icon>
+        <input matInput type="email" placeholder="tu.correo@ejemplo.com" />
+      </mat-form-field>
+      <!-- Contraseña -->
+      <mat-form-field appearance="outline" class="w-full auth-field">
+        <mat-label>Contraseña</mat-label>
+        <mat-icon matPrefix fontIcon="lock"></mat-icon>
+        <input matInput [type]="hide() ? 'password' : 'text'" />
+        <button
+          type="button"
+          matIconButton
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <!-- Botón principal -->
+      <button mat-flat-button type="submit" class="w-full auth-field">
+        {{ modo() === 'login' ? 'Iniciar sesión' : 'Crear cuenta' }}
+      </button>
+    </form>
+  </mat-dialog-content>
+
+  <!-- Google -->
+  <mat-dialog-actions class="auth-actions">
+    <div class="auth-divider">
+      <span>o continúa con</span>
+    </div>
+    <button mat-stroked-button type="button" class="w-full auth-field">
+      <mat-icon fontIcon="login"></mat-icon>
+      Continuar con Google
+    </button>
+  </mat-dialog-actions>
+</div>

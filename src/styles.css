@@ -1,3 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/*Menu movil*/
+.mobile-menu {
+  --mat-menu-container-color: var(--mat-sys-surface-container-lowest) !important;
+  --mat-menu-item-label-text-color: var(--mat-sys-on-surface) !important;
+  --mat-menu-item-icon-color: var(--mat-sys-primary) !important;
+}
+.mobile-menu .mat-mdc-menu-item:hover {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+.mobile-menu .mat-mdc-menu-item:hover mat-icon {
+  color: var(--mat-sys-primary);
+}
