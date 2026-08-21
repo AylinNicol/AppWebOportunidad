@@ -1,1 +1,110 @@
-<h1>¿Cómo funciona Oportunidades?</h1>
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <section class="text-center mb-6">
+    <div class="titulo-con-icono">
+      <mat-icon fontIcon="route"></mat-icon>
+      <h1>¿Cómo funciona Oportunidades?</h1>
+    </div>
+    <p class="mt-2">Un flujo simple de 5 pasos puede acelerar tu vinculación laboral</p>
+  </section>
+  <mat-stepper
+    orientation="vertical"
+    [linear]="false"
+    animationDuration="400ms"
+    class="stepper-personalizado"
+  >
+    <mat-step>
+      <ng-template matStepLabel>
+        <span class="titulo-paso">Registrarse</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="contenido-paso">
+          <p>
+            Debes crear una cuenta para comenzar a utilizar la plataforma, puedes registrarte como
+            postulante u organización, según el tipo de usuario que corresponda. Una vez creada tu
+            cuenta, podrás acceder a las funcionalidades disponibles para tu perfil.
+          </p>
+          <div class="acciones-paso">
+            <button matButton="filled" matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>
+        <span class="titulo-paso">Completar perfil</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="contenido-paso">
+          <p>
+            Completa tu perfil con tu información básica y los datos necesarios para tus futuras
+            postulaciones, también podrás cargar tu Curriculum Vitae para tenerlo disponible dentro
+            de la plataforma y utilizarlo al momento de postular a una oportunidad.
+          </p>
+          <div class="acciones-paso">
+            <button matButton matStepperPrevious>Atrás</button>
+            <button matButton="filled" matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>
+        <span class="titulo-paso">Buscar oportunidades</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="contenido-paso">
+          <p>
+            Explora las oportunidades disponibles y encuentra aquellas que se adapten mejor a tus
+            intereses y formación. <br />
+            Puedes utilizar los filtros de categoría, modalidad o ubicación para facilitar la
+            búsqueda y consultar el detalle de cada oportunidad antes de tomar una decisión.
+          </p>
+          <div class="acciones-paso">
+            <button matButton matStepperPrevious>Atrás</button>
+            <button matButton="filled" matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>
+        <span class="titulo-paso">Postularse</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="contenido-paso">
+          <p>
+            Cuando encuentres una oportunidad de tu interés, podrás iniciar tu postulación desde la
+            plataforma, completa el formulario de varios pasos, revisa la información proporcionada
+            y envía tu solicitud.
+          </p>
+          <div class="acciones-paso">
+            <button matButton matStepperPrevious>Atrás</button>
+            <button matButton="filled" matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>
+        <span class="titulo-paso">Dar seguimiento</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="contenido-paso">
+          <p>
+            Después de enviar una postulación, podrás consultar su avance desde tu cuenta sin perder
+            de vista el proceso. <br />El estado irá cambiando según la revisión realizada por la
+            organización, permitiéndote saber si tu postulación está En revisión, en Entrevista,
+            Seleccionada o Rechazada.
+          </p>
+          <div class="acciones-paso">
+            <button matButton matStepperPrevious>Atrás</button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-step>
+  </mat-stepper>
+</div>

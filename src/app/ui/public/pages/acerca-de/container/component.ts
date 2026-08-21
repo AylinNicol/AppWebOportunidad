@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
-    selector: 'acerca-de',
-    standalone: true,
-    templateUrl: './component.html',
-    imports: []
+  selector: 'acerca-de',
+  templateUrl: './component.html',
+  styleUrls: ['./component.css'],
+  imports: [MatCardModule, MatChipsModule],
 })
-export class AcercaDePublicComponent {
-}
+export class AcercaDePublicComponent {}

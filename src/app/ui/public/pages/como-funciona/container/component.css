@@ -1,0 +1,57 @@
+/* Encabezado */
+
+.titulo-con-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: var(--mat-sys-on-primary-container);
+}
+.titulo-con-icono mat-icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+.titulo-con-icono h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* Stepper */
+.stepper-personalizado {
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.stepper-personalizado:hover {
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.08),
+    0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Títulos de pasos */
+.titulo-paso {
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+/* Contenido */
+.contenido-paso {
+  padding: 0px 0px 0px 0px;
+}
+.contenido-paso p {
+  margin: 0 0 10px;
+  color: var(--mat-sys-on-primary-container);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Botones */
+.acciones-paso {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
