@@ -1,18 +1,1 @@
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--mat-sys-primary);
-  color: var(--mat-sys-on-primary);
-}
-/*Al hacer click en un enlace activo*/
-.active-link {
-  color: var(--mat-sys-primary) !important;
-  background-color: var(--mat-sys-primary-container) !important;
-  font-weight: 600 !important;
-}
