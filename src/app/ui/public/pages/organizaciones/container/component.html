@@ -1,1 +1,104 @@
-<h1>Organizaciones</h1>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  <!-- Encabezado -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="titulo leading-tight">
+      <h1>Organizaciones Registradas</h1>
+      <p class="text-sm mt-1">
+        Empresas, fundaciones y comunidades aliadas que ofrecen oportunidades
+      </p>
+    </div>
+    <!-- Buscador -->
+    <mat-form-field
+      appearance="outline"
+      subscriptSizing="dynamic"
+      class="w-full md:max-w-xs buscador"
+    >
+      <mat-label>Buscar organización</mat-label>
+      <mat-icon matPrefix fontIcon="search"></mat-icon>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="search"
+        placeholder="Nombre, categoría o ubicación"
+      />
+      @if (search) {
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          aria-label="Limpiar búsqueda"
+          (click)="search = ''"
+        >
+          <mat-icon fontIcon="close"></mat-icon>
+        </button>
+      }
+    </mat-form-field>
+  </div>
+
+  <!-- Organizaciones -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (org of filtradoOrganizaciones; track org.id) {
+      <mat-card appearance="outlined" class="h-full flex flex-col org-card">
+        <!-- Cabecera -->
+        <mat-card-header class="pb-2">
+          <div mat-card-avatar class="flex items-center justify-center org-avatar">
+            {{ org.nombre.charAt(0) }}
+          </div>
+          <mat-card-title>
+            <div class="flex items-center gap-1">
+              <span class="font-semibold">{{ org.nombre }}</span>
+              @if (org.verified) {
+                <mat-icon
+                  class="verified-icon"
+                  matTooltip="Organización verificada"
+                  aria-label="Organización verificada"
+                  fontIcon="verified"
+                ></mat-icon>
+              }
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle class="font-medium">
+            {{ org.categoria }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <!-- Contenido -->
+        <mat-card-content class="flex-1 pt-3">
+          <p class="leading-relaxed">
+            {{ org.description }}
+          </p>
+          <div class="flex items-center gap-2 mt-5 org-location">
+            <mat-icon fontIcon="location_on"></mat-icon>
+            <span>
+              {{ org.Ubicacion }}
+            </span>
+          </div>
+        </mat-card-content>
+        <!-- Acciones -->
+        <mat-card-actions class="flex items-center justify-between gap-3 px-4 pb-4 org-actions">
+          <mat-chip-set aria-label="Oportunidades disponibles">
+            <mat-chip>
+              <mat-icon matChipAvatar fontIcon="work_outline"></mat-icon>
+              {{ org.opportunitiesCount }} oportunidades
+            </mat-chip>
+          </mat-chip-set>
+          <a mat-flat-button routerLink="/organizaciones/{{ org.slug }}" class="shrink-0">
+            Ver perfil
+            <mat-icon iconPositionEnd> arrow_forward </mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    } @empty {
+      <!-- Estado sin resultados -->
+      <mat-card appearance="outlined" class="md:col-span-2 lg:col-span-3">
+        <mat-card-content>
+          <div class="flex flex-col items-center text-center gap-2">
+            <mat-icon fontIcon="search_off"></mat-icon>
+            <h2>No se encontraron organizaciones</h2>
+            <p>Intenta buscar utilizando otro nombre, categoría o ubicación.</p>
+            <button mat-button type="button" (click)="search = ''">Limpiar búsqueda</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</div>

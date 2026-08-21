@@ -24,6 +24,14 @@ export const PublicRoutes: Routes = [
       ),
   },
   {
+    path: 'organizaciones/:slug',
+    title: 'Organización',
+    loadComponent: () =>
+      import('./pages/perfil-organizacion/container/component').then(
+        (m) => m.PerfilOrganizacionPublicComponent,
+      ),
+  },
+  {
     path: 'como-funciona',
     title: '¿Cómo funciona?',
     loadComponent: () =>

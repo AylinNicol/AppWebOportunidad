@@ -24,6 +24,8 @@
   transition:
     box-shadow 0.25s ease,
     transform 0.25s ease;
+  --mat-stepper-header-hover-state-layer-color: var(--mat-sys-primary-container);
+  --mat-stepper-header-focus-state-layer-color: var(--mat-sys-primary-container);
 }
 .stepper-personalizado:hover {
   box-shadow:
