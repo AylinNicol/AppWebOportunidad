@@ -4,7 +4,8 @@
 
 /* Encabezado */
 .titulo {
-  display: inline-flex;
+  align-items: left;
+  justify-content: left;
   gap: 10px;
   color: var(--mat-sys-on-primary-container);
 }
@@ -13,6 +14,7 @@
   font-size: 2rem;
   font-weight: 800;
 }
+
 .acerca-card {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
@@ -45,7 +47,7 @@
 /* Títulos */
 mat-card-title {
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1;
 }
 
 /* Contenido */
@@ -62,5 +64,8 @@ ul {
 @media (max-width: 640px) {
   mat-card-title {
     font-size: 1.1rem;
+  }
+  .titulo h1 {
+    font-size: 1.7rem;
   }
 }

@@ -119,16 +119,46 @@
   padding: 12px 12px 12px 20px;
   border-top: 1px solid var(--mat-sys-primary-container);
 }
+/* Boton ver perfil */
+.org-actions a {
+  font-weight: 600;
+}
 
 /* Chip */
-
 .org-actions mat-chip {
   font-size: 14px;
 }
 
-/* Responsive */
+/* Sin resultados */
+.sin-resultados {
+  border-radius: 16px;
+  text-align: center;
+}
+.sin-resultados mat-card-content {
+  padding: 48px 24px;
+}
+.sin-resultados mat-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  color: var(--mat-sys-primary);
+}
+.sin-resultados h3 {
+  margin: 8px 0 4px;
+  color: var(--mat-sys-on-primary-container);
+  font-size: 18px;
+  font-weight: 700;
+}
+.sin-resultados p {
+  margin: 0 0 12px;
+  color: var(--mat-sys-on-surface-variant);
+}
 
+/* Responsive */
 @media (max-width: 640px) {
+  .titulo h1 {
+    font-size: 1.7rem;
+  }
   .search-field {
     max-width: 100%;
   }

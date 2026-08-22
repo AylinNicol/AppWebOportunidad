@@ -142,11 +142,9 @@
               <mat-card-actions class="opr-actions">
                 <div class="opr-fecha">
                   <mat-icon> schedule </mat-icon>
-                  <span>
-                    {{ oportunidad.fechaPublicacion }}
-                  </span>
+                  <span> {{ oportunidad.fechaPublicacion }} </span>
                 </div>
-                <a mat-button routerLink="/">
+                <a mat-button [routerLink]="['/oportunidades', oportunidad.slug]">
                   Ver detalle
                   <mat-icon iconPositionEnd> arrow_forward </mat-icon>
                 </a>
@@ -170,8 +168,7 @@
             <mat-icon> search_off </mat-icon>
             <h3>No se encontraron oportunidades</h3>
             <p>Intenta modificar los filtros de búsqueda.</p>
-            <button mat-button type="button" (click)="limpiarFiltros()">
-              <mat-icon> filter_alt_off </mat-icon>
+            <button mat-stroked-button type="button" (click)="limpiarFiltros()">
               Limpiar filtros
             </button>
           </mat-card-content>

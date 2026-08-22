@@ -1,1 +1,260 @@
-<h1>xd</h1>
+@if (oportunidad; as opr) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <!-- Volver -->
+    <a mat-button routerLink="/oportunidades" class="mb-4">
+      <mat-icon>arrow_back</mat-icon>
+      Volver a oportunidades
+    </a>
+
+    <!-- Oportunidad principal -->
+    <mat-card appearance="outlined" class="opr-card mb-5">
+      <div class="flex flex-col md:flex-row items-center md:items-stretch">
+        <!-- Avatar -->
+        <div mat-card-avatar class="opr-avatar shrink-0">
+          {{ opr.organizacion.charAt(0) }}
+        </div>
+
+        <!-- Contenido -->
+        <mat-card-content class="flex-1 mt-1">
+          <mat-card-title>
+            <div class="flex items-center titulo">
+              <h1 class="font-semibold">
+                {{ opr.titulo }}
+              </h1>
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle class="font-medium">
+            {{ opr.organizacion }}
+          </mat-card-subtitle>
+
+          <!-- Tipo -->
+          <mat-chip-set>
+            <mat-chip class="tipo-chip">
+              {{ opr.tipo }}
+            </mat-chip>
+          </mat-chip-set>
+
+          <!-- Datos principales -->
+          <mat-chip-set class="info-chips">
+            <mat-chip>
+              <mat-icon matChipAvatar> location_on </mat-icon>
+              {{ opr.ubicacion }}
+            </mat-chip>
+            <mat-chip>
+              <mat-icon matChipAvatar> wifi </mat-icon>
+              {{ opr.modalidad }}
+            </mat-chip>
+            <mat-chip>
+              <mat-icon matChipAvatar> sell </mat-icon>
+              {{ opr.categoria }}
+            </mat-chip>
+          </mat-chip-set>
+        </mat-card-content>
+      </div>
+
+      <!-- Acciones -->
+      <mat-card-actions class="flex items-center justify-between gap-3 px-3 pb-3 opr-actions">
+        <div class="opr-fecha">
+          <mat-icon> event </mat-icon>
+          <span> Fecha límite: {{ opr.fechaLimite }} </span>
+        </div>
+        <button mat-flat-button type="button" class="shrink-0">
+          <mat-icon> send </mat-icon>
+          Postular
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Contenido principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-0 items-start">
+      <!-- Columna izquierda -->
+      <div class="lg:col-span-2 space-y-3">
+        <!-- Descripción -->
+        <mat-card appearance="outlined" class="detalle-card">
+          <mat-card-header>
+            <mat-card-title>
+              <div class="flex items-center gap-2">
+                <mat-icon> description </mat-icon>
+                <span class="font-semibold"> Descripción de la oportunidad </span>
+              </div>
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="leading-relaxed">
+              {{ opr.descripcion }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Requisitos -->
+        <mat-card appearance="outlined" class="detalle-card">
+          <mat-card-header>
+            <mat-card-title>
+              <div class="flex items-center gap-2">
+                <mat-icon> checklist </mat-icon>
+                <span class="font-semibold"> Requisitos </span>
+              </div>
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-list class="detalle-lista">
+              @for (requisito of opr.requisitos; track requisito) {
+                <mat-list-item>
+                  <mat-icon matListItemIcon> check_circle </mat-icon>
+                  <span matListItemTitle>
+                    {{ requisito }}
+                  </span>
+                </mat-list-item>
+              }
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Responsabilidades -->
+        <mat-card appearance="outlined" class="detalle-card">
+          <mat-card-header>
+            <mat-card-title>
+              <div class="flex items-center gap-2">
+                <mat-icon> assignment </mat-icon>
+                <span class="font-semibold"> Responsabilidades </span>
+              </div>
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-list class="detalle-lista">
+              @for (responsabilidad of opr.responsabilidades; track responsabilidad) {
+                <mat-list-item>
+                  <mat-icon matListItemIcon> arrow_right </mat-icon>
+                  <span matListItemTitle>
+                    {{ responsabilidad }}
+                  </span>
+                </mat-list-item>
+              }
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="space-y-3 self-start">
+        <!-- Detalles -->
+        <mat-card appearance="outlined" class="detalle-card">
+          <mat-card-header>
+            <mat-card-title>
+              <div class="flex items-center gap-2">
+                <mat-icon> info </mat-icon>
+                <span class="font-semibold"> Información </span>
+              </div>
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-list class="info-detalle">
+              <!-- Tipo -->
+              <mat-list-item>
+                <mat-icon matListItemIcon> work_outline </mat-icon>
+                <span matListItemTitle> Tipo de oportunidad </span>
+                <span matListItemLine>
+                  {{ opr.tipo }}
+                </span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+
+              <!-- Categoría -->
+              <mat-list-item>
+                <mat-icon matListItemIcon> sell </mat-icon>
+                <span matListItemTitle> Categoría </span>
+                <span matListItemLine>
+                  {{ opr.categoria }}
+                </span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+
+              <!-- Modalidad -->
+              <mat-list-item>
+                <mat-icon matListItemIcon> wifi </mat-icon>
+                <span matListItemTitle> Modalidad </span>
+                <span matListItemLine>
+                  {{ opr.modalidad }}
+                </span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+
+              <!-- Ubicación -->
+              <mat-list-item>
+                <mat-icon matListItemIcon> location_on </mat-icon>
+                <span matListItemTitle> Ubicación </span>
+                <span matListItemLine>
+                  {{ opr.ubicacion }}
+                </span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+
+              <!-- Publicación -->
+              <mat-list-item>
+                <mat-icon matListItemIcon> schedule </mat-icon>
+                <span matListItemTitle> Publicación </span>
+                <span matListItemLine>
+                  {{ opr.fechaPublicacion }}
+                </span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+
+              <!-- Fecha límite -->
+              <mat-list-item>
+                <mat-icon matListItemIcon> event </mat-icon>
+                <span matListItemTitle> Fecha límite </span>
+                <span matListItemLine>
+                  {{ opr.fechaLimite }}
+                </span>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Organización -->
+        <mat-card appearance="outlined" class="detalle-card">
+          <mat-card-header>
+            <div mat-card-avatar class="flex items-center justify-center ogr-avatar">
+              {{ opr.organizacion.charAt(0) }}
+            </div>
+            <mat-card-title>
+              <div class="flex items-center gap-1">
+                <span class="font-semibold"> Organización </span>
+              </div>
+            </mat-card-title>
+            <mat-card-subtitle class="font-medium">
+              {{ opr.organizacion }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="leading-relaxed">
+              Organización responsable de la publicación de esta oportunidad.
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="opr-actions">
+            <a mat-button [routerLink]="['/organizaciones', opr.organizacionId]" class="shrink-0">
+              Ver organización
+              <mat-icon iconPositionEnd> arrow_forward </mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- Oportunidad no encontrada -->
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <mat-card appearance="outlined">
+      <mat-card-content class="text-center">
+        <mat-icon> work_off </mat-icon>
+        <h1>Oportunidad no encontrada</h1>
+        <p>La oportunidad que buscas no existe o ya no está disponible.</p>
+        <a mat-flat-button routerLink="/oportunidades"> Volver a oportunidades </a>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}

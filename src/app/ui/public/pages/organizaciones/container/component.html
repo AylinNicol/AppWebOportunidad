@@ -1,4 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+<div class="mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
   <!-- Encabezado -->
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div class="titulo leading-tight">
@@ -84,11 +84,10 @@
             <mat-chip-set aria-label="Oportunidades disponibles">
               <mat-chip>
                 <mat-icon matChipAvatar>work_outline</mat-icon>
-                {{ org.cantidadOportunidades }}
-                oportunidades
+                {{ org.cantidadOportunidades }} oportunidades
               </mat-chip>
             </mat-chip-set>
-            <a mat-flat-button [routerLink]="['/organizaciones', org.slug]" class="shrink-0">
+            <a mat-button [routerLink]="['/organizaciones', org.slug]">
               Ver perfil
               <mat-icon iconPositionEnd> arrow_forward </mat-icon>
             </a>
@@ -107,15 +106,15 @@
     >
     </mat-paginator>
   } @else {
-    <!-- Estado sin resultados -->
-    <mat-card appearance="outlined">
+    <!-- Sin resultados -->
+    <mat-card appearance="outlined" class="sin-resultados">
       <mat-card-content>
-        <div class="flex flex-col items-center text-center gap-2">
-          <mat-icon>search_off</mat-icon>
-          <h2>No se encontraron organizaciones</h2>
-          <p>Intenta buscar utilizando otro nombre, categoría o ubicación.</p>
-          <button mat-button type="button" (click)="limpiarBusqueda()">Limpiar búsqueda</button>
-        </div>
+        <mat-icon> search_off </mat-icon>
+        <h3>No se encontraron organizaciones</h3>
+        <p>Intenta buscar utilizando otro nombre, categoría o ubicación.</p>
+        <button mat-stroked-button type="button" (click)="limpiarBusqueda()">
+          Limpiar búsqueda
+        </button>
       </mat-card-content>
     </mat-card>
   }

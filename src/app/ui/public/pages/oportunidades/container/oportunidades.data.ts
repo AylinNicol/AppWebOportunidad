@@ -13,6 +13,8 @@ export interface Oportunidad {
   descripcion: string;
   fechaPublicacion: string;
   estado: string;
+  requisitos: string[];
+  responsabilidades: string[];
 }
 
 export const OPORTUNIDADES: Oportunidad[] = [
@@ -32,6 +34,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Buscamos un estudiante o recién egresado apasionado por el desarrollo web frontend para unirse a nuestro equipo de software.',
     fechaPublicacion: 'Hace 2 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante o recién egresado de Ingeniería Informática, Sistemas o carreras relacionadas.',
+      'Conocimientos básicos de HTML, CSS y TypeScript.',
+      'Conocimientos básicos de Angular.',
+      'Interés por el desarrollo de interfaces web.',
+    ],
+    responsabilidades: [
+      'Apoyar en el desarrollo de interfaces web con Angular.',
+      'Implementar componentes reutilizables.',
+      'Participar en pruebas y corrección de errores.',
+      'Colaborar con el equipo de desarrollo.',
+    ],
   },
   {
     id: '2',
@@ -49,6 +63,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Excelente oportunidad para egresados interesados en consolidar su carrera en desarrollo de software fullstack.',
     fechaPublicacion: 'Hace 3 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser egresado de Informática, Sistemas o carreras relacionadas.',
+      'Conocimientos de desarrollo frontend y backend.',
+      'Manejo básico de bases de datos.',
+      'Conocimientos de Git y control de versiones.',
+    ],
+    responsabilidades: [
+      'Desarrollar funcionalidades para aplicaciones web.',
+      'Realizar mantenimiento y corrección de errores.',
+      'Participar en revisiones de código.',
+      'Documentar las funcionalidades desarrolladas.',
+    ],
   },
   {
     id: '3',
@@ -66,6 +92,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Beca integral para jóvenes talentos interesados en especializarse en desarrollo cloud.',
     fechaPublicacion: 'Hace 1 día',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante o recién egresado de una carrera tecnológica.',
+      'Tener conocimientos básicos de programación.',
+      'Contar con disponibilidad para asistir a las sesiones virtuales.',
+      'Tener interés en tecnologías cloud.',
+    ],
+    responsabilidades: [
+      'Participar activamente en las sesiones de formación.',
+      'Completar las actividades y proyectos asignados.',
+      'Desarrollar un proyecto final de aplicación web.',
+      'Cumplir con el cronograma del programa.',
+    ],
   },
   {
     id: '4',
@@ -82,6 +120,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion: 'Mentoría para enseñar programación básica a estudiantes de colegio.',
     fechaPublicacion: 'Hace 5 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante universitario o profesional joven.',
+      'Tener conocimientos básicos de programación.',
+      'Interés por la educación y tecnología.',
+      'Disponibilidad para participar en actividades educativas.',
+    ],
+    responsabilidades: [
+      'Apoyar en talleres de programación básica.',
+      'Orientar a estudiantes durante las actividades.',
+      'Preparar ejemplos y ejercicios educativos.',
+      'Colaborar con otros voluntarios del programa.',
+    ],
   },
   {
     id: '5',
@@ -98,6 +148,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion: 'Prototipado de aplicaciones web y móviles atractivas en Figma.',
     fechaPublicacion: 'Hace 4 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante o recién egresado de Diseño, Informática o áreas relacionadas.',
+      'Conocimientos básicos de Figma.',
+      'Interés por diseño de interfaces y experiencia de usuario.',
+      'Contar con portafolio académico o personal.',
+    ],
+    responsabilidades: [
+      'Diseñar prototipos de aplicaciones web y móviles.',
+      'Crear componentes y elementos visuales.',
+      'Apoyar en pruebas de usabilidad.',
+      'Colaborar con el equipo de desarrollo frontend.',
+    ],
   },
   {
     id: '6',
@@ -114,6 +176,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion: 'Apoyo en redes sociales y creación de contenido institucional.',
     fechaPublicacion: 'Hace 1 semana',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante o recién egresado de Marketing, Comunicación o áreas relacionadas.',
+      'Conocimiento básico de redes sociales.',
+      'Buena redacción y comunicación.',
+      'Interés por la creación de contenido digital.',
+    ],
+    responsabilidades: [
+      'Apoyar en la gestión de redes sociales.',
+      'Crear contenido para publicaciones institucionales.',
+      'Realizar seguimiento de campañas digitales.',
+      'Apoyar en la elaboración de reportes de resultados.',
+    ],
   },
   {
     id: '7',
@@ -131,6 +205,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Apoyo en mantenimiento de equipos, instalación de software y atención de incidencias técnicas.',
     fechaPublicacion: 'Hace 2 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante de Informática, Sistemas o carreras relacionadas.',
+      'Conocimientos básicos de hardware y software.',
+      'Conocimientos básicos de redes.',
+      'Disponibilidad para trabajo presencial.',
+    ],
+    responsabilidades: [
+      'Realizar mantenimiento básico de equipos.',
+      'Instalar y configurar software.',
+      'Atender incidencias técnicas de usuarios.',
+      'Registrar las actividades de soporte realizadas.',
+    ],
   },
   {
     id: '8',
@@ -148,6 +234,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Buscamos desarrollador junior con conocimientos de HTML, CSS, TypeScript y frameworks frontend.',
     fechaPublicacion: 'Hace 3 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Conocimientos de HTML, CSS y TypeScript.',
+      'Conocimientos de Angular u otro framework frontend.',
+      'Manejo básico de Git.',
+      'Capacidad para trabajar en equipo.',
+    ],
+    responsabilidades: [
+      'Desarrollar interfaces web responsivas.',
+      'Implementar componentes frontend.',
+      'Consumir servicios y APIs.',
+      'Corregir errores y mejorar funcionalidades existentes.',
+    ],
   },
   {
     id: '9',
@@ -165,6 +263,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Programa de formación dirigido a estudiantes interesados en desarrollo frontend y backend.',
     fechaPublicacion: 'Hace 4 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante universitario o técnico.',
+      'Tener conocimientos básicos de programación.',
+      'Disponer de computadora y conexión a Internet.',
+      'Interés por el desarrollo web.',
+    ],
+    responsabilidades: [
+      'Asistir a las sesiones virtuales de formación.',
+      'Completar ejercicios prácticos.',
+      'Participar en proyectos grupales.',
+      'Presentar un proyecto web al finalizar el programa.',
+    ],
   },
   {
     id: '10',
@@ -182,6 +292,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Apoya en talleres de informática básica dirigidos a jóvenes y adultos de diferentes comunidades.',
     fechaPublicacion: 'Hace 6 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante universitario o profesional joven.',
+      'Manejo básico de computadoras y herramientas de oficina.',
+      'Facilidad para enseñar y comunicarse.',
+      'Disponibilidad para actividades presenciales.',
+    ],
+    responsabilidades: [
+      'Apoyar en talleres de informática básica.',
+      'Orientar a los participantes en el uso de computadoras.',
+      'Preparar material educativo sencillo.',
+      'Registrar la participación en las actividades.',
+    ],
   },
   {
     id: '11',
@@ -199,6 +321,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Participa en el diseño de interfaces y prototipos para aplicaciones web utilizando Figma.',
     fechaPublicacion: 'Hace 1 semana',
     estado: 'Aprobada',
+    requisitos: [
+      'Conocimientos de diseño de interfaces.',
+      'Manejo de Figma.',
+      'Conocimientos básicos de diseño responsivo.',
+      'Contar con portafolio de proyectos.',
+    ],
+    responsabilidades: [
+      'Diseñar interfaces para aplicaciones web.',
+      'Crear wireframes y prototipos.',
+      'Mantener componentes del sistema de diseño.',
+      'Trabajar junto al equipo de desarrollo.',
+    ],
   },
   {
     id: '12',
@@ -216,6 +350,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Apoyo en planificación de contenido, gestión de redes sociales y campañas digitales.',
     fechaPublicacion: 'Hace 3 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante de Marketing, Comunicación o carreras relacionadas.',
+      'Conocimiento de redes sociales.',
+      'Buena redacción.',
+      'Creatividad para generar contenido.',
+    ],
+    responsabilidades: [
+      'Crear contenido para redes sociales.',
+      'Programar y organizar publicaciones.',
+      'Apoyar en campañas de marketing digital.',
+      'Realizar seguimiento de métricas básicas.',
+    ],
   },
   {
     id: '13',
@@ -233,6 +379,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Participa en el desarrollo de APIs y servicios para aplicaciones web junto a nuestro equipo técnico.',
     fechaPublicacion: 'Hace 1 día',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante de Informática, Sistemas o carreras relacionadas.',
+      'Conocimientos de programación orientada a objetos.',
+      'Conocimientos básicos de bases de datos.',
+      'Conocimientos básicos sobre APIs REST.',
+    ],
+    responsabilidades: [
+      'Apoyar en el desarrollo de APIs.',
+      'Implementar funcionalidades del lado del servidor.',
+      'Realizar consultas y operaciones con bases de datos.',
+      'Participar en pruebas y corrección de errores.',
+    ],
   },
   {
     id: '14',
@@ -250,6 +408,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Programa introductorio sobre seguridad informática, protección de datos y buenas prácticas digitales.',
     fechaPublicacion: 'Hoy',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante o recién egresado de una carrera tecnológica.',
+      'Tener conocimientos básicos de sistemas y redes.',
+      'Interés por la seguridad informática.',
+      'Disponibilidad para completar el programa.',
+    ],
+    responsabilidades: [
+      'Participar en las sesiones de formación.',
+      'Completar laboratorios prácticos.',
+      'Aplicar buenas prácticas de seguridad.',
+      'Desarrollar las evaluaciones asignadas.',
+    ],
   },
   {
     id: '15',
@@ -267,6 +437,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Apoyo en elaboración de material gráfico, contenido digital y piezas para redes sociales.',
     fechaPublicacion: 'Hace 5 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante o recién egresado de Diseño o áreas relacionadas.',
+      'Manejo básico de herramientas de diseño gráfico.',
+      'Creatividad y atención al detalle.',
+      'Contar con ejemplos de trabajos realizados.',
+    ],
+    responsabilidades: [
+      'Diseñar piezas gráficas para redes sociales.',
+      'Apoyar en la elaboración de material institucional.',
+      'Adaptar diseños a diferentes formatos.',
+      'Organizar recursos gráficos de la organización.',
+    ],
   },
   {
     id: '16',
@@ -284,6 +466,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Comparte tus conocimientos de programación básica acompañando a estudiantes que están comenzando en tecnología.',
     fechaPublicacion: 'Hace 2 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Tener conocimientos de programación básica.',
+      'Interés por enseñar y compartir conocimientos.',
+      'Buena comunicación.',
+      'Disponibilidad para sesiones virtuales.',
+    ],
+    responsabilidades: [
+      'Orientar a estudiantes que comienzan a programar.',
+      'Resolver dudas durante las sesiones.',
+      'Revisar ejercicios básicos de programación.',
+      'Motivar a los participantes durante su aprendizaje.',
+    ],
   },
   {
     id: '17',
@@ -301,6 +495,18 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Apoyo en análisis de información, elaboración de reportes y visualización de datos para proyectos empresariales.',
     fechaPublicacion: 'Hace 4 días',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser egresado de Informática, Estadística, Sistemas o áreas relacionadas.',
+      'Conocimientos de Excel y manejo de datos.',
+      'Conocimientos básicos de SQL.',
+      'Capacidad de análisis e interpretación de información.',
+    ],
+    responsabilidades: [
+      'Preparar y depurar conjuntos de datos.',
+      'Elaborar reportes y visualizaciones.',
+      'Apoyar en el análisis de indicadores.',
+      'Presentar resultados de manera clara y ordenada.',
+    ],
   },
   {
     id: '18',
@@ -318,5 +524,17 @@ export const OPORTUNIDADES: Oportunidad[] = [
       'Apoyo en gestión de comunidades digitales, creación de publicaciones y seguimiento de métricas.',
     fechaPublicacion: 'Hace 1 semana',
     estado: 'Aprobada',
+    requisitos: [
+      'Ser estudiante de Marketing, Comunicación o carreras relacionadas.',
+      'Conocimiento de redes sociales.',
+      'Buena ortografía y redacción.',
+      'Interés por comunidades digitales.',
+    ],
+    responsabilidades: [
+      'Apoyar en la gestión de redes sociales.',
+      'Crear y programar publicaciones.',
+      'Responder y dar seguimiento a interacciones.',
+      'Recopilar métricas básicas de las publicaciones.',
+    ],
   },
 ];

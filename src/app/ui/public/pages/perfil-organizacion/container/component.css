@@ -101,16 +101,6 @@
   font-size: 14px;
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .search-field {
-    max-width: 100%;
-  }
-
-  .org-actions {
-    flex-wrap: wrap;
-  }
-}
 .titulo {
   align-items: left;
   justify-content: left;
@@ -232,4 +222,23 @@
 /* Boton ver detalle */
 .opr-actions a {
   font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .titulo h1 {
+    font-size: 1.7rem;
+  }
+  .search-field {
+    max-width: 100%;
+  }
+  .org-actions {
+    flex-wrap: wrap;
+  }
+  .opr-actions {
+    flex-wrap: wrap;
+  }
+  .opr-fecha {
+    width: 100%;
+  }
 }
