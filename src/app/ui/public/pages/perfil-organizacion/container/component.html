@@ -1,1 +1,106 @@
-<h1>Organizacio</h1>
+@if (organizacion; as org) {
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <!-- Volver -->
+    <a mat-button routerLink="/organizaciones">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      Volver a organizaciones
+    </a>
+
+    <!-- Perfil principal -->
+    <mat-card appearance="outlined" class="h-full flex flex-col org-card">
+      <mat-card-header class="pb-0 mb-0">
+        <div mat-card-avatar class="flex items-center justify-center org-avatar">
+          {{ org.nombre.charAt(0) }}
+        </div>
+        <mat-card-title>
+          <div class="flex items-center gap-1">
+            <span class="font-semibold">{{ org.nombre }}</span>
+            @if (org.verified) {
+              <mat-icon
+                class="verified-icon"
+                matTooltip="Organización verificada"
+                aria-label="Organización verificada"
+                fontIcon="verified"
+              ></mat-icon>
+            }
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle class="font-medium">
+          {{ org.categoria }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="flex items-center gap-2 mt-0 org-location">
+          <mat-icon fontIcon="location_on"></mat-icon>
+          <span>
+            {{ org.Ubicacion }}
+          </span>
+        </div>
+        <p class="mt-4">
+          {{ org.description }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Información -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <mat-card appearance="outlined" class="h-full flex flex-col org-card">
+        <mat-card-header>
+          <mat-card-title>
+            <div class="flex items-center gap-1">
+              <span class="font-semibold">Información de contacto</span>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="flex items-center gap-2">
+            <mat-icon fontIcon="mail"></mat-icon>
+            <span>
+              {{ org.email }}
+            </span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="h-full flex flex-col org-card">
+        <mat-card-header>
+          <mat-card-title>
+            <div class="flex items-center gap-1">
+              <span class="font-semibold">Oportunidades disponibles</span>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-chip-set>
+            <mat-chip>
+              <mat-icon matChipAvatar fontIcon="work_outline"></mat-icon>
+              {{ org.oportunidadesCount }} oportunidades
+            </mat-chip>
+          </mat-chip-set>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Oportunidades -->
+    <section>
+      <h2>Oportunidades activas</h2>
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <p>Aquí se mostrarán las oportunidades activas publicadas por esta organización.</p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  </div>
+} @else {
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <mat-card appearance="outlined">
+      <mat-card-content class="text-center">
+        <mat-icon fontIcon="business_off"></mat-icon>
+        <h1>Organización no encontrada</h1>
+        <p>La organización que buscas no existe o ya no está disponible.</p>
+        <a mat-flat-button routerLink="/organizaciones"> Volver a organizaciones </a>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}
