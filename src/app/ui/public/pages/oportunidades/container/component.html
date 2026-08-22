@@ -1,0 +1,182 @@
+<div class="mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <!-- Encabezado -->
+  <div class="titulo leading-tight">
+    <h1>Oportunidades Disponibles</h1>
+    <p class="text-sm mt-1">Explora convocatorias de empleo, pasantías, becas y voluntariados.</p>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Filtros -->
+    <aside>
+      <mat-card appearance="outlined" class="filtros-card">
+        <mat-card-header>
+          <mat-card-title> Filtros de búsqueda </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="space-y-4">
+          <!-- Buscador -->
+          <mat-form-field appearance="outline" class="w-full campo-filtro">
+            <mat-label>Buscar oportunidad</mat-label>
+            <mat-icon matPrefix>search</mat-icon>
+            <input
+              matInput
+              type="text"
+              placeholder="Desarrollador, diseñador..."
+              [ngModel]="search()"
+              (ngModelChange)="search.set($event); paginaActual = 0"
+            />
+          </mat-form-field>
+
+          <!-- Categoría -->
+          <mat-form-field appearance="outline" class="w-full campo-filtro">
+            <mat-label>Categoría</mat-label>
+            <mat-icon matPrefix>category</mat-icon>
+            <mat-select
+              [ngModel]="categoria()"
+              (ngModelChange)="categoria.set($event); paginaActual = 0"
+            >
+              <mat-option value=""> Todas las categorías </mat-option>
+              <mat-option value="Desarrollo Web"> Desarrollo Web </mat-option>
+              <mat-option value="Diseño"> Diseño </mat-option>
+              <mat-option value="Capacitación"> Capacitación </mat-option>
+              <mat-option value="Educación"> Educación </mat-option>
+              <mat-option value="Marketing"> Marketing </mat-option>
+              <mat-option value="Tecnología"> Tecnología </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Modalidad -->
+          <mat-form-field appearance="outline" class="w-full campo-filtro">
+            <mat-label>Modalidad</mat-label>
+            <mat-icon matPrefix> work </mat-icon>
+            <mat-select
+              [ngModel]="modalidad()"
+              (ngModelChange)="modalidad.set($event); paginaActual = 0"
+            >
+              <mat-option value=""> Todas las modalidades </mat-option>
+              <mat-option value="Remoto"> Remoto </mat-option>
+              <mat-option value="Presencial"> Presencial </mat-option>
+              <mat-option value="Híbrido"> Híbrido </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Ubicación -->
+          <mat-form-field appearance="outline" class="w-full campo-filtro">
+            <mat-label>Ubicación</mat-label>
+            <mat-icon matPrefix> location_on </mat-icon>
+            <mat-select
+              [ngModel]="ubicacion()"
+              (ngModelChange)="ubicacion.set($event); paginaActual = 0"
+            >
+              <mat-option value=""> Todas las ubicaciones </mat-option>
+              <mat-option value="Oruro"> Oruro </mat-option>
+              <mat-option value="La Paz"> La Paz </mat-option>
+              <mat-option value="Cochabamba"> Cochabamba </mat-option>
+              <mat-option value="Santa Cruz"> Santa Cruz </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-button type="button" (click)="limpiarFiltros()">
+            <mat-icon> filter_alt_off </mat-icon>
+            Limpiar filtros
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <!-- Cantidad de resultados -->
+      <div class="resultados pt-3">
+        <mat-icon> work_outline </mat-icon>
+        <span>
+          Mostrando
+          <strong>
+            {{ oportunidadesFiltradas().length }}
+          </strong>
+          oportunidades
+        </span>
+      </div>
+    </aside>
+
+    <!-- Listado -->
+    <section class="lg:col-span-3 space-y-6">
+      @if (oportunidadesFiltradas().length > 0) {
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          @for (oportunidad of oportunidadesPaginadas; track oportunidad.id) {
+            <mat-card appearance="outlined" class="opr-card">
+              <!-- Encabezado de card -->
+              <mat-card-header>
+                <div mat-card-avatar class="opr-avatar">
+                  {{ oportunidad.organizacion.substring(0, 3).toUpperCase() }}
+                </div>
+                <div class="flex-1 min-w-0 pl-2">
+                  <mat-card-subtitle>
+                    <span>{{ oportunidad.organizacion }}</span>
+                  </mat-card-subtitle>
+                  <mat-card-title> {{ oportunidad.titulo }} </mat-card-title>
+                </div>
+                <mat-chip class="tipo-chip"> {{ oportunidad.tipo }} </mat-chip>
+              </mat-card-header>
+              <!-- Contenido -->
+              <mat-card-content class="space-y-4">
+                <!-- Descripción -->
+                <p>
+                  {{ oportunidad.descripcion }}
+                </p>
+                <!-- Información -->
+                <mat-chip-set class="info-chips">
+                  <mat-chip>
+                    <mat-icon matChipAvatar> location_on </mat-icon>
+                    {{ oportunidad.ubicacion }}
+                  </mat-chip>
+                  <mat-chip>
+                    <mat-icon matChipAvatar> laptop </mat-icon>
+                    {{ oportunidad.modalidad }}
+                  </mat-chip>
+                  <mat-chip>
+                    <mat-icon matChipAvatar> category </mat-icon>
+                    {{ oportunidad.categoria }}
+                  </mat-chip>
+                </mat-chip-set>
+              </mat-card-content>
+              <!-- Acciones -->
+              <mat-card-actions class="opr-actions">
+                <div class="opr-fecha">
+                  <mat-icon> schedule </mat-icon>
+                  <span>
+                    {{ oportunidad.fechaPublicacion }}
+                  </span>
+                </div>
+                <a mat-button routerLink="/">
+                  Ver detalle
+                  <mat-icon iconPositionEnd> arrow_forward </mat-icon>
+                </a>
+              </mat-card-actions>
+            </mat-card>
+          }
+        </div>
+        <mat-paginator
+          [length]="oportunidadesFiltradas().length"
+          [pageIndex]="paginaActual"
+          [pageSize]="tamanoPagina"
+          [pageSizeOptions]="[6, 12, 18]"
+          showFirstLastButtons
+          (page)="cambiarPagina($event)"
+        >
+        </mat-paginator>
+      } @else {
+        <!-- Sin resultados -->
+        <mat-card appearance="outlined" class="sin-resultados">
+          <mat-card-content>
+            <mat-icon> search_off </mat-icon>
+            <h3>No se encontraron oportunidades</h3>
+            <p>Intenta modificar los filtros de búsqueda.</p>
+            <button mat-button type="button" (click)="limpiarFiltros()">
+              <mat-icon> filter_alt_off </mat-icon>
+              Limpiar filtros
+            </button>
+          </mat-card-content>
+        </mat-card>
+      }
+    </section>
+  </div>
+</div>

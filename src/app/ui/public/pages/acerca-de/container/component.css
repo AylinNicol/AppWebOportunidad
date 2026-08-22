@@ -4,22 +4,22 @@
 
 /* Encabezado */
 .titulo {
+  display: inline-flex;
+  gap: 10px;
   color: var(--mat-sys-on-primary-container);
+}
+.titulo h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 800;
-  padding-left: 20px;
 }
 .acerca-card {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
-
   border-radius: 20px;
-
   box-shadow:
     0 4px 6px -1px rgb(0 0 0 / 0.1),
     0 2px 4px -2px rgb(0 0 0 / 0.1);
-
   transition:
     box-shadow 0.3s ease,
     transform 0.3s ease;

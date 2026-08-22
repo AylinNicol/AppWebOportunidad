@@ -34,7 +34,6 @@
 .org-card {
   border-radius: 16px;
   overflow: hidden;
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -43,16 +42,14 @@
 
 .org-card:hover {
   transform: translateY(-4px);
-
   box-shadow: 0 8px 24px color-mix(in srgb, var(--mat-sys-shadow) 12%, transparent);
-
   border-color: var(--mat-sys-primary);
 }
 
 /* Header card */
 
 .org-card mat-card-header {
-  padding: 20px 20px 8px;
+  padding: 20px 20px 0px;
 }
 
 /* Avatar */
@@ -60,12 +57,9 @@
 .org-avatar {
   width: 48px !important;
   height: 48px !important;
-
   border-radius: 35px;
-
   background-color: var(--mat-sys-primary-container);
   color: var(--mat-sys-on-primary-container);
-
   font-size: 20px;
   font-weight: 700;
 }
@@ -73,8 +67,7 @@
 /* Titulo card */
 
 .org-card mat-card-title {
-  color: var(--mat-sys-on-surface);
-
+  color: var(--mat-sys-on-primary-container);
   font-size: 20px;
   font-weight: 700;
   line-height: 1.25;
@@ -84,9 +77,7 @@
 
 .org-card mat-card-subtitle {
   margin-top: 2px;
-
-  color: var(--mat-sys-primary);
-
+  color: var(--mat-sys-on-tertiary-container);
   font-weight: 600;
 }
 
@@ -100,22 +91,18 @@
 
 .org-card mat-card-content {
   flex: 1;
-
-  padding: 12px 20px 16px;
+  padding: 0px 20px 8px;
 }
 
 .org-card mat-card-content p {
   margin: 0;
-
-  color: var(--mat-sys-on-surface-variant);
-
   line-height: 1.5;
 }
 
 /* Ubicación */
 
 .org-location {
-  color: var(--mat-sys-on-surface-variant);
+  color: var(--mat-sys-on-primary-container);
 }
 
 .org-location mat-icon {
@@ -128,12 +115,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 12px;
-
   padding: 12px 12px 12px 20px;
-
-  border-top: 1px solid var(--mat-sys-outline-variant);
+  border-top: 1px solid var(--mat-sys-primary-container);
 }
 
 /* Chip */

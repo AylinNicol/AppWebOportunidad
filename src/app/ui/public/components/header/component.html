@@ -46,7 +46,7 @@
           [matMenuTriggerFor]="mobileMenu"
           aria-label="Abrir menú"
         >
-          <mat-icon fontIcon="menu"></mat-icon>
+          <mat-icon>menu</mat-icon>
         </button>
       </div>
     </div>
@@ -54,32 +54,32 @@
   <!-- Menú móvil -->
   <mat-menu #mobileMenu="matMenu" class="mobile-menu">
     <a mat-menu-item routerLink="./">
-      <mat-icon fontIcon="home"></mat-icon>
+      <mat-icon>home</mat-icon>
       <span>Inicio</span>
     </a>
     <a mat-menu-item routerLink="/oportunidades">
-      <mat-icon fontIcon="work_outline"></mat-icon>
+      <mat-icon>work_outline</mat-icon>
       <span>Oportunidades</span>
     </a>
     <a mat-menu-item routerLink="/organizaciones">
-      <mat-icon fontIcon="business"></mat-icon>
+      <mat-icon>business</mat-icon>
       <span>Organizaciones</span>
     </a>
     <a mat-menu-item routerLink="/como-funciona">
-      <mat-icon fontIcon="help_outline"></mat-icon>
+      <mat-icon>help_outline</mat-icon>
       <span>¿Cómo funciona?</span>
     </a>
     <a mat-menu-item routerLink="/acerca-de">
-      <mat-icon fontIcon="info_outline"></mat-icon>
+      <mat-icon>info_outline</mat-icon>
       <span>Acerca de</span>
     </a>
     <mat-divider></mat-divider>
     <button mat-menu-item type="button" (click)="abrirLogin()">
-      <mat-icon fontIcon="login"></mat-icon>
+      <mat-icon>login</mat-icon>
       <span>Iniciar sesión</span>
     </button>
     <button mat-menu-item type="button" (click)="abrirRegistrate()">
-      <mat-icon fontIcon="person_add"></mat-icon>
+      <mat-icon>person_add</mat-icon>
       <span>Registrarse</span>
     </button>
   </mat-menu>

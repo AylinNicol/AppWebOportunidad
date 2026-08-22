@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { Organizaciones, Organizacion } from '../../organizaciones/container/organizaciones.data';
+import { ORGANIZACIONES, Organizacion } from '../../organizaciones/container/organizaciones.data';
 
 @Component({
   selector: 'organizacion',
@@ -29,6 +29,6 @@ export class PerfilOrganizacionPublicComponent {
   get organizacion(): Organizacion | null {
     const slug = this.route.snapshot.paramMap.get('slug');
 
-    return Organizaciones.find((org) => org.slug === slug) ?? null;
+    return ORGANIZACIONES.find((org) => org.slug === slug) ?? null;
   }
 }

@@ -1,50 +1,50 @@
 @if (organizacion; as org) {
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     <!-- Volver -->
-    <a mat-button routerLink="/organizaciones">
-      <mat-icon fontIcon="arrow_back"></mat-icon>
+    <a mat-button routerLink="/organizaciones" class="mb-4">
+      <mat-icon>arrow_back</mat-icon>
       Volver a organizaciones
     </a>
-
     <!-- Perfil principal -->
-    <mat-card appearance="outlined" class="h-full flex flex-col org-card">
-      <mat-card-header class="pb-0 mb-0">
-        <div mat-card-avatar class="flex items-center justify-center org-avatar">
+    <mat-card appearance="outlined" class="org-card mb-5">
+      <div class="flex flex-col md:flex-row items-center md:items-stretch">
+        <!-- Avatar -->
+        <div mat-card-avatar class="org-avatar shrink-0">
           {{ org.nombre.charAt(0) }}
         </div>
-        <mat-card-title>
-          <div class="flex items-center gap-1">
-            <span class="font-semibold">{{ org.nombre }}</span>
-            @if (org.verified) {
-              <mat-icon
-                class="verified-icon"
-                matTooltip="Organización verificada"
-                aria-label="Organización verificada"
-                fontIcon="verified"
-              ></mat-icon>
-            }
+        <!-- Contenido -->
+        <mat-card-content class="flex-1 mt-1">
+          <mat-card-title>
+            <div class="flex items-center gap-1 titulo">
+              <h1 class="font-semibold">{{ org.nombre }}</h1>
+              @if (org.verificada) {
+                <mat-icon
+                  class="verified-icon"
+                  matTooltip="Organización verificada"
+                  aria-label="Organización verificada"
+                  >verified</mat-icon
+                >
+              }
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle class="font-medium">
+            {{ org.categoria }}
+          </mat-card-subtitle>
+          <p class="leading-relaxed">
+            {{ org.descripcion }}
+          </p>
+          <div class="flex items-center gap-2 mt-2 org-location">
+            <mat-icon>location_on</mat-icon>
+            <span>
+              {{ org.ubicacion }}
+            </span>
           </div>
-        </mat-card-title>
-        <mat-card-subtitle class="font-medium">
-          {{ org.categoria }}
-        </mat-card-subtitle>
-      </mat-card-header>
-
-      <mat-card-content>
-        <div class="flex items-center gap-2 mt-0 org-location">
-          <mat-icon fontIcon="location_on"></mat-icon>
-          <span>
-            {{ org.Ubicacion }}
-          </span>
-        </div>
-        <p class="mt-4">
-          {{ org.description }}
-        </p>
-      </mat-card-content>
+        </mat-card-content>
+      </div>
     </mat-card>
 
     <!-- Información -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
       <mat-card appearance="outlined" class="h-full flex flex-col org-card">
         <mat-card-header>
           <mat-card-title>
@@ -54,10 +54,10 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div class="flex items-center gap-2">
-            <mat-icon fontIcon="mail"></mat-icon>
+          <div class="flex items-center gap-2 mt-2">
+            <mat-icon>mail</mat-icon>
             <span>
-              {{ org.email }}
+              {{ org.correo }}
             </span>
           </div>
         </mat-card-content>
@@ -74,8 +74,8 @@
         <mat-card-content>
           <mat-chip-set>
             <mat-chip>
-              <mat-icon matChipAvatar fontIcon="work_outline"></mat-icon>
-              {{ org.oportunidadesCount }} oportunidades
+              <mat-icon matChipAvatar>work_outline</mat-icon>
+              {{ org.cantidadOportunidades }} oportunidades
             </mat-chip>
           </mat-chip-set>
         </mat-card-content>
@@ -83,8 +83,63 @@
     </div>
 
     <!-- Oportunidades -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+      <div class="titulo leading-tight">
+        <h2>Oportunidades activas (1)</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <mat-card appearance="outlined" class="h-full flex flex-col opr-card">
+        <!-- Cabecera -->
+        <mat-card-header>
+          <div mat-card-avatar class="flex items-center justify-center opr-avatar">XYZ</div>
+          <div class="flex-1 min-w-0 pl-2">
+            <mat-card-subtitle>
+              <span>Empresa XYZ</span>
+            </mat-card-subtitle>
+            <mat-card-title> Pasantía Frontend Angular </mat-card-title>
+          </div>
+          <mat-chip class="tipo-chip"> Pasantía </mat-chip>
+        </mat-card-header>
+        <!-- Contenido -->
+        <mat-card-content class="flex-1 pt-3">
+          <!-- Descripción -->
+          <p class="leading-relaxed">
+            Buscamos un estudiante o recién egresado interesado en el desarrollo web frontend para
+            apoyar en la creación y mejora de interfaces de aplicaciones web.
+          </p>
+          <!-- Datos -->
+          <mat-chip-set class="mt-4 info-chips">
+            <mat-chip>
+              <mat-icon matChipAvatar>location_on</mat-icon>
+              Oruro
+            </mat-chip>
+            <mat-chip>
+              <mat-icon matChipAvatar>wifi</mat-icon>
+              Remoto
+            </mat-chip>
+            <mat-chip>
+              <mat-icon matChipAvatar>sell</mat-icon>
+              Desarrollo Web
+            </mat-chip>
+          </mat-chip-set>
+        </mat-card-content>
+        <!-- Acciones -->
+        <mat-card-actions class="flex items-center justify-between gap-3 px-4 pb-4 org-actions">
+          <div class="opr-fecha">
+            <mat-icon>schedule</mat-icon>
+            <span> Hace 2 días </span>
+          </div>
+          <a mat-button routerLink="/oportunidades" class="shrink-0">
+            Ver detalle
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
     <section>
-      <h2>Oportunidades activas</h2>
+      <h2>else para cuando no hay oportunidades activas</h2>
       <mat-card appearance="outlined">
         <mat-card-content>
           <p>Aquí se mostrarán las oportunidades activas publicadas por esta organización.</p>
@@ -96,7 +151,7 @@
   <div class="max-w-4xl mx-auto px-4 py-12">
     <mat-card appearance="outlined">
       <mat-card-content class="text-center">
-        <mat-icon fontIcon="business_off"></mat-icon>
+        <mat-icon>business_off</mat-icon>
         <h1>Organización no encontrada</h1>
         <p>La organización que buscas no existe o ya no está disponible.</p>
         <a mat-flat-button routerLink="/organizaciones"> Volver a organizaciones </a>

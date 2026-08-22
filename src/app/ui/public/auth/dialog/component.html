@@ -2,7 +2,7 @@
   <!-- Cerrar -->
   <div class="flex justify-end">
     <button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar">
-      <mat-icon fontIcon="close"></mat-icon>
+      <mat-icon>close</mat-icon>
     </button>
   </div>
   <!-- Encabezado -->
@@ -61,19 +61,19 @@
         @if (rolRegistro() === 'postulante') {
           <mat-form-field appearance="outline" class="w-full auth-field">
             <mat-label>Nombre completo</mat-label>
-            <mat-icon matPrefix fontIcon="person"></mat-icon>
+            <mat-icon matPrefix>person</mat-icon>
             <input matInput type="text" />
           </mat-form-field>
         } @else {
           <mat-form-field appearance="outline" class="w-full auth-field">
             <mat-label>Nombre de la organización</mat-label>
-            <mat-icon matPrefix fontIcon="business"></mat-icon>
+            <mat-icon matPrefix>business</mat-icon>
             <input matInput type="text" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full auth-field">
             <mat-label>Nombre del representante</mat-label>
-            <mat-icon matPrefix fontIcon="person"></mat-icon>
+            <mat-icon matPrefix>person</mat-icon>
             <input matInput type="text" />
           </mat-form-field>
         }
@@ -82,13 +82,13 @@
       <!-- Correo -->
       <mat-form-field appearance="outline" class="w-full auth-field">
         <mat-label>Correo electrónico</mat-label>
-        <mat-icon matPrefix fontIcon="mail"></mat-icon>
+        <mat-icon matPrefix>mail</mat-icon>
         <input matInput type="email" placeholder="tu.correo@ejemplo.com" />
       </mat-form-field>
       <!-- Contraseña -->
       <mat-form-field appearance="outline" class="w-full auth-field">
         <mat-label>Contraseña</mat-label>
-        <mat-icon matPrefix fontIcon="lock"></mat-icon>
+        <mat-icon matPrefix>lock</mat-icon>
         <input matInput [type]="hide() ? 'password' : 'text'" />
         <button
           type="button"
@@ -114,7 +114,7 @@
       <span>o continúa con</span>
     </div>
     <button mat-stroked-button type="button" class="w-full auth-field">
-      <mat-icon fontIcon="login"></mat-icon>
+      <mat-icon>login</mat-icon>
       Continuar con Google
     </button>
   </mat-dialog-actions>

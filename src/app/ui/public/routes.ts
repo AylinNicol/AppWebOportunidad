@@ -11,8 +11,16 @@ export const PublicRoutes: Routes = [
     path: 'oportunidades',
     title: 'Oportunidades disponibles',
     loadComponent: () =>
-      import('./pages/opoturnidades/container/component').then(
+      import('./pages/oportunidades/container/component').then(
         (m) => m.OportunidadesPublicComponent,
+      ),
+  },
+  {
+    path: 'oportunidades/:slug',
+    title: 'Oportunidad',
+    loadComponent: () =>
+      import('./pages/detalle-oportunidad/container/component').then(
+        (m) => m.DetalleOportunidadPublicComponent,
       ),
   },
   {
