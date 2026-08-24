@@ -21,8 +21,8 @@
               matInput
               type="text"
               placeholder="Desarrollador, diseñador..."
-              [ngModel]="search()"
-              (ngModelChange)="search.set($event); paginaActual = 0"
+              [ngModel]="busqueda()"
+              (ngModelChange)="busqueda.set($event); paginaActual = 0"
             />
           </mat-form-field>
 

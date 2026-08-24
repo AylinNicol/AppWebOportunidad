@@ -1,0 +1,93 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="panel-eyebrow">Gestión</p>
+      <h1 class="text-3xl font-bold">Mis oportunidades</h1>
+      <p class="panel-description mt-1">
+        Consulta el estado de tus convocatorias y administra las publicaciones.
+      </p>
+    </div>
+    <a mat-flat-button routerLink="/organizacion/publicar-oportunidad">
+      <mat-icon>add</mat-icon>
+      Nueva oportunidad
+    </a>
+  </div>
+
+  <mat-card appearance="outlined" class="panel-card">
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-5">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Buscar</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            [ngModel]="busqueda()"
+            (ngModelChange)="busqueda.set($event)"
+            placeholder="Título de oportunidad"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Estado</mat-label>
+          <mat-select [ngModel]="estado()" (ngModelChange)="estado.set($event)">
+            <mat-option value="">Todos</mat-option>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="Publicada">Publicada</mat-option>
+            <mat-option value="Cerrada">Cerrada</mat-option>
+            <mat-option value="Rechazada">Rechazada</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="flex items-center">
+          <button mat-stroked-button class="w-full" type="button" (click)="limpiar()">
+            <mat-icon>filter_alt_off</mat-icon>
+            Limpiar
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="space-y-4">
+    @for (item of filtradas(); track item.id) {
+      <mat-card appearance="outlined" class="panel-card oportunidad-card">
+        <mat-card-content>
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 pt-5">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <mat-chip>{{ item.estado }}</mat-chip>
+                <mat-chip>{{ item.tipo }}</mat-chip>
+              </div>
+              <h2 class="text-xl font-bold">{{ item.titulo }}</h2>
+              <div class="panel-description mt-2 flex flex-wrap gap-4">
+                <span class="flex items-center gap-1">
+                  <mat-icon>location_on</mat-icon>
+                  {{ item.ubicacion }}
+                </span>
+                <span class="flex items-center gap-1">
+                  <mat-icon>computer</mat-icon>
+                  {{ item.modalidad }}
+                </span>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <a mat-stroked-button [routerLink]="['/oportunidades', item.slug]"> Ver </a>
+              @if (item.estado === 'Publicada') {
+                <button mat-button type="button" (click)="cerrar(item)">
+                  <mat-icon>lock</mat-icon>
+                  Cerrar
+                </button>
+              }
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    } @empty {
+      <mat-card appearance="outlined" class="panel-card estado-vacio">
+        <mat-card-content>
+          <mat-icon>work_off</mat-icon>
+          <h2>No hay oportunidades</h2>
+          <p>No existen resultados con los filtros seleccionados.</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</div>

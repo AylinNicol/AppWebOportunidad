@@ -1,1 +1,267 @@
-<h1>Bienvenido!!!!!!</h1>
+<div class="inicio-page space-y-16">
+  <!-- HERO -->
+  <section class="inicio-hero">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="inicio-hero-title text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          Encuentra oportunidades para impulsar tu futuro profesional
+        </h1>
+        <p class="inicio-hero-descripcion mt-5 text-base sm:text-lg max-w-3xl mx-auto">
+          Explora empleos junior, pasantías, becas, voluntariados y programas de formación dirigidos
+          a estudiantes y recién egresados.
+        </p>
+        <!-- BUSCADOR -->
+        <mat-card appearance="outlined" class="inicio-buscar-card mt-8">
+          <mat-card-content>
+            <form
+              (ngSubmit)="buscar()"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
+            >
+              <mat-form-field appearance="outline" class="inicio-buscar-field w-full">
+                <mat-label>Buscar oportunidad</mat-label>
+                <mat-icon matPrefix>search</mat-icon>
+                <input
+                  matInput
+                  type="text"
+                  name="busqueda"
+                  [(ngModel)]="busqueda"
+                  placeholder="Ej. Angular, diseño, beca..."
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="inicio-buscar-field w-full">
+                <mat-label>Categoría</mat-label>
+                <mat-icon matPrefix>category</mat-icon>
+                <mat-select name="category" [(ngModel)]="categoria">
+                  <mat-option value=""> Todas </mat-option>
+                  <mat-option value="Desarrollo Web"> Desarrollo Web </mat-option>
+                  <mat-option value="Diseño"> Diseño </mat-option>
+                  <mat-option value="Capacitación"> Capacitación </mat-option>
+                  <mat-option value="Educación"> Educación </mat-option>
+                  <mat-option value="Marketing"> Marketing </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="inicio-buscar-field w-full">
+                <mat-label>Modalidad</mat-label>
+                <mat-icon matPrefix>computer</mat-icon>
+                <mat-select name="modality" [(ngModel)]="modalidad">
+                  <mat-option value=""> Todas </mat-option>
+                  <mat-option value="Remoto"> Remoto </mat-option>
+                  <mat-option value="Presencial"> Presencial </mat-option>
+                  <mat-option value="Híbrido"> Híbrido </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="flex items-center">
+                <button mat-flat-button type="submit" class="inicio-buscar-button w-full">
+                  <mat-icon>search</mat-icon>
+                  Buscar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- ACCION PRINCIPAL -->
+        <div
+          class="inicio-hero-actions mt-6 flex flex-col sm:flex-row items-center justify-center gap-3"
+        >
+          <a mat-flat-button routerLink="/oportunidades">
+            <mat-icon>work_outline</mat-icon>
+            Explorar oportunidades
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPORTUNIDADES DESTACADAS -->
+  <section class="inicio-featured max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+      <div>
+        <h2 class="inicio-section-title text-2xl sm:text-3xl font-bold">
+          Oportunidades destacadas
+        </h2>
+        <p class="inicio-section-descripcion mt-1">
+          Descubre algunas de las oportunidades disponibles actualmente.
+        </p>
+      </div>
+      <a mat-button routerLink="/oportunidades">
+        Ver todas
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (item of oportunidades; track item.id) {
+        <mat-card appearance="outlined" class="inicio-oportunidad-card h-full flex flex-col">
+          <mat-card-header>
+            <div mat-card-avatar class="inicio-oportunidad-avatar flex items-center justify-center">
+              <mat-icon>business</mat-icon>
+            </div>
+            <mat-card-title>
+              {{ item.titulo }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ item.organizacion }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="flex-1">
+            <div class="mt-4 flex flex-wrap gap-2">
+              <mat-chip class="inicio-oportunidad-chip">
+                {{ item.tipo }}
+              </mat-chip>
+              <mat-chip class="inicio-oportunidad-chip">
+                {{ item.modalidad }}
+              </mat-chip>
+            </div>
+            <p class="inicio-oportunidad-descripcion mt-4">
+              {{ item.descripcion }}
+            </p>
+            <div class="inicio-oportunidad-info mt-5 space-y-3">
+              <div class="flex items-center gap-2">
+                <mat-icon>location_on</mat-icon>
+                <span>
+                  {{ item.ubicacion }}
+                </span>
+              </div>
+              <div class="flex items-center gap-2">
+                <mat-icon>category</mat-icon>
+                <span>
+                  {{ item.categoria }}
+                </span>
+              </div>
+              <div class="flex items-center gap-2">
+                <mat-icon>calendar_today</mat-icon>
+                <span> Fecha límite: {{ item.fechaLimite }} </span>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <a mat-button [routerLink]="['/oportunidades', item.slug]">
+              Ver detalle
+              <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  </section>
+  <!-- ESTADÍSTICAS -->
+  <section class="inicio-stats max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <mat-card appearance="outlined" class="inicio-stats-card">
+      <mat-card-content>
+        <div class="grid grid-cols-1 md:grid-cols-3 text-center">
+          <!-- Oportunidades -->
+          <div class="inicio-stat-item py-8 md:py-10">
+            <div class="inicio-stat-number">+150</div>
+            <div class="inicio-stat-label mt-2">Oportunidades publicadas</div>
+          </div>
+          <!-- Organizaciones -->
+          <div class="inicio-stat-item py-8 md:py-10">
+            <div class="inicio-stat-number">+80</div>
+            <div class="inicio-stat-label mt-2">Organizaciones aliadas</div>
+          </div>
+          <!-- Postulaciones -->
+          <div class="inicio-stat-item py-8 md:py-10">
+            <div class="inicio-stat-number">+1000</div>
+            <div class="inicio-stat-label mt-2">Postulaciones realizadas</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  <!-- Explora la plataforma -->
+  <section class="inicio-access max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="inicio-section-title text-2xl sm:text-3xl font-bold">Explora la plataforma</h2>
+      <p class="inicio-section-descripcion mt-2">
+        Accede rápidamente a las principales secciones de la Bolsa de Oportunidades.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- OPORTUNIDADES -->
+      <mat-card appearance="outlined" class="inicio-access-card">
+        <mat-card-header>
+          <div mat-card-avatar class="inicio-access-icon flex items-center justify-center">
+            <mat-icon>work_outline</mat-icon>
+          </div>
+          <mat-card-title> Oportunidades </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="mt-4">
+            Encuentra empleos junior, pasantías, becas, voluntariados y programas de formación.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/oportunidades">
+            Explorar
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+      <!-- ORGANIZACIONES -->
+      <mat-card appearance="outlined" class="inicio-access-card">
+        <mat-card-header>
+          <div mat-card-avatar class="inicio-access-icon flex items-center justify-center">
+            <mat-icon>business</mat-icon>
+          </div>
+          <mat-card-title> Organizaciones </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="mt-4">
+            Conoce las empresas y organizaciones que publican convocatorias en la plataforma.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/organizaciones">
+            Ver organizaciones
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+      <!-- CÓMO FUNCIONA -->
+      <mat-card appearance="outlined" class="inicio-access-card">
+        <mat-card-header>
+          <div mat-card-avatar class="inicio-access-icon flex items-center justify-center">
+            <mat-icon>help_outline</mat-icon>
+          </div>
+          <mat-card-title> ¿Cómo funciona? </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="mt-4">
+            Aprende cómo registrarte, explorar oportunidades, postular y realizar seguimiento.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/como-funciona">
+            Conocer el proceso
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+  <!-- CTA FINAL -->
+  <section class="inicio-cta max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+    <mat-card appearance="outlined" class="inicio-cta-card">
+      <mat-card-content>
+        <div class="text-center max-w-2xl mx-auto py-8 sm:py-10">
+          <div class="inicio-cta-icon flex items-center justify-center mx-auto">
+            <mat-icon>rocket_launch</mat-icon>
+          </div>
+          <h2 class="inicio-section-title text-2xl sm:text-3xl font-bold mt-4">
+            Encuentra tu próxima oportunidad
+          </h2>
+          <p class="inicio-section-descripcion mt-3">
+            Crea una cuenta para comenzar a postular o inicia sesión si ya formas parte de la
+            plataforma.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button mat-flat-button type="button" (click)="openAuth('register')">
+              <mat-icon>person_add</mat-icon>
+              Crear cuenta
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

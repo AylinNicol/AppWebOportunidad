@@ -1,0 +1,120 @@
+<div class="space-y-6">
+  <section>
+    <p class="admin-eyebrow">Gestión</p>
+    <h1 class="text-2xl sm:text-3xl font-bold">Usuarios</h1>
+    <p class="admin-description mt-1">
+      Consulta estudiantes y organizaciones registrados y administra su acceso.
+    </p>
+  </section>
+
+  <mat-card appearance="outlined" class="admin-filter-card">
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_240px_auto] gap-3 items-start">
+        <mat-form-field appearance="outline" class="w-full admin-filter-field">
+          <mat-label>Buscar usuario</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            type="text"
+            [ngModel]="busqueda()"
+            (ngModelChange)="busqueda.set($event); paginaActual = 0"
+            placeholder="Nombre o correo"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full admin-filter-field">
+          <mat-label>Rol</mat-label>
+          <mat-select
+            [ngModel]="rol()"
+            (ngModelChange)="rol.set($event); paginaActual = 0"
+          >
+            <mat-option value="">Todos los roles</mat-option>
+            <mat-option value="Estudiante">Estudiantes</mat-option>
+            <mat-option value="Organización">Organizaciones</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-stroked-button type="button" (click)="limpiarFiltros()" class="admin-filter-button">
+          <mat-icon>filter_alt_off</mat-icon>
+          Limpiar
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card appearance="outlined" class="admin-table-card">
+    <div class="overflow-x-auto">
+      <table mat-table [dataSource]="paginados()" class="w-full">
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let usuario">
+            <div class="flex items-center gap-3 py-2 min-w-64">
+              <div class="usuario-avatar flex items-center justify-center shrink-0">
+                {{ usuario.nombre.charAt(0) }}
+              </div>
+              <div>
+                <div class="font-semibold">{{ usuario.nombre }}</div>
+                <div class="admin-description text-xs mt-1">{{ usuario.email }}</div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rol">
+          <th mat-header-cell *matHeaderCellDef>Rol</th>
+          <td mat-cell *matCellDef="let usuario">{{ usuario.rol }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="registro">
+          <th mat-header-cell *matHeaderCellDef>Registro</th>
+          <td mat-cell *matCellDef="let usuario">{{ usuario.fechaRegistro }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let usuario">
+            <mat-chip
+              class="estado-chip"
+              [class.estado-activo]="usuario.estado === 'Activo'"
+              [class.estado-bloqueado]="usuario.estado === 'Bloqueado'"
+            >
+              {{ usuario.estado }}
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef class="text-right">Acción</th>
+          <td mat-cell *matCellDef="let usuario">
+            <div class="flex justify-end py-2">
+              <button mat-stroked-button type="button" (click)="cambiarEstado(usuario.id)">
+                <mat-icon>{{ usuario.estado === 'Activo' ? 'block' : 'check_circle' }}</mat-icon>
+                {{ usuario.estado === 'Activo' ? 'Bloquear' : 'Activar' }}
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+      </table>
+    </div>
+
+    @if (filtrados().length === 0) {
+      <div class="admin-empty text-center py-12 px-4">
+        <mat-icon>person_search</mat-icon>
+        <h3 class="font-semibold mt-2">No se encontraron usuarios</h3>
+        <p class="admin-description text-sm mt-1">Prueba cambiando la búsqueda o el rol.</p>
+      </div>
+    }
+
+    <mat-paginator
+      [length]="filtrados().length"
+      [pageIndex]="paginaActual"
+      [pageSize]="tamanoPagina"
+      [pageSizeOptions]="[5, 10]"
+      (page)="cambiarPagina($event)"
+      aria-label="Paginación de usuarios"
+    />
+  </mat-card>
+</div>

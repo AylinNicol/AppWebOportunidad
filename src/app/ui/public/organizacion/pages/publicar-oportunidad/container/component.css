@@ -1,0 +1,21 @@
+.panel-eyebrow {
+  margin: 0 0 4px;
+  color: var(--mat-sys-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.panel-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.panel-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.panel-card mat-card-content {
+  padding: 0 20px 20px;
+}

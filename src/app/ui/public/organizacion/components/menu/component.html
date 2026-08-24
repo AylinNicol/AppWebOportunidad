@@ -1,0 +1,32 @@
+<button mat-flat-button type="button" [matMenuTriggerFor]="organizacionMenu">
+  <mat-icon>business</mat-icon>
+  Mi organización
+  <mat-icon iconPositionEnd>expand_more</mat-icon>
+</button>
+
+<mat-menu #organizacionMenu="matMenu">
+  <a mat-menu-item routerLink="/organizacion/panel-organizacion">
+    <mat-icon>dashboard</mat-icon>
+    <span>Resumen</span>
+  </a>
+  <a mat-menu-item routerLink="/organizacion/mi-organizacion">
+    <mat-icon>business</mat-icon>
+    <span>Perfil de organización</span>
+  </a>
+  <a mat-menu-item routerLink="/organizacion/mis-oportunidades">
+    <mat-icon>work</mat-icon>
+    <span>Mis oportunidades</span>
+  </a>
+  <a mat-menu-item routerLink="/organizacion/publicar-oportunidad">
+    <mat-icon>add_circle</mat-icon>
+    <span>Publicar oportunidad</span>
+  </a>
+  <a mat-menu-item routerLink="/organizacion/postulantes">
+    <mat-icon>groups</mat-icon>
+    <span>Postulantes</span>
+  </a>
+  <button mat-menu-item type="button" (click)="cerrarSesion()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+</mat-menu>

@@ -12,7 +12,13 @@ export interface Oportunidad {
   fechaLimite: string;
   descripcion: string;
   fechaPublicacion: string;
-  estado: string;
+  estado: 'Pendiente' | 'Publicada' | 'Rechazada' | 'Cerrada';
+  beneficios: string[];
+  destacada: boolean;
+  cantidadVacantes: number;
+  salario?: string;
+  fechaCreacion: string;
+  fechaActualizacion: string;
   requisitos: string[];
   responsabilidades: string[];
 }
@@ -33,7 +39,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Buscamos un estudiante o recién egresado apasionado por el desarrollo web frontend para unirse a nuestro equipo de software.',
     fechaPublicacion: 'Hace 2 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: true,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante o recién egresado de Ingeniería Informática, Sistemas o carreras relacionadas.',
       'Conocimientos básicos de HTML, CSS y TypeScript.',
@@ -62,7 +73,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Excelente oportunidad para egresados interesados en consolidar su carrera en desarrollo de software fullstack.',
     fechaPublicacion: 'Hace 3 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: true,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser egresado de Informática, Sistemas o carreras relacionadas.',
       'Conocimientos de desarrollo frontend y backend.',
@@ -91,7 +107,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Beca integral para jóvenes talentos interesados en especializarse en desarrollo cloud.',
     fechaPublicacion: 'Hace 1 día',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: true,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante o recién egresado de una carrera tecnológica.',
       'Tener conocimientos básicos de programación.',
@@ -119,7 +140,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     fechaLimite: '2026-09-20',
     descripcion: 'Mentoría para enseñar programación básica a estudiantes de colegio.',
     fechaPublicacion: 'Hace 5 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: true,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante universitario o profesional joven.',
       'Tener conocimientos básicos de programación.',
@@ -147,7 +173,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     fechaLimite: '2026-10-01',
     descripcion: 'Prototipado de aplicaciones web y móviles atractivas en Figma.',
     fechaPublicacion: 'Hace 4 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: true,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante o recién egresado de Diseño, Informática o áreas relacionadas.',
       'Conocimientos básicos de Figma.',
@@ -175,7 +206,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     fechaLimite: '2026-09-18',
     descripcion: 'Apoyo en redes sociales y creación de contenido institucional.',
     fechaPublicacion: 'Hace 1 semana',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: true,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante o recién egresado de Marketing, Comunicación o áreas relacionadas.',
       'Conocimiento básico de redes sociales.',
@@ -193,7 +229,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     id: '7',
     slug: 'pasantia-soporte-ti',
     titulo: 'Pasantía en Soporte TI',
-    organizacion: 'Andes Tecnología',
+    organizacion: 'Andes Tech Solutions',
     organizacionId: 'org-andes',
     logo: 'https://placehold.co/100x100/0f766e/white?text=AT',
     ubicacion: 'Oruro',
@@ -204,7 +240,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Apoyo en mantenimiento de equipos, instalación de software y atención de incidencias técnicas.',
     fechaPublicacion: 'Hace 2 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante de Informática, Sistemas o carreras relacionadas.',
       'Conocimientos básicos de hardware y software.',
@@ -233,7 +274,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Buscamos desarrollador junior con conocimientos de HTML, CSS, TypeScript y frameworks frontend.',
     fechaPublicacion: 'Hace 3 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Conocimientos de HTML, CSS y TypeScript.',
       'Conocimientos de Angular u otro framework frontend.',
@@ -262,7 +308,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Programa de formación dirigido a estudiantes interesados en desarrollo frontend y backend.',
     fechaPublicacion: 'Hace 4 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante universitario o técnico.',
       'Tener conocimientos básicos de programación.',
@@ -291,7 +342,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Apoya en talleres de informática básica dirigidos a jóvenes y adultos de diferentes comunidades.',
     fechaPublicacion: 'Hace 6 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante universitario o profesional joven.',
       'Manejo básico de computadoras y herramientas de oficina.',
@@ -320,7 +376,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Participa en el diseño de interfaces y prototipos para aplicaciones web utilizando Figma.',
     fechaPublicacion: 'Hace 1 semana',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Conocimientos de diseño de interfaces.',
       'Manejo de Figma.',
@@ -349,7 +410,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Apoyo en planificación de contenido, gestión de redes sociales y campañas digitales.',
     fechaPublicacion: 'Hace 3 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante de Marketing, Comunicación o carreras relacionadas.',
       'Conocimiento de redes sociales.',
@@ -378,7 +444,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Participa en el desarrollo de APIs y servicios para aplicaciones web junto a nuestro equipo técnico.',
     fechaPublicacion: 'Hace 1 día',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante de Informática, Sistemas o carreras relacionadas.',
       'Conocimientos de programación orientada a objetos.',
@@ -407,7 +478,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Programa introductorio sobre seguridad informática, protección de datos y buenas prácticas digitales.',
     fechaPublicacion: 'Hoy',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante o recién egresado de una carrera tecnológica.',
       'Tener conocimientos básicos de sistemas y redes.',
@@ -436,7 +512,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Apoyo en elaboración de material gráfico, contenido digital y piezas para redes sociales.',
     fechaPublicacion: 'Hace 5 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante o recién egresado de Diseño o áreas relacionadas.',
       'Manejo básico de herramientas de diseño gráfico.',
@@ -465,7 +546,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Comparte tus conocimientos de programación básica acompañando a estudiantes que están comenzando en tecnología.',
     fechaPublicacion: 'Hace 2 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Tener conocimientos de programación básica.',
       'Interés por enseñar y compartir conocimientos.',
@@ -494,7 +580,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Apoyo en análisis de información, elaboración de reportes y visualización de datos para proyectos empresariales.',
     fechaPublicacion: 'Hace 4 días',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser egresado de Informática, Estadística, Sistemas o áreas relacionadas.',
       'Conocimientos de Excel y manejo de datos.',
@@ -523,7 +614,12 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Apoyo en gestión de comunidades digitales, creación de publicaciones y seguimiento de métricas.',
     fechaPublicacion: 'Hace 1 semana',
-    estado: 'Aprobada',
+    estado: 'Publicada',
+    beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
+    destacada: false,
+    cantidadVacantes: 1,
+    fechaCreacion: '2026-08-20',
+    fechaActualizacion: '2026-08-20',
     requisitos: [
       'Ser estudiante de Marketing, Comunicación o carreras relacionadas.',
       'Conocimiento de redes sociales.',

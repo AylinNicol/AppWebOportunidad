@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
-import { OPORTUNIDADES, Oportunidad } from './oportunidades.data';
+import { OPORTUNIDADES, Oportunidad } from '../../../../../data/oportunidades.data';
 
 @Component({
   selector: 'oportunidades',
@@ -34,7 +34,7 @@ import { OPORTUNIDADES, Oportunidad } from './oportunidades.data';
   ],
 })
 export class OportunidadesPublicComponent {
-  readonly search = signal('');
+  readonly busqueda = signal('');
   readonly categoria = signal('');
   readonly modalidad = signal('');
   readonly ubicacion = signal('');
@@ -44,21 +44,32 @@ export class OportunidadesPublicComponent {
   readonly oportunidades: Oportunidad[] = OPORTUNIDADES;
 
   readonly oportunidadesFiltradas = computed(() => {
-    const search = this.search().trim().toLowerCase();
+    const busqueda = this.busqueda().trim().toLowerCase();
     return this.oportunidades.filter((item) => {
-      const matchSearch =
-        !search ||
-        item.titulo.toLowerCase().includes(search) ||
-        item.organizacion.toLowerCase().includes(search);
+      const matchbuscar =
+        !busqueda ||
+        item.titulo.toLowerCase().includes(busqueda) ||
+        item.organizacion.toLowerCase().includes(busqueda);
       const matchCategoria = !this.categoria() || item.categoria === this.categoria();
       const matchModalidad = !this.modalidad() || item.modalidad === this.modalidad();
       const matchUbicacion = !this.ubicacion() || item.ubicacion === this.ubicacion();
-      return matchSearch && matchCategoria && matchModalidad && matchUbicacion;
+      return matchbuscar && matchCategoria && matchModalidad && matchUbicacion;
     });
   });
 
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParamMap.subscribe((params) => {
+      this.busqueda.set(params.get('busqueda') ?? '');
+      this.categoria.set(params.get('categoria') ?? '');
+      this.modalidad.set(params.get('modalidad') ?? '');
+      this.ubicacion.set(params.get('ubicacion') ?? '');
+
+      this.paginaActual = 0;
+    });
+  }
+
   limpiarFiltros(): void {
-    this.search.set('');
+    this.busqueda.set('');
     this.categoria.set('');
     this.modalidad.set('');
     this.ubicacion.set('');

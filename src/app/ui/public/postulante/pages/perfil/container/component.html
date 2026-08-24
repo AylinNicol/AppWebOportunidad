@@ -1,0 +1,82 @@
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <div>
+    <p class="panel-eyebrow">Mi cuenta</p>
+    <h1 class="text-3xl font-bold">Mi perfil</h1>
+    <p class="panel-description mt-1">Mantén actualizada tu información personal y tu CV.</p>
+  </div>
+
+  <mat-card appearance="outlined" class="panel-card">
+    <mat-card-header>
+      <div mat-card-avatar class="perfil-avatar flex items-center justify-center">
+        {{ nombre.charAt(0) }}
+      </div>
+      <mat-card-title>{{ nombre }}</mat-card-title>
+      <mat-card-subtitle>{{ carrera }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nombre completo</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput [(ngModel)]="nombre" [disabled]="!editando()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Correo</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput [(ngModel)]="correo" disabled />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Teléfono</mat-label>
+          <mat-icon matPrefix>phone</mat-icon>
+          <input matInput [(ngModel)]="telefono" [disabled]="!editando()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Carrera / área</mat-label>
+          <mat-icon matPrefix>school</mat-icon>
+          <input matInput [(ngModel)]="carrera" [disabled]="!editando()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Ubicación</mat-label>
+          <mat-icon matPrefix>location_on</mat-icon>
+          <input matInput [(ngModel)]="ubicacion" [disabled]="!editando()" />
+        </mat-form-field>
+      </div>
+      <div class="cv-box mt-2">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <mat-icon>picture_as_pdf</mat-icon>
+            <div>
+              <strong>Curriculum Vitae</strong>
+              <div class="panel-description">{{ cvNombre }}</div>
+            </div>
+          </div>
+          @if (editando()) {
+            <label>
+              <input class="hidden" type="file" accept=".pdf" (change)="seleccionarCv($event)" />
+              <span mat-stroked-button>
+                <mat-icon>upload_file</mat-icon>
+                Cambiar CV
+              </span>
+            </label>
+          }
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      @if (!editando()) {
+        <button mat-flat-button type="button" (click)="editando.set(true)">
+          <mat-icon>edit</mat-icon>
+          Editar perfil
+        </button>
+      } @else {
+        <button mat-button type="button" (click)="editando.set(false)">Cancelar</button>
+
+        <button mat-flat-button type="button" (click)="guardar()">
+          <mat-icon>save</mat-icon>
+          Guardar cambios
+        </button>
+      }
+    </mat-card-actions>
+  </mat-card>
+</div>

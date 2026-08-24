@@ -1,0 +1,122 @@
+<div class="space-y-8">
+  <section>
+    <p class="admin-eyebrow">Resumen</p>
+    <h1 class="text-2xl sm:text-3xl font-bold">Dashboard</h1>
+    <p class="admin-description mt-1">
+      Consulta el estado general de la plataforma y accede a las tareas principales.
+    </p>
+  </section>
+
+  <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+    <mat-card appearance="outlined" class="admin-stat-card">
+      <mat-card-content>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="admin-stat-value">{{ pendientes }}</div>
+            <div class="admin-stat-label">Pendientes</div>
+            <p class="admin-stat-description mt-1">Requieren revisión administrativa</p>
+          </div>
+          <div class="admin-stat-icon flex items-center justify-center">
+            <mat-icon>pending_actions</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="admin-stat-card">
+      <mat-card-content>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="admin-stat-value">{{ usuarios }}</div>
+            <div class="admin-stat-label">Usuarios</div>
+            <p class="admin-stat-description mt-1">Estudiantes y organizaciones</p>
+          </div>
+          <div class="admin-stat-icon flex items-center justify-center">
+            <mat-icon>group</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="admin-stat-card">
+      <mat-card-content>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="admin-stat-value">{{ publicacionesActivas }}</div>
+            <div class="admin-stat-label">Publicadas</div>
+            <p class="admin-stat-description mt-1">Visibles en la zona pública</p>
+          </div>
+          <div class="admin-stat-icon flex items-center justify-center">
+            <mat-icon>campaign</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="admin-stat-card">
+      <mat-card-content>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="admin-stat-value">{{ cerradas }}</div>
+            <div class="admin-stat-label">Cerradas</div>
+            <p class="admin-stat-description mt-1">Convocatorias finalizadas</p>
+          </div>
+          <div class="admin-stat-icon flex items-center justify-center">
+            <mat-icon>archive</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <mat-card appearance="outlined" class="admin-main-card lg:col-span-2">
+      <mat-card-header>
+        <mat-card-title>Actividad reciente</mat-card-title>
+        <mat-card-subtitle>Últimos movimientos administrativos</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="mt-4">
+        <div class="space-y-2">
+          @for (item of actividad; track item.titulo) {
+            <div class="admin-activity flex items-start gap-3 p-3">
+              <div class="admin-activity-icon flex items-center justify-center shrink-0">
+                <mat-icon>{{ item.icono }}</mat-icon>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold">{{ item.titulo }}</div>
+                <div class="admin-description text-sm mt-0.5">{{ item.detalle }}</div>
+              </div>
+
+              <div class="admin-description text-xs shrink-0">{{ item.fecha }}</div>
+            </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="admin-main-card">
+      <mat-card-header>
+        <mat-card-title>Accesos rápidos</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="mt-4 space-y-3">
+        <a mat-stroked-button routerLink="/admin/oportunidades" class="w-full">
+          <mat-icon>fact_check</mat-icon>
+          Revisar oportunidades
+        </a>
+
+        <a mat-stroked-button routerLink="/admin/usuarios" class="w-full">
+          <mat-icon>group</mat-icon>
+          Gestionar usuarios
+        </a>
+
+        <a mat-stroked-button routerLink="/admin/publicaciones" class="w-full">
+          <mat-icon>campaign</mat-icon>
+          Ver publicaciones
+        </a>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

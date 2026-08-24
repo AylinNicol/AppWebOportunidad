@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
-import { ORGANIZACIONES, Organizacion } from './organizaciones.data';
+import { ORGANIZACIONES, Organizacion } from '../../../../../data/organizaciones.data';
 
 @Component({
   selector: 'organizaciones',
@@ -31,14 +31,14 @@ import { ORGANIZACIONES, Organizacion } from './organizaciones.data';
   ],
 })
 export class OrganizacionesPublicComponent {
-  search = '';
+  buscar = '';
   paginaActual = 0;
   tamanoPagina = 6;
 
   readonly organizaciones: Organizacion[] = ORGANIZACIONES;
 
   get filtradoOrganizaciones(): Organizacion[] {
-    const value = this.search.toLowerCase().trim();
+    const value = this.buscar.toLowerCase().trim();
     if (!value) {
       return this.organizaciones;
     }
@@ -62,7 +62,7 @@ export class OrganizacionesPublicComponent {
   }
 
   limpiarBusqueda(): void {
-    this.search = '';
+    this.buscar = '';
     this.paginaActual = 0;
   }
 }

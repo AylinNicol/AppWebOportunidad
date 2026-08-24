@@ -1,0 +1,73 @@
+.panel-eyebrow {
+  margin: 0 0 4px;
+  color: var(--mat-sys-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 12px;
+}
+
+.panel-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.panel-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.panel-card mat-card-header {
+  padding: 20px 20px 0;
+}
+
+.panel-card mat-card-content {
+  padding: 0 20px 16px;
+}
+
+.resumen-card mat-card-content {
+  padding: 20px;
+}
+
+.resumen-icon,
+.perfil-avatar {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.resumen-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumen-number {
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.resumen-label {
+  margin-top: 4px;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+}
+
+.perfil-avatar {
+  font-weight: 700;
+}
+
+.postulacion-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.postulacion-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--mat-sys-primary);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--mat-sys-shadow) 10%, transparent);
+}

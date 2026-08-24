@@ -33,10 +33,21 @@
       </nav>
 
       <!-- Acciones escritorio -->
-      <div class="hidden md:flex items-center gap-2">
-        <button mat-button type="button" (click)="abrirLogin()">Iniciar sesión</button>
-        <button mat-flat-button type="button" (click)="abrirRegistrate()">Registrarse</button>
-      </div>
+      @if (usuarioAutenticado() && rol() === 'postulante') {
+        <postulante-menu />
+      } @else if (usuarioAutenticado() && rol() === 'organizacion') {
+        <organizacion-menu />
+      } @else if (usuarioAutenticado() && rol() === 'admin') {
+        <a mat-flat-button routerLink="/admin">
+          <mat-icon>admin_panel_settings</mat-icon>
+          Administración
+        </a>
+      } @else {
+        <div class="hidden md:flex items-center gap-2">
+          <button mat-button type="button" (click)="abrirLogin()">Iniciar sesión</button>
+          <button mat-flat-button type="button" (click)="abrirRegistrate()">Registrarse</button>
+        </div>
+      }
 
       <!-- Menú móvil -->
       <div class="md:hidden">
@@ -74,13 +85,24 @@
       <span>Acerca de</span>
     </a>
     <mat-divider></mat-divider>
-    <button mat-menu-item type="button" (click)="abrirLogin()">
-      <mat-icon>login</mat-icon>
-      <span>Iniciar sesión</span>
-    </button>
-    <button mat-menu-item type="button" (click)="abrirRegistrate()">
-      <mat-icon>person_add</mat-icon>
-      <span>Registrarse</span>
-    </button>
+    @if (usuarioAutenticado() && rol() === 'postulante') {
+      <postulante-menu />
+    } @else if (usuarioAutenticado() && rol() === 'organizacion') {
+      <organizacion-menu />
+    } @else if (usuarioAutenticado() && rol() === 'admin') {
+      <a mat-menu-item routerLink="/admin">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span>Administración</span>
+      </a>
+    } @else {
+      <button mat-menu-item type="button" (click)="abrirLogin()">
+        <mat-icon>login</mat-icon>
+        <span>Iniciar sesión</span>
+      </button>
+      <button mat-menu-item type="button" (click)="abrirRegistrate()">
+        <mat-icon>person_add</mat-icon>
+        <span>Registrarse</span>
+      </button>
+    }
   </mat-menu>
 </header>

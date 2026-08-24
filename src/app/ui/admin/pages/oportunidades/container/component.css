@@ -1,0 +1,61 @@
+.admin-eyebrow {
+  color: var(--mat-sys-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.admin-filter-card,
+.admin-table-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.admin-filter-field {
+  margin-bottom: -1.25em;
+}
+
+.admin-filter-button {
+  min-height: 56px;
+}
+
+.admin-table-card table {
+  min-width: 900px;
+}
+
+.admin-table-card tr.mat-mdc-row:hover {
+  background-color: var(--mat-sys-surface-container-low);
+}
+
+.estado-chip {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.estado-pendiente {
+  background-color: var(--mat-sys-tertiary-container) !important;
+  color: var(--mat-sys-on-tertiary-container) !important;
+}
+
+.estado-publicada {
+  background-color: var(--mat-sys-primary-container) !important;
+  color: var(--mat-sys-on-primary-container) !important;
+}
+
+.estado-rechazada,
+.estado-cerrada {
+  background-color: var(--mat-sys-surface-container-high) !important;
+  color: var(--mat-sys-on-surface-variant) !important;
+}
+
+.admin-empty mat-icon {
+  width: 44px;
+  height: 44px;
+  font-size: 44px;
+  color: var(--mat-sys-primary);
+}

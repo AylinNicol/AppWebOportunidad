@@ -1,0 +1,68 @@
+.admin-eyebrow {
+  color: var(--mat-sys-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.admin-filter-card,
+.publicacion-card,
+.admin-empty-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.admin-filter-field {
+  margin-bottom: -1.25em;
+}
+
+.admin-filter-button {
+  min-height: 56px;
+}
+
+.publicacion-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.publicacion-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mat-sys-primary);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--mat-sys-shadow) 10%, transparent);
+}
+
+.publicacion-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.estado-publicada {
+  background-color: var(--mat-sys-primary-container) !important;
+  color: var(--mat-sys-on-primary-container) !important;
+}
+
+.estado-cerrada {
+  background-color: var(--mat-sys-surface-container-high) !important;
+  color: var(--mat-sys-on-surface-variant) !important;
+}
+
+.admin-description mat-icon {
+  color: var(--mat-sys-primary);
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.admin-empty-card mat-icon {
+  width: 44px;
+  height: 44px;
+  font-size: 44px;
+  color: var(--mat-sys-primary);
+}

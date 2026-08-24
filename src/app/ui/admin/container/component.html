@@ -1,1 +1,110 @@
-<h2>Administrador</h2>
+<mat-sidenav-container class="admin-layout">
+  <mat-sidenav
+    #sidenav
+    class="admin-sidenav"
+    [opened]="esMovil() ? menuAbierto() : true"
+    [mode]="esMovil() ? 'over' : 'side'"
+  >
+    <div class="admin-brand flex items-center gap-3 px-4 py-4">
+      <div class="admin-brand-icon flex items-center justify-center shrink-0">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </div>
+
+      <div class="min-w-0">
+        <div class="admin-brand-title">Conecta Oportunidades</div>
+        <div class="admin-brand-subtitle">Administración</div>
+      </div>
+    </div>
+
+    <mat-divider />
+
+    <mat-nav-list class="admin-nav">
+      <a
+        mat-list-item
+        routerLink="/admin"
+        routerLinkActive="admin-nav-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="cerrarMenu()"
+      >
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+
+      <a
+        mat-list-item
+        routerLink="/admin/oportunidades"
+        routerLinkActive="admin-nav-active"
+        (click)="cerrarMenu()"
+      >
+        <mat-icon matListItemIcon>fact_check</mat-icon>
+        <span matListItemTitle>Oportunidades</span>
+      </a>
+
+      <a
+        mat-list-item
+        routerLink="/admin/usuarios"
+        routerLinkActive="admin-nav-active"
+        (click)="cerrarMenu()"
+      >
+        <mat-icon matListItemIcon>group</mat-icon>
+        <span matListItemTitle>Usuarios</span>
+      </a>
+
+      <a
+        mat-list-item
+        routerLink="/admin/publicaciones"
+        routerLinkActive="admin-nav-active"
+        (click)="cerrarMenu()"
+      >
+        <mat-icon matListItemIcon>campaign</mat-icon>
+        <span matListItemTitle>Publicaciones</span>
+      </a>
+    </mat-nav-list>
+
+    <div class="admin-sidenav-bottom px-4 pb-4">
+      <mat-divider />
+
+      <div class="admin-user flex items-center gap-3 py-4">
+        <div class="admin-user-avatar flex items-center justify-center shrink-0">AD</div>
+        <div class="min-w-0">
+          <div class="admin-user-name truncate">{{ adminUser.nombre }}</div>
+          <div class="admin-user-email truncate">{{ adminUser.email }}</div>
+        </div>
+      </div>
+
+      <a mat-stroked-button routerLink="/" class="w-full">
+        <mat-icon>arrow_back</mat-icon>
+        Volver al sitio
+      </a>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="admin-content">
+    <mat-toolbar class="admin-toolbar">
+      <button
+        mat-icon-button
+        type="button"
+        aria-label="Abrir menú de administración"
+        (click)="toggleMenu()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="ml-2 min-w-0">
+        <div class="admin-toolbar-label">Zona privada</div>
+        <div class="admin-toolbar-title">Panel administrativo</div>
+      </div>
+
+      <span class="flex-1"></span>
+
+      <a mat-button routerLink="/" class="hidden sm:inline-flex">
+        <mat-icon>public</mat-icon>
+        Sitio público
+      </a>
+    </mat-toolbar>
+
+    <main class="admin-router max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

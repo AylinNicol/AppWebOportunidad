@@ -1,0 +1,66 @@
+.panel-eyebrow {
+  margin: 0 0 4px;
+  color: var(--mat-sys-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.panel-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.panel-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.panel-card mat-card-header {
+  padding: 20px 20px 0;
+}
+
+.panel-card mat-card-content {
+  padding: 0 20px 16px;
+}
+
+.resumen-card mat-card-content {
+  padding: 20px;
+}
+
+.resumen-icon,
+.org-avatar {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.resumen-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumen-number {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.resumen-label {
+  margin-top: 4px;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+}
+
+.org-avatar {
+  font-weight: 700;
+}
+
+.oportunidad-row {
+  padding: 14px;
+  border-radius: 12px;
+  background-color: var(--mat-sys-surface-container-low);
+}

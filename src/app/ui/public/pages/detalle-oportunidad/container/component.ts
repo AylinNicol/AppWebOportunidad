@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialog } from '@angular/material/dialog';
 
-import { OPORTUNIDADES, Oportunidad } from '../../oportunidades/container/oportunidades.data';
+import { OPORTUNIDADES, Oportunidad } from '../../../../../data/oportunidades.data';
 import { AuthDialogComponent } from '../../../auth/dialog/component';
 
 @Component({
@@ -39,8 +39,6 @@ export class DetalleOportunidadPublicComponent {
 
   abrirLogin(): void {
     this.dialog.open(AuthDialogComponent, {
-      width: '100%',
-      maxWidth: '440px',
       data: {
         modo: 'login',
       },

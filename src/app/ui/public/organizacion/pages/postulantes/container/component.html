@@ -1,0 +1,100 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <div>
+    <p class="panel-eyebrow">Candidatos</p>
+    <h1 class="text-3xl font-bold">Postulantes</h1>
+    <p class="panel-description mt-1">Revisa las postulaciones recibidas y actualiza su estado.</p>
+  </div>
+
+  <mat-card appearance="outlined" class="panel-card">
+    <mat-card-content>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-5">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Filtrar por estado</mat-label>
+          <mat-select [ngModel]="estado()" (ngModelChange)="estado.set($event)">
+            <mat-option value="">Todos</mat-option>
+            <mat-option value="Enviada">Enviada</mat-option>
+            <mat-option value="En revisión">En revisión</mat-option>
+            <mat-option value="Entrevista">Entrevista</mat-option>
+            <mat-option value="Seleccionada">Seleccionada</mat-option>
+            <mat-option value="Rechazada">Rechazada</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="flex items-center panel-description">
+          {{ filtrados().length }} postulaciones encontradas
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="space-y-4">
+    @for (item of filtrados(); track item.id) {
+      <mat-card appearance="outlined" class="panel-card postulante-card">
+        <mat-card-content>
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-5 pt-5">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <mat-chip>{{ item.estado }}</mat-chip>
+                <span class="panel-description text-sm">
+                  {{ item.fecha }}
+                </span>
+              </div>
+
+              <h2 class="text-xl font-bold">{{ item.nombre }}</h2>
+
+              <div class="panel-description mt-2 space-y-1">
+                <div class="flex items-center gap-2">
+                  <mat-icon>email</mat-icon>
+                  <span>{{ item.email }}</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <mat-icon>work</mat-icon>
+                  <span>{{ item.oportunidad }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col justify-center gap-2">
+              <button
+                mat-stroked-button
+                type="button"
+                (click)="actualizarEstado(item, 'En revisión')"
+              >
+                En revisión
+              </button>
+
+              <button
+                mat-stroked-button
+                type="button"
+                (click)="actualizarEstado(item, 'Entrevista')"
+              >
+                Entrevista
+              </button>
+
+              <button
+                mat-flat-button
+                type="button"
+                (click)="actualizarEstado(item, 'Seleccionada')"
+              >
+                Seleccionar
+              </button>
+
+              <button mat-button type="button" (click)="actualizarEstado(item, 'Rechazada')">
+                Rechazar
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    } @empty {
+      <mat-card appearance="outlined" class="panel-card estado-vacio">
+        <mat-card-content>
+          <mat-icon>groups</mat-icon>
+          <h2>No hay postulantes</h2>
+          <p>Aún no existen postulaciones para mostrar.</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</div>

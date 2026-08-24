@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { ORGANIZACIONES, Organizacion } from '../../organizaciones/container/organizaciones.data';
+import { ORGANIZACIONES, Organizacion } from '../../../../../data/organizaciones.data';
 
 @Component({
   selector: 'organizacion',

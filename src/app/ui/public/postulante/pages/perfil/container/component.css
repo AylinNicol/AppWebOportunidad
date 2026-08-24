@@ -1,0 +1,41 @@
+.panel-eyebrow {
+  margin: 0 0 4px;
+  color: var(--mat-sys-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.panel-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.panel-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.panel-card mat-card-header {
+  padding: 20px 20px 0;
+}
+
+.panel-card mat-card-content {
+  padding: 0 20px 16px;
+}
+
+.perfil-avatar {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  font-weight: 700;
+}
+
+.cv-box {
+  padding: 16px;
+  border-radius: 14px;
+  background-color: var(--mat-sys-surface-container);
+}
+
+.cv-box > div > div:first-child mat-icon {
+  color: var(--mat-sys-primary);
+}

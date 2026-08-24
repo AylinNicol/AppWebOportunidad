@@ -1,0 +1,147 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  <!-- Encabezado -->
+  <section class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <p class="panel-eyebrow">Panel del postulante</p>
+      <h1 class="text-3xl font-bold">Hola, {{ perfil.nombre }}</h1>
+      <p class="panel-description mt-1">Revisa tu perfil y haz seguimiento a tus postulaciones.</p>
+    </div>
+
+    <a mat-flat-button routerLink="/oportunidades">
+      <mat-icon>search</mat-icon>
+      Explorar oportunidades
+    </a>
+  </section>
+
+  <!-- Resumen -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <mat-card appearance="outlined" class="panel-card resumen-card">
+      <mat-card-content>
+        <div class="flex items-center gap-3">
+          <div class="resumen-icon">
+            <mat-icon>description</mat-icon>
+          </div>
+          <div>
+            <div class="resumen-number">{{ total() }}</div>
+            <div class="resumen-label">Postulaciones</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="panel-card resumen-card">
+      <mat-card-content>
+        <div class="flex items-center gap-3">
+          <div class="resumen-icon">
+            <mat-icon>pending_actions</mat-icon>
+          </div>
+          <div>
+            <div class="resumen-number">{{ enProceso() }}</div>
+            <div class="resumen-label">En proceso</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card appearance="outlined" class="panel-card resumen-card">
+      <mat-card-content>
+        <div class="flex items-center gap-3">
+          <div class="resumen-icon">
+            <mat-icon>workspace_premium</mat-icon>
+          </div>
+          <div>
+            <div class="resumen-number">{{ seleccionadas() }}</div>
+            <div class="resumen-label">Seleccionadas</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card appearance="outlined" class="panel-card resumen-card">
+      <mat-card-content>
+        <div class="flex items-center gap-3">
+          <div class="resumen-icon">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div>
+            <div class="resumen-number">{{ perfilCompleto() }}%</div>
+            <div class="resumen-label">Perfil completo</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Perfil -->
+  <section>
+    <mat-card appearance="outlined" class="panel-card">
+      <mat-card-header>
+        <div mat-card-avatar class="perfil-avatar flex items-center justify-center">
+          {{ perfil.nombre.charAt(0) }}
+        </div>
+        <mat-card-title>Completa tu perfil</mat-card-title>
+        <mat-card-subtitle>
+          Un perfil actualizado facilita futuras postulaciones.
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="mt-5">
+          <div class="flex justify-between gap-4 mb-2">
+            <span>Progreso del perfil</span>
+            <strong>{{ perfilCompleto() }}%</strong>
+          </div>
+          <mat-progress-bar mode="determinate" [value]="perfilCompleto()"></mat-progress-bar>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <a mat-button routerLink="/postulante/mi-perfil">
+          Editar perfil
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+
+  <!-- Postulaciones recientes -->
+  <section>
+    <div class="flex items-end justify-between gap-4 mb-5">
+      <div>
+        <h2 class="text-2xl font-bold">Postulaciones recientes</h2>
+        <p class="panel-description mt-1">
+          Consulta rápidamente el estado de tus últimas postulaciones.
+        </p>
+      </div>
+
+      <a mat-button routerLink="/postulante/mis-postulaciones">
+        Ver todas
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      @for (item of recientes(); track item.id) {
+        <mat-card appearance="outlined" class="panel-card postulacion-card">
+          <mat-card-header>
+            <mat-card-title>{{ item.oportunidad?.titulo }}</mat-card-title>
+            <mat-card-subtitle>{{ item.oportunidad?.organizacion }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="mt-4 space-y-3">
+              <mat-chip>{{ item.estado }}</mat-chip>
+              <div class="flex items-center gap-2 panel-description">
+                <mat-icon>calendar_today</mat-icon>
+                <span>Postulado: {{ item.fechaPostulacion }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <a mat-button [routerLink]="['/oportunidades', item.oportunidadSlug]">
+              Ver oportunidad
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  </section>
+</div>

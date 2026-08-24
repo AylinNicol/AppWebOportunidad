@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +7,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../../auth/dialog/component';
+
+import { PostulanteMenuComponent } from '../../postulante/components/menu/component';
+import { OrganizacionMenuComponent } from '../../organizacion/components/menu/component';
 
 @Component({
   selector: 'header-public',
@@ -20,6 +23,8 @@ import { AuthDialogComponent } from '../../auth/dialog/component';
     MatIcon,
     MatMenuModule,
     MatDividerModule,
+    PostulanteMenuComponent,
+    OrganizacionMenuComponent,
   ],
 })
 export class HeaderComponent {
@@ -38,4 +43,7 @@ export class HeaderComponent {
       },
     });
   }
+  // Simulación temporal de sesión
+  readonly usuarioAutenticado = signal(true);
+  readonly rol = signal<'postulante' | 'organizacion' | 'admin' | null>('postulante');
 }

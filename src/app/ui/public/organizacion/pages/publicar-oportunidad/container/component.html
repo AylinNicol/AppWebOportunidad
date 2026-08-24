@@ -1,0 +1,96 @@
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <div>
+    <p class="panel-eyebrow">Nueva convocatoria</p>
+    <h1 class="text-3xl font-bold">Publicar oportunidad</h1>
+    <p class="panel-description mt-1">
+      Registra una oportunidad. Inicialmente quedará en estado Pendiente para revisión
+      administrativa.
+    </p>
+  </div>
+
+  <mat-card appearance="outlined" class="panel-card">
+    <mat-card-content>
+      <form (ngSubmit)="publicar()" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Título de la oportunidad</mat-label>
+          <mat-icon matPrefix>work</mat-icon>
+          <input
+            matInput
+            name="titulo"
+            [(ngModel)]="titulo"
+            required
+            placeholder="Ej. Pasantía en Desarrollo Frontend"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Tipo</mat-label>
+          <mat-select name="tipo" [(ngModel)]="tipo" required>
+            <mat-option value="Pasantía">Pasantía</mat-option>
+            <mat-option value="Empleo Junior">Empleo Junior</mat-option>
+            <mat-option value="Beca">Beca</mat-option>
+            <mat-option value="Voluntariado">Voluntariado</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Categoría</mat-label>
+          <mat-select name="categoria" [(ngModel)]="categoria" required>
+            <mat-option value="Desarrollo Web">Desarrollo Web</mat-option>
+            <mat-option value="Diseño">Diseño</mat-option>
+            <mat-option value="Capacitación">Capacitación</mat-option>
+            <mat-option value="Educación">Educación</mat-option>
+            <mat-option value="Marketing">Marketing</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Modalidad</mat-label>
+          <mat-select name="modalidad" [(ngModel)]="modalidad" required>
+            <mat-option value="Remoto">Remoto</mat-option>
+            <mat-option value="Presencial">Presencial</mat-option>
+            <mat-option value="Híbrido">Híbrido</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Ubicación</mat-label>
+          <mat-icon matPrefix>location_on</mat-icon>
+          <input matInput name="ubicacion" [(ngModel)]="ubicacion" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Fecha límite</mat-label>
+          <input matInput type="date" name="fechaLimite" [(ngModel)]="fechaLimite" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Descripción</mat-label>
+          <textarea
+            matInput
+            rows="6"
+            name="descripcion"
+            [(ngModel)]="descripcion"
+            required
+            placeholder="Describe la oportunidad, responsabilidades y perfil buscado."
+          ></textarea>
+        </mat-form-field>
+
+        <div class="md:col-span-2 flex flex-col sm:flex-row justify-end gap-2">
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="router.navigate(['/mis-oportunidades'])"
+          >
+            Cancelar
+          </button>
+
+          <button mat-flat-button type="submit">
+            <mat-icon>send</mat-icon>
+            Enviar para revisión
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

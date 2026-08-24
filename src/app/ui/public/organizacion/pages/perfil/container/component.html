@@ -1,0 +1,69 @@
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <div>
+    <p class="panel-eyebrow">Mi cuenta</p>
+    <h1 class="text-3xl font-bold">Perfil de organización</h1>
+    <p class="panel-description mt-1">
+      Mantén actualizada la información pública de tu organización.
+    </p>
+  </div>
+
+  <mat-card appearance="outlined" class="panel-card">
+    <mat-card-header>
+      <div mat-card-avatar class="org-avatar flex items-center justify-center">
+        {{ nombre.charAt(0) }}
+      </div>
+
+      <mat-card-title>{{ nombre }}</mat-card-title>
+      <mat-card-subtitle>{{ categoria }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nombre</mat-label>
+          <mat-icon matPrefix>business</mat-icon>
+          <input matInput [(ngModel)]="nombre" [disabled]="!editando()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Categoría</mat-label>
+          <mat-icon matPrefix>category</mat-icon>
+          <input matInput [(ngModel)]="categoria" [disabled]="!editando()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Ubicación</mat-label>
+          <mat-icon matPrefix>location_on</mat-icon>
+          <input matInput [(ngModel)]="ubicacion" [disabled]="!editando()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Correo</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput [(ngModel)]="email" disabled />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput rows="5" [(ngModel)]="descripcion" [disabled]="!editando()"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      @if (!editando()) {
+        <button mat-flat-button type="button" (click)="editando.set(true)">
+          <mat-icon>edit</mat-icon>
+          Editar perfil
+        </button>
+      } @else {
+        <button mat-button type="button" (click)="editando.set(false)">Cancelar</button>
+
+        <button mat-flat-button type="button" (click)="guardar()">
+          <mat-icon>save</mat-icon>
+          Guardar cambios
+        </button>
+      }
+    </mat-card-actions>
+  </mat-card>
+</div>

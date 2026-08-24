@@ -1,0 +1,61 @@
+.panel-eyebrow {
+  margin: 0 0 4px;
+  color: var(--mat-sys-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.panel-description {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.panel-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.postulante-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.postulante-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mat-sys-primary);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--mat-sys-shadow) 10%, transparent);
+}
+
+.postulante-card mat-icon {
+  color: var(--mat-sys-primary);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.estado-vacio {
+  text-align: center;
+}
+
+.estado-vacio mat-card-content {
+  padding: 48px 24px;
+}
+
+.estado-vacio mat-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  color: var(--mat-sys-primary);
+}
+
+.estado-vacio h2 {
+  margin: 8px 0 4px;
+}
+
+.estado-vacio p {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}

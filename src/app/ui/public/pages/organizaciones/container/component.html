@@ -19,11 +19,11 @@
       <input
         matInput
         type="text"
-        [(ngModel)]="search"
+        [(ngModel)]="buscar"
         (ngModelChange)="paginaActual = 0"
         placeholder="Nombre, categoría o ubicación"
       />
-      @if (search) {
+      @if (buscar) {
         <button
           mat-icon-button
           matSuffix
