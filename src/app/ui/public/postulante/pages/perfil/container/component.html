@@ -36,6 +36,16 @@
           <mat-icon matPrefix>school</mat-icon>
           <input matInput [(ngModel)]="carrera" [disabled]="!editando()" />
         </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Universidad</mat-label>
+          <mat-icon matPrefix>account_balance</mat-icon>
+          <input matInput [(ngModel)]="universidad" [disabled]="!editando()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Fecha de egreso</mat-label>
+          <mat-icon matPrefix>event</mat-icon>
+          <input matInput [(ngModel)]="fechaEgreso" [disabled]="!editando()" />
+        </mat-form-field>
         <mat-form-field appearance="outline" class="w-full md:col-span-2">
           <mat-label>Ubicación</mat-label>
           <mat-icon matPrefix>location_on</mat-icon>

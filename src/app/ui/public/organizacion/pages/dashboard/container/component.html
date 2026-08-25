@@ -1,139 +1,222 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-  <section class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-    <div>
-      <p class="panel-eyebrow">Panel de organización</p>
-      <h1 class="text-3xl font-bold">{{ organizacion.nombre }}</h1>
-      <p class="panel-description mt-1">
-        Administra tus oportunidades y revisa el avance de tus publicaciones.
-      </p>
-    </div>
+@if (organizacion(); as org) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <!-- Encabezado -->
+    <section class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <p class="panel-eyebrow">Panel de organización</p>
 
-    <a mat-flat-button routerLink="/publicar-oportunidad">
-      <mat-icon>add</mat-icon>
-      Publicar oportunidad
-    </a>
-  </section>
+        <h1 class="text-3xl font-bold">
+          {{ org.nombre }}
+        </h1>
 
-  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    <mat-card appearance="outlined" class="panel-card resumen-card">
-      <mat-card-content>
-        <div class="flex items-center gap-3">
-          <div class="resumen-icon">
-            <mat-icon>work</mat-icon>
-          </div>
-          <div>
-            <div class="resumen-number">{{ total() }}</div>
-            <div class="resumen-label">Total</div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+        <p class="panel-description mt-1">
+          Administra tus oportunidades y revisa el avance de tus publicaciones.
+        </p>
+      </div>
 
-    <mat-card appearance="outlined" class="panel-card resumen-card">
-      <mat-card-content>
-        <div class="flex items-center gap-3">
-          <div class="resumen-icon">
-            <mat-icon>published_with_changes</mat-icon>
-          </div>
-          <div>
-            <div class="resumen-number">{{ publicadas() }}</div>
-            <div class="resumen-label">Publicadas</div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+      <a mat-flat-button routerLink="/organizacion/publicar-oportunidad">
+        <mat-icon>add</mat-icon>
+        Publicar oportunidad
+      </a>
+    </section>
 
-    <mat-card appearance="outlined" class="panel-card resumen-card">
-      <mat-card-content>
-        <div class="flex items-center gap-3">
-          <div class="resumen-icon">
-            <mat-icon>schedule</mat-icon>
-          </div>
-          <div>
-            <div class="resumen-number">{{ pendientes() }}</div>
-            <div class="resumen-label">Pendientes</div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <!-- Resumen -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Total -->
+      <mat-card appearance="outlined" class="panel-card resumen-card">
+        <mat-card-content>
+          <div class="flex items-center gap-3">
+            <div class="resumen-icon">
+              <mat-icon>work</mat-icon>
+            </div>
 
-    <mat-card appearance="outlined" class="panel-card resumen-card">
-      <mat-card-content>
-        <div class="flex items-center gap-3">
-          <div class="resumen-icon">
-            <mat-icon>lock</mat-icon>
-          </div>
-          <div>
-            <div class="resumen-number">{{ cerradas() }}</div>
-            <div class="resumen-label">Cerradas</div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </section>
-
-  <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <mat-card appearance="outlined" class="panel-card lg:col-span-2">
-      <mat-card-header>
-        <mat-card-title>Oportunidades recientes</mat-card-title>
-        <mat-card-subtitle>
-          Últimas oportunidades registradas por tu organización.
-        </mat-card-subtitle>
-      </mat-card-header>
-
-      <mat-card-content>
-        <div class="space-y-3 mt-5">
-          @for (item of recientes(); track item.id) {
-            <div
-              class="oportunidad-row flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
-            >
-              <div>
-                <div class="font-semibold">{{ item.titulo }}</div>
-                <div class="panel-description text-sm">{{ item.tipo }} · {{ item.modalidad }}</div>
+            <div>
+              <div class="resumen-number">
+                {{ total() }}
               </div>
 
-              <mat-chip>{{ item.estado }}</mat-chip>
+              <div class="resumen-label">Total</div>
             </div>
-          } @empty {
-            <div class="panel-description py-5">Todavía no registraste oportunidades.</div>
-          }
-        </div>
-      </mat-card-content>
+          </div>
+        </mat-card-content>
+      </mat-card>
 
-      <mat-card-actions align="end">
-        <a mat-button routerLink="/mis-oportunidades">
-          Ver todas
-          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-        </a>
-      </mat-card-actions>
-    </mat-card>
+      <!-- Publicadas -->
+      <mat-card appearance="outlined" class="panel-card resumen-card">
+        <mat-card-content>
+          <div class="flex items-center gap-3">
+            <div class="resumen-icon">
+              <mat-icon>published_with_changes</mat-icon>
+            </div>
 
+            <div>
+              <div class="resumen-number">
+                {{ publicadas() }}
+              </div>
+
+              <div class="resumen-label">Publicadas</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Pendientes -->
+      <mat-card appearance="outlined" class="panel-card resumen-card">
+        <mat-card-content>
+          <div class="flex items-center gap-3">
+            <div class="resumen-icon">
+              <mat-icon>schedule</mat-icon>
+            </div>
+
+            <div>
+              <div class="resumen-number">
+                {{ pendientes() }}
+              </div>
+
+              <div class="resumen-label">Pendientes</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Cerradas -->
+      <mat-card appearance="outlined" class="panel-card resumen-card">
+        <mat-card-content>
+          <div class="flex items-center gap-3">
+            <div class="resumen-icon">
+              <mat-icon>lock</mat-icon>
+            </div>
+
+            <div>
+              <div class="resumen-number">
+                {{ cerradas() }}
+              </div>
+
+              <div class="resumen-label">Cerradas</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+    <!-- Contenido inferior -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Oportunidades recientes -->
+      <mat-card appearance="outlined" class="panel-card lg:col-span-2">
+        <mat-card-header>
+          <mat-card-title> Oportunidades recientes </mat-card-title>
+
+          <mat-card-subtitle>
+            Últimas oportunidades registradas por tu organización.
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="space-y-3 mt-5">
+            @for (item of recientes(); track item.id) {
+              <div
+                class="oportunidad-row flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+              >
+                <div>
+                  <div class="font-semibold">
+                    {{ item.titulo }}
+                  </div>
+
+                  <div class="panel-description text-sm">
+                    {{ item.tipo }} · {{ item.modalidad }}
+                  </div>
+                </div>
+
+                <mat-chip>
+                  {{ item.estado }}
+                </mat-chip>
+              </div>
+            } @empty {
+              <div class="panel-description py-5">Todavía no registraste oportunidades.</div>
+            }
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <a mat-button routerLink="/organizacion/mis-oportunidades">
+            Ver todas
+            <mat-icon iconPositionEnd> arrow_forward </mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Perfil organización -->
+      <mat-card appearance="outlined" class="panel-card">
+        <mat-card-header>
+          <div mat-card-avatar class="org-avatar flex items-center justify-center">
+            {{ org.nombre.charAt(0) }}
+          </div>
+
+          <mat-card-title> Perfil </mat-card-title>
+
+          <mat-card-subtitle>
+            {{ org.categoria }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="mt-5 space-y-3 panel-description">
+            <!-- Ubicación -->
+            <div class="flex gap-2">
+              <mat-icon>location_on</mat-icon>
+              <span>
+                {{ org.ubicacion }}
+              </span>
+            </div>
+
+            <!-- Correo -->
+            <div class="flex gap-2">
+              <mat-icon>email</mat-icon>
+              <span>
+                {{ org.correo }}
+              </span>
+            </div>
+
+            <!-- Teléfono -->
+            @if (org.telefono) {
+              <div class="flex gap-2">
+                <mat-icon>phone</mat-icon>
+                <span>
+                  {{ org.telefono }}
+                </span>
+              </div>
+            }
+
+            <!-- Sitio web -->
+            @if (org.sitioWeb) {
+              <div class="flex gap-2">
+                <mat-icon>language</mat-icon>
+                <span>
+                  {{ org.sitioWeb }}
+                </span>
+              </div>
+            }
+
+            <!-- Estado -->
+            <div class="flex gap-2">
+              <mat-icon>verified_user</mat-icon>
+              <span> Estado: {{ org.estado }} </span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <a mat-button routerLink="/organizacion/mi-organizacion"> Editar perfil </a>
+        </mat-card-actions>
+      </mat-card>
+    </section>
+  </div>
+} @else {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <mat-card appearance="outlined" class="panel-card">
-      <mat-card-header>
-        <div mat-card-avatar class="org-avatar flex items-center justify-center">
-          {{ organizacion.nombre.charAt(0) }}
-        </div>
-        <mat-card-title>Perfil</mat-card-title>
-        <mat-card-subtitle>{{ organizacion.categoria }}</mat-card-subtitle>
-      </mat-card-header>
-
       <mat-card-content>
-        <div class="mt-5 space-y-3 panel-description">
-          <div class="flex gap-2">
-            <mat-icon>location_on</mat-icon>
-            <span>{{ organizacion.ubicacion }}</span>
-          </div>
-
-          <div class="flex gap-2">
-            <mat-icon>email</mat-icon>
-            <span>{{ organizacion.correo }}</span>
-          </div>
-        </div>
+        <div class="panel-description py-6">Cargando información de la organización...</div>
       </mat-card-content>
-
-      <mat-card-actions align="end">
-        <a mat-button routerLink="/mi-organizacion"> Editar perfil </a>
-      </mat-card-actions>
     </mat-card>
-  </section>
-</div>
+  </div>
+}

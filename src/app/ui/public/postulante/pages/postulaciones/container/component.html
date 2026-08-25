@@ -59,12 +59,11 @@
       @for (item of filtradas(); track item.id) {
         <mat-card appearance="outlined" class="panel-card postulacion-card">
           <mat-card-content>
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 pt-5">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 pt-0">
               <div class="min-w-0">
                 <div class="flex flex-wrap items-center gap-2 mb-2">
-                  <mat-chip>{{ item.estado }}</mat-chip>
                   <span class="panel-description">
-                    {{ item.fechaPostulacion }}
+                    {{ item.fechaPostulacion | date: 'dd/MM/yyyy' }}
                   </span>
                 </div>
                 <h2 class="text-xl font-bold">
@@ -79,7 +78,7 @@
                 <a mat-stroked-button [routerLink]="['/oportunidades', item.oportunidad?.slug]">
                   Ver oportunidad
                 </a>
-                <button mat-button type="button">
+                <button mat-button type="button" (click)="verSeguimiento(item)">
                   <mat-icon>visibility</mat-icon>
                   Ver seguimiento
                 </button>

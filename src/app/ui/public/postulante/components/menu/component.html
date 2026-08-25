@@ -1,8 +1,15 @@
-<button mat-flat-button type="button" [matMenuTriggerFor]="postulanteMenu">
+<!-- ESCRITORIO -->
+<button
+  mat-flat-button
+  type="button"
+  class="!hidden md:!inline-flex items-center gap-2 ml-3"
+  [matMenuTriggerFor]="postulanteMenu"
+>
   <mat-icon>account_circle</mat-icon>
   Mi panel
   <mat-icon iconPositionEnd>expand_more</mat-icon>
 </button>
+
 <mat-menu #postulanteMenu="matMenu">
   <a mat-menu-item routerLink="/postulante/mi-panel">
     <mat-icon>dashboard</mat-icon>
@@ -21,3 +28,22 @@
     <span>Cerrar sesión</span>
   </button>
 </mat-menu>
+<!-- MÓVIL -->
+<div class="md:hidden">
+  <a mat-menu-item routerLink="/postulante/mi-panel">
+    <mat-icon>dashboard</mat-icon>
+    <span>Resumen</span>
+  </a>
+  <a mat-menu-item routerLink="/postulante/mi-perfil">
+    <mat-icon>person</mat-icon>
+    <span>Mi perfil</span>
+  </a>
+  <a mat-menu-item routerLink="/postulante/mis-postulaciones">
+    <mat-icon>description</mat-icon>
+    <span>Mis postulaciones</span>
+  </a>
+  <button mat-menu-item type="button" (click)="cerrarSesion()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+</div>

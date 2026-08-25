@@ -22,7 +22,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-xyz',
     slug: 'empresa-xyz',
-    usuarioId: 'usr-org-xyz',
+    usuarioId: 'QPgJnM8ASdfJINSK6nLPA9TBmzs2',
     nombre: 'Empresa XYZ',
     categoria: 'Tecnología & Software',
     ubicacion: 'Oruro, Bolivia',
@@ -40,7 +40,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-abc',
     slug: 'empresa-abc',
-    usuarioId: 'usr-org-abc',
+    usuarioId: 'demo-org-abc',
     nombre: 'Empresa ABC',
     categoria: 'Consultoría e Ingeniería',
     ubicacion: 'Oruro, Bolivia',
@@ -56,7 +56,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-estrella',
     slug: 'fundacion-estrella-del-sur',
-    usuarioId: 'usr-org-estrella',
+    usuarioId: 'demo-org-estrella',
     nombre: 'Fundación Estrella del Sur',
     categoria: 'ONG & Desarrollo Social',
     ubicacion: 'Oruro / La Paz',
@@ -72,7 +72,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-techbolivia',
     slug: 'techbolivia-community',
-    usuarioId: 'usr-org-techbolivia',
+    usuarioId: 'demo-org-techbolivia',
     nombre: 'TechBolivia Community',
     categoria: 'Comunidad Educativa',
     ubicacion: 'Cochabamba, Bolivia',
@@ -88,7 +88,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-nova',
     slug: 'nova-digital',
-    usuarioId: 'usr-org-nova',
+    usuarioId: 'demo-org-nova',
     nombre: 'Nova Digital',
     categoria: 'Tecnología & Software',
     ubicacion: 'La Paz, Bolivia',
@@ -103,7 +103,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-ingenia',
     slug: 'ingenia-consultores',
-    usuarioId: 'usr-org-ingenia',
+    usuarioId: 'demo-org-ingenia',
     nombre: 'Ingenia Consultores',
     categoria: 'Consultoría e Ingeniería',
     ubicacion: 'Cochabamba, Bolivia',
@@ -118,7 +118,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-futuro',
     slug: 'fundacion-futuro-joven',
-    usuarioId: 'usr-org-futuro',
+    usuarioId: 'demo-org-futuro',
     nombre: 'Fundación Futuro Joven',
     categoria: 'ONG & Desarrollo Social',
     ubicacion: 'Santa Cruz, Bolivia',
@@ -133,7 +133,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-codehub',
     slug: 'codehub-bolivia',
-    usuarioId: 'usr-org-codehub',
+    usuarioId: 'demo-org-codehub',
     nombre: 'CodeHub Bolivia',
     categoria: 'Comunidad Educativa',
     ubicacion: 'La Paz, Bolivia',
@@ -148,7 +148,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-andes',
     slug: 'andes-tech-solutions',
-    usuarioId: 'usr-org-andes',
+    usuarioId: 'demo-org-andes',
     nombre: 'Andes Tech Solutions',
     categoria: 'Tecnología & Software',
     ubicacion: 'Oruro, Bolivia',
@@ -164,7 +164,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-softstudio',
     slug: 'softstudio-bolivia',
-    usuarioId: 'usr-org-softstudio',
+    usuarioId: 'demo-org-softstudio',
     nombre: 'SoftStudio Bolivia',
     categoria: 'Diseño & Tecnología',
     ubicacion: 'Santa Cruz, Bolivia',
@@ -180,7 +180,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-novasoft',
     slug: 'novasoft',
-    usuarioId: 'usr-org-novasoft',
+    usuarioId: 'demo-org-novasoft',
     nombre: 'NovaSoft',
     categoria: 'Tecnología & Software',
     ubicacion: 'La Paz, Bolivia',
@@ -196,7 +196,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-futuro-digital',
     slug: 'fundacion-futuro-digital',
-    usuarioId: 'usr-org-futuro-digital',
+    usuarioId: 'demo-org-futuro-digital',
     nombre: 'Fundación Futuro Digital',
     categoria: 'Educación & Tecnología',
     ubicacion: 'Cochabamba, Bolivia',
@@ -212,7 +212,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-jovenes-bolivia',
     slug: 'jovenes-por-bolivia',
-    usuarioId: 'usr-org-jovenes-bolivia',
+    usuarioId: 'demo-org-jovenes-bolivia',
     nombre: 'Jóvenes por Bolivia',
     categoria: 'ONG & Desarrollo Social',
     ubicacion: 'Oruro, Bolivia',
@@ -228,7 +228,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-pixellab',
     slug: 'pixellab-bolivia',
-    usuarioId: 'usr-org-pixellab',
+    usuarioId: 'demo-org-pixellab',
     nombre: 'PixelLab Bolivia',
     categoria: 'Diseño & Creatividad',
     ubicacion: 'Santa Cruz, Bolivia',
@@ -243,7 +243,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-impulso',
     slug: 'impulso-creativo',
-    usuarioId: 'usr-org-impulso',
+    usuarioId: 'demo-org-impulso',
     nombre: 'Impulso Creativo',
     categoria: 'Marketing & Comunicación',
     ubicacion: 'La Paz, Bolivia',
@@ -259,7 +259,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-codelabs',
     slug: 'codelabs-bolivia',
-    usuarioId: 'usr-org-codelabs',
+    usuarioId: 'demo-org-codelabs',
     nombre: 'CodeLabs Bolivia',
     categoria: 'Tecnología & Software',
     ubicacion: 'Cochabamba, Bolivia',
@@ -275,7 +275,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-bolivia-secure',
     slug: 'bolivia-secure',
-    usuarioId: 'usr-org-bolivia-secure',
+    usuarioId: 'demo-org-bolivia-secure',
     nombre: 'Bolivia Secure',
     categoria: 'Ciberseguridad',
     ubicacion: 'Oruro, Bolivia',
@@ -291,7 +291,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-creativa',
     slug: 'creativa-studio',
-    usuarioId: 'usr-org-creativa',
+    usuarioId: 'demo-org-creativa',
     nombre: 'Creativa Studio',
     categoria: 'Diseño & Creatividad',
     ubicacion: 'Santa Cruz, Bolivia',
@@ -307,7 +307,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-codigo-todos',
     slug: 'codigo-para-todos',
-    usuarioId: 'usr-org-codigo-todos',
+    usuarioId: 'demo-org-codigo-todos',
     nombre: 'Código para Todos',
     categoria: 'Comunidad Educativa',
     ubicacion: 'La Paz, Bolivia',
@@ -323,7 +323,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-databol',
     slug: 'databol',
-    usuarioId: 'usr-org-databol',
+    usuarioId: 'demo-org-databol',
     nombre: 'DataBol',
     categoria: 'Datos & Analítica',
     ubicacion: 'Oruro, Bolivia',
@@ -339,7 +339,7 @@ export const ORGANIZACIONES: Organizacion[] = [
   {
     id: 'org-medialab',
     slug: 'medialab',
-    usuarioId: 'usr-org-medialab',
+    usuarioId: 'demo-org-medialab',
     nombre: 'MediaLab',
     categoria: 'Marketing & Comunicación',
     ubicacion: 'Cochabamba, Bolivia',

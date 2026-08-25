@@ -1,4 +1,4 @@
-@if (oportunidad; as opr) {
+@if (oportunidad(); as opr) {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     <!-- Volver -->
     <a mat-button routerLink="/oportunidades" class="mb-4">
@@ -58,10 +58,12 @@
           <mat-icon> event </mat-icon>
           <span> Fecha límite: {{ opr.fechaLimite }} </span>
         </div>
-        <button mat-flat-button type="button" class="shrink-0" (click)="abrirLogin()">
-          <mat-icon> send </mat-icon>
-          Postular
-        </button>
+        @if (!authService.autenticado() || authService.rol() === 'Postulante') {
+          <button mat-flat-button type="button" class="shrink-0" (click)="postular()">
+            <mat-icon> send </mat-icon>
+            Postular
+          </button>
+        }
       </mat-card-actions>
     </mat-card>
 

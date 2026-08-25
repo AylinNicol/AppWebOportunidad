@@ -11,6 +11,7 @@
   <mat-card appearance="outlined" class="panel-card">
     <mat-card-content>
       <form (ngSubmit)="publicar()" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
+        <!-- TÍTULO -->
         <mat-form-field appearance="outline" class="w-full md:col-span-2">
           <mat-label>Título de la oportunidad</mat-label>
           <mat-icon matPrefix>work</mat-icon>
@@ -23,71 +24,159 @@
           />
         </mat-form-field>
 
+        <!-- TIPO -->
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Tipo</mat-label>
           <mat-select name="tipo" [(ngModel)]="tipo" required>
-            <mat-option value="Pasantía">Pasantía</mat-option>
-            <mat-option value="Empleo Junior">Empleo Junior</mat-option>
-            <mat-option value="Beca">Beca</mat-option>
-            <mat-option value="Voluntariado">Voluntariado</mat-option>
+            @for (item of tipos; track item) {
+              <mat-option [value]="item">
+                {{ item }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
+        <!-- CATEGORÍA -->
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Categoría</mat-label>
           <mat-select name="categoria" [(ngModel)]="categoria" required>
-            <mat-option value="Desarrollo Web">Desarrollo Web</mat-option>
-            <mat-option value="Diseño">Diseño</mat-option>
-            <mat-option value="Capacitación">Capacitación</mat-option>
-            <mat-option value="Educación">Educación</mat-option>
-            <mat-option value="Marketing">Marketing</mat-option>
+            @for (item of categorias; track item) {
+              <mat-option [value]="item">
+                {{ item }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
+        <!-- MODALIDAD -->
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Modalidad</mat-label>
           <mat-select name="modalidad" [(ngModel)]="modalidad" required>
-            <mat-option value="Remoto">Remoto</mat-option>
-            <mat-option value="Presencial">Presencial</mat-option>
-            <mat-option value="Híbrido">Híbrido</mat-option>
+            @for (item of modalidades; track item) {
+              <mat-option [value]="item">
+                {{ item }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
+        <!-- UBICACIÓN -->
         <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Ubicación</mat-label>
+          <mat-label>Departamento</mat-label>
           <mat-icon matPrefix>location_on</mat-icon>
-          <input matInput name="ubicacion" [(ngModel)]="ubicacion" required />
+          <mat-select name="ubicacion" [(ngModel)]="ubicacion" required>
+            @for (departamento of departamentos; track departamento) {
+              <mat-option [value]="departamento">
+                {{ departamento }}
+              </mat-option>
+            }
+          </mat-select>
         </mat-form-field>
+
+        <!-- VACANTES -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Cantidad de vacantes</mat-label>
+          <mat-icon matPrefix>groups</mat-icon>
+          <input
+            matInput
+            type="number"
+            min="1"
+            name="cantidadVacantes"
+            [(ngModel)]="cantidadVacantes"
+            required
+          />
+        </mat-form-field>
+
+        <!-- SALARIO -->
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Salario / remuneración</mat-label>
+          <mat-icon matPrefix>payments</mat-icon>
+          <input
+            matInput
+            name="salario"
+            [(ngModel)]="salario"
+            placeholder="Ej. 3500 Bs. / No remunerado"
+          />
+          <mat-hint>Opcional</mat-hint>
+        </mat-form-field>
+
+        <!-- FECHA -->
 
         <mat-form-field appearance="outline" class="w-full md:col-span-2">
           <mat-label>Fecha límite</mat-label>
-          <input matInput type="date" name="fechaLimite" [(ngModel)]="fechaLimite" />
+          <input matInput type="date" name="fechaLimite" [(ngModel)]="fechaLimite" required />
         </mat-form-field>
+
+        <!-- DESCRIPCIÓN -->
 
         <mat-form-field appearance="outline" class="w-full md:col-span-2">
           <mat-label>Descripción</mat-label>
           <textarea
             matInput
-            rows="6"
+            rows="5"
             name="descripcion"
             [(ngModel)]="descripcion"
             required
-            placeholder="Describe la oportunidad, responsabilidades y perfil buscado."
+            placeholder="Describe de manera general la oportunidad."
           ></textarea>
         </mat-form-field>
 
-        <div class="md:col-span-2 flex flex-col sm:flex-row justify-end gap-2">
-          <button
-            mat-stroked-button
-            type="button"
-            (click)="router.navigate(['/mis-oportunidades'])"
-          >
-            Cancelar
-          </button>
+        <!-- REQUISITOS -->
 
-          <button mat-flat-button type="submit">
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Requisitos</mat-label>
+          <textarea
+            matInput
+            rows="5"
+            name="requisitos"
+            [(ngModel)]="requisitosTexto"
+            required
+            placeholder="Escribe un requisito por línea"
+          ></textarea>
+          <mat-hint> Un requisito por línea. </mat-hint>
+        </mat-form-field>
+
+        <!-- RESPONSABILIDADES -->
+
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Responsabilidades</mat-label>
+          <textarea
+            matInput
+            rows="5"
+            name="responsabilidades"
+            [(ngModel)]="responsabilidadesTexto"
+            required
+            placeholder="Escribe una responsabilidad por línea"
+          ></textarea>
+          <mat-hint> Una responsabilidad por línea. </mat-hint>
+        </mat-form-field>
+
+        <!-- BENEFICIOS -->
+
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Beneficios</mat-label>
+          <textarea
+            matInput
+            rows="4"
+            name="beneficios"
+            [(ngModel)]="beneficiosTexto"
+            placeholder="Experiencia práctica&#10;Mentoría profesional&#10;Certificado"
+          ></textarea>
+          <mat-hint> Un beneficio por línea. Opcional. </mat-hint>
+        </mat-form-field>
+
+        <!-- ACCIONES -->
+
+        <div class="md:col-span-2 flex flex-col sm:flex-row justify-end gap-2">
+          <button mat-stroked-button type="button" (click)="cancelar()">Cancelar</button>
+          <button mat-flat-button type="submit" [disabled]="guardando()">
             <mat-icon>send</mat-icon>
-            Enviar para revisión
+            @if (guardando()) {
+              Enviando...
+            } @else {
+              Enviar para revisión
+            }
           </button>
         </div>
       </form>

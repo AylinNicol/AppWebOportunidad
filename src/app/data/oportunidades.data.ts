@@ -25,7 +25,7 @@ export interface Oportunidad {
 
 export const OPORTUNIDADES: Oportunidad[] = [
   {
-    id: '1',
+    id: 'opo-pasantia-frontend-angular',
     slug: 'pasantia-frontend-angular',
     titulo: 'Pasantía Frontend Angular',
     organizacion: 'Empresa XYZ',
@@ -59,7 +59,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '2',
+    id: 'opo-desarrollador-web-junior',
     slug: 'desarrollador-web-junior',
     titulo: 'Desarrollador Web Junior',
     organizacion: 'Empresa ABC',
@@ -73,7 +73,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Excelente oportunidad para egresados interesados en consolidar su carrera en desarrollo de software fullstack.',
     fechaPublicacion: 'Hace 3 días',
-    estado: 'Publicada',
+    estado: 'Pendiente',
     beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
     destacada: true,
     cantidadVacantes: 1,
@@ -93,7 +93,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '3',
+    id: 'opo-beca-fullstack-cloud',
     slug: 'beca-formacion-fullstack-cloud',
     titulo: 'Beca Formación Fullstack Cloud',
     organizacion: 'Fundación Estrella del Sur',
@@ -107,7 +107,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     descripcion:
       'Beca integral para jóvenes talentos interesados en especializarse en desarrollo cloud.',
     fechaPublicacion: 'Hace 1 día',
-    estado: 'Publicada',
+    estado: 'Rechazada',
     beneficios: ['Experiencia práctica', 'Acompañamiento profesional'],
     destacada: true,
     cantidadVacantes: 1,
@@ -127,7 +127,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '4',
+    id: 'opo-voluntariado-educativo-stem',
     slug: 'voluntariado-educativo-stem',
     titulo: 'Voluntariado Educativo STEM',
     organizacion: 'TechBolivia Community',
@@ -160,7 +160,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '5',
+    id: 'opo-pasantia-ui-ux',
     slug: 'pasantia-diseno-ui-ux',
     titulo: 'Pasantía Diseño UI/UX',
     organizacion: 'SoftStudio Bolivia',
@@ -193,7 +193,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '6',
+    id: 'opo-asistente-marketing-digital',
     slug: 'asistente-marketing-digital',
     titulo: 'Asistente de Marketing Digital',
     organizacion: 'Fundación Estrella del Sur',
@@ -226,7 +226,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '7',
+    id: 'opo-pasantia-soporte-ti',
     slug: 'pasantia-soporte-ti',
     titulo: 'Pasantía en Soporte TI',
     organizacion: 'Andes Tech Solutions',
@@ -260,7 +260,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '8',
+    id: 'opo-frontend-junior',
     slug: 'desarrollador-frontend-junior',
     titulo: 'Desarrollador Frontend Junior',
     organizacion: 'NovaSoft',
@@ -294,7 +294,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '9',
+    id: 'opo-beca-desarrollo-web',
     slug: 'beca-desarrollo-aplicaciones-web',
     titulo: 'Beca en Desarrollo de Aplicaciones Web',
     organizacion: 'Fundación Futuro Digital',
@@ -328,7 +328,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '10',
+    id: 'opo-alfabetizacion-digital',
     slug: 'voluntariado-alfabetizacion-digital',
     titulo: 'Voluntariado en Alfabetización Digital',
     organizacion: 'Jóvenes por Bolivia',
@@ -362,7 +362,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '11',
+    id: 'opo-ui-ux-junior',
     slug: 'disenador-ui-ux-junior',
     titulo: 'Diseñador UI/UX Junior',
     organizacion: 'PixelLab Bolivia',
@@ -396,7 +396,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '12',
+    id: 'opo-pasantia-marketing',
     slug: 'pasantia-marketing-redes-sociales',
     titulo: 'Pasantía en Marketing y Redes Sociales',
     organizacion: 'Impulso Creativo',
@@ -430,7 +430,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '13',
+    id: 'opo-pasantia-backend',
     slug: 'pasantia-desarrollo-backend',
     titulo: 'Pasantía Desarrollo Backend',
     organizacion: 'CodeLabs Bolivia',
@@ -464,7 +464,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '14',
+    id: 'opo-formacion-ciberseguridad',
     slug: 'programa-formacion-ciberseguridad',
     titulo: 'Programa de Formación en Ciberseguridad',
     organizacion: 'Bolivia Secure',
@@ -498,7 +498,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '15',
+    id: 'opo-asistente-diseno',
     slug: 'asistente-diseno-grafico',
     titulo: 'Asistente de Diseño Gráfico',
     organizacion: 'Creativa Studio',
@@ -532,7 +532,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '16',
+    id: 'opo-mentor-programacion',
     slug: 'voluntariado-mentor-programacion',
     titulo: 'Voluntariado como Mentor de Programación',
     organizacion: 'Código para Todos',
@@ -566,7 +566,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '17',
+    id: 'opo-analista-datos',
     slug: 'analista-datos-junior',
     titulo: 'Analista de Datos Junior',
     organizacion: 'DataBol',
@@ -600,7 +600,7 @@ export const OPORTUNIDADES: Oportunidad[] = [
     ],
   },
   {
-    id: '18',
+    id: 'opo-community-manager',
     slug: 'pasantia-community-manager',
     titulo: 'Pasantía Community Manager',
     organizacion: 'MediaLab',

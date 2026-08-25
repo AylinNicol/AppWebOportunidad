@@ -45,7 +45,7 @@
   </div>
 
   <mat-dialog-content class="content">
-    <form class="grid gap-0">
+    <form class="grid gap-0" (ngSubmit)="submit()">
       <!-- Solo registro -->
       @if (modo() === 'register') {
         <mat-radio-group
@@ -62,19 +62,37 @@
           <mat-form-field appearance="outline" class="w-full auth-field">
             <mat-label>Nombre completo</mat-label>
             <mat-icon matPrefix>person</mat-icon>
-            <input matInput type="text" />
+            <input
+              matInput
+              type="text"
+              name="nombre"
+              [ngModel]="nombre()"
+              (ngModelChange)="nombre.set($event)"
+            />
           </mat-form-field>
         } @else {
           <mat-form-field appearance="outline" class="w-full auth-field">
             <mat-label>Nombre de la organización</mat-label>
             <mat-icon matPrefix>business</mat-icon>
-            <input matInput type="text" />
+            <input
+              matInput
+              type="text"
+              name="nombreOrganizacion"
+              [ngModel]="nombre_org()"
+              (ngModelChange)="nombre_org.set($event)"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full auth-field">
             <mat-label>Nombre del representante</mat-label>
             <mat-icon matPrefix>person</mat-icon>
-            <input matInput type="text" />
+            <input
+              matInput
+              type="text"
+              name="representante"
+              [ngModel]="nombre()"
+              (ngModelChange)="nombre.set($event)"
+            />
           </mat-form-field>
         }
       }
@@ -83,13 +101,26 @@
       <mat-form-field appearance="outline" class="w-full auth-field">
         <mat-label>Correo electrónico</mat-label>
         <mat-icon matPrefix>mail</mat-icon>
-        <input matInput type="email" placeholder="tu.correo@ejemplo.com" />
+        <input
+          matInput
+          type="email"
+          name="correo"
+          placeholder="tu.correo@ejemplo.com"
+          [ngModel]="correo()"
+          (ngModelChange)="correo.set($event)"
+        />
       </mat-form-field>
       <!-- Contraseña -->
       <mat-form-field appearance="outline" class="w-full auth-field">
         <mat-label>Contraseña</mat-label>
         <mat-icon matPrefix>lock</mat-icon>
-        <input matInput [type]="hide() ? 'password' : 'text'" />
+        <input
+          matInput
+          [type]="hide() ? 'password' : 'text'"
+          name="contrasena"
+          [ngModel]="contrasena()"
+          (ngModelChange)="contrasena.set($event)"
+        />
         <button
           type="button"
           matIconButton
@@ -102,20 +133,33 @@
         </button>
       </mat-form-field>
       <!-- Botón principal -->
-      <button mat-flat-button type="submit" class="w-full auth-field">
-        {{ modo() === 'login' ? 'Iniciar sesión' : 'Crear cuenta' }}
+      <button mat-flat-button type="submit" class="w-full auth-field" [disabled]="cargando()">
+        {{ cargando() ? 'Procesando...' : modo() === 'login' ? 'Iniciar sesión' : 'Crear cuenta' }}
       </button>
+      @if (error()) {
+        <p class="text-sm text-red-600 text-center">
+          {{ error() }}
+        </p>
+      }
     </form>
   </mat-dialog-content>
 
   <!-- Google -->
   <mat-dialog-actions class="auth-actions">
     <div class="auth-divider">
-      <span>o continúa con</span>
+      <span>o</span>
     </div>
-    <button mat-stroked-button type="button" class="w-full auth-field">
-      <mat-icon>login</mat-icon>
-      Continuar con Google
+    <button
+      mat-stroked-button
+      type="button"
+      class="w-full auth-field"
+      [disabled]="cargando()"
+      (click)="loginGoogle()"
+    >
+      <span class="inline-flex items-center justify-center gap-2">
+        <img src="/images/google-logo.svg" alt="" width="18" height="18" class="shrink-0" />
+        <span>Continuar con Google</span>
+      </span>
     </button>
   </mat-dialog-actions>
 </div>

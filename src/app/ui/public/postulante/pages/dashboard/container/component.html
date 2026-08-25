@@ -3,7 +3,7 @@
   <section class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     <div>
       <p class="panel-eyebrow">Panel del postulante</p>
-      <h1 class="text-3xl font-bold">Hola, {{ perfil.nombre }}</h1>
+      <h1 class="text-3xl font-bold">Hola, {{ perfil()?.nombre }}</h1>
       <p class="panel-description mt-1">Revisa tu perfil y haz seguimiento a tus postulaciones.</p>
     </div>
 
@@ -75,7 +75,7 @@
     <mat-card appearance="outlined" class="panel-card">
       <mat-card-header>
         <div mat-card-avatar class="perfil-avatar flex items-center justify-center">
-          {{ perfil.nombre.charAt(0) }}
+          {{ perfil()?.nombre?.charAt(0) }}
         </div>
         <mat-card-title>Completa tu perfil</mat-card-title>
         <mat-card-subtitle>
@@ -130,7 +130,7 @@
               <mat-chip>{{ item.estado }}</mat-chip>
               <div class="flex items-center gap-2 panel-description">
                 <mat-icon>calendar_today</mat-icon>
-                <span>Postulado: {{ item.fechaPostulacion }}</span>
+                <span> Postulado: {{ item.fechaPostulacion | date: 'dd/MM/yyyy' }} </span>
               </div>
             </div>
           </mat-card-content>

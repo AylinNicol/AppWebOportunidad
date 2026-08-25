@@ -1,5 +1,5 @@
 .admin-layout {
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--mat-sys-surface);
 }
 
@@ -7,6 +7,22 @@
   width: 280px;
   border-radius: 0;
   border-right: 1px solid var(--mat-sys-outline-variant);
+}
+
+/*
+  Todo el contenido del sidenav ocupa la altura disponible.
+  NO ponemos position: relative en mat-sidenav.
+*/
+.admin-sidenav-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.admin-brand {
+  min-height: 76px;
+  flex-shrink: 0;
 }
 
 .admin-brand-icon,
@@ -40,8 +56,15 @@
   font-weight: 600;
 }
 
+/*
+  Esta zona ocupa todo el espacio restante.
+  Si algún día tienes muchos links, solo esta parte hará scroll.
+*/
 .admin-nav {
   padding: 12px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .admin-nav a {
@@ -54,11 +77,17 @@
   color: var(--mat-sys-on-primary-container) !important;
 }
 
+/*
+  Usuario + logout permanecen siempre abajo.
+*/
 .admin-sidenav-bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  flex-shrink: 0;
+  padding-top: 8px;
+  background-color: var(--mat-sys-surface);
+}
+
+.admin-user {
+  min-height: 64px;
 }
 
 .admin-user-avatar {
@@ -72,12 +101,29 @@
 .admin-user-name {
   font-size: 13px;
   font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+.admin-user-email {
+  margin-top: 2px;
+}
+
+.admin-sidenav-bottom a,
+.admin-sidenav-bottom button {
+  justify-content: flex-start;
+}
+
+.admin-content {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--mat-sys-surface);
 }
 
 .admin-toolbar {
   position: sticky;
   top: 0;
   z-index: 10;
+
   border-bottom: 1px solid var(--mat-sys-outline-variant);
   background-color: var(--mat-sys-surface);
 }
@@ -85,4 +131,23 @@
 .admin-toolbar-title {
   font-weight: 700;
   line-height: 1.1;
+}
+
+.admin-router {
+  min-height: calc(100vh - 64px);
+}
+
+/* Móvil */
+@media (max-width: 1023px) {
+  .admin-sidenav {
+    width: 260px;
+  }
+
+  .admin-toolbar-title {
+    font-size: 15px;
+  }
+
+  .admin-brand-title {
+    font-size: 14px;
+  }
 }

@@ -31,24 +31,24 @@
         </a>
         <a mat-button routerLink="./acerca-de" routerLinkActive="active-link"> Acerca de </a>
       </nav>
-
       <!-- Acciones escritorio -->
-      @if (usuarioAutenticado() && rol() === 'postulante') {
-        <postulante-menu />
-      } @else if (usuarioAutenticado() && rol() === 'organizacion') {
-        <organizacion-menu />
-      } @else if (usuarioAutenticado() && rol() === 'admin') {
-        <a mat-flat-button routerLink="/admin">
-          <mat-icon>admin_panel_settings</mat-icon>
-          Administración
-        </a>
+      @if (usuarioAutenticado() && rol() === 'Postulante') {
+        <postulante-menu class="hidden md:flex items-center gap-2"></postulante-menu>
+      } @else if (usuarioAutenticado() && rol() === 'Organización') {
+        <organizacion-menu class="hidden md:flex items-center gap-2"></organizacion-menu>
+      } @else if (usuarioAutenticado() && rol() === 'Administrador') {
+        <div class="hidden md:flex items-center gap-2">
+          <a mat-flat-button routerLink="/admin">
+            <mat-icon>admin_panel_settings</mat-icon>
+            Administración
+          </a>
+        </div>
       } @else {
         <div class="hidden md:flex items-center gap-2">
           <button mat-button type="button" (click)="abrirLogin()">Iniciar sesión</button>
           <button mat-flat-button type="button" (click)="abrirRegistrate()">Registrarse</button>
         </div>
       }
-
       <!-- Menú móvil -->
       <div class="md:hidden">
         <button
@@ -85,11 +85,11 @@
       <span>Acerca de</span>
     </a>
     <mat-divider></mat-divider>
-    @if (usuarioAutenticado() && rol() === 'postulante') {
+    @if (usuarioAutenticado() && rol() === 'Postulante') {
       <postulante-menu />
-    } @else if (usuarioAutenticado() && rol() === 'organizacion') {
+    } @else if (usuarioAutenticado() && rol() === 'Organización') {
       <organizacion-menu />
-    } @else if (usuarioAutenticado() && rol() === 'admin') {
+    } @else if (usuarioAutenticado() && rol() === 'Administrador') {
       <a mat-menu-item routerLink="/admin">
         <mat-icon>admin_panel_settings</mat-icon>
         <span>Administración</span>

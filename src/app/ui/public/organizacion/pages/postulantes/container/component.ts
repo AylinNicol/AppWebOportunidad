@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -8,20 +8,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 
-import { OPORTUNIDADES } from '../../../../../../data/oportunidades.data';
-import { ORGANIZACIONES } from '../../../../../../data/organizaciones.data';
-import { POSTULACIONES } from '../../../../../../data/postulaciones.data';
+import { EstadoPostulacion, Postulacion } from '../../../../../../domain/postulacion';
 
-type EstadoPostulante = 'Enviada' | 'En revisión' | 'Entrevista' | 'Seleccionada' | 'Rechazada';
+import { Oportunidad } from '../../../../../../domain/oportunidad';
+import { Organizacion } from '../../../../../../domain/organizacion';
+
+import { AuthService } from '../../../../../../services/auth';
+import { OrganizacionesService } from '../../../../../../services/organizaciones';
+import { PostulacionesService } from '../../../../../../services/postulaciones';
+import { OportunidadesService } from '../../../../../../services/oportunidades';
 
 interface PostulanteVista {
   id: string;
   oportunidadId: string;
   oportunidad: string;
   nombre: string;
-  email: string;
+  correo: string;
   fecha: string;
-  estado: EstadoPostulante;
+  estado: EstadoPostulacion;
 }
 
 @Component({
@@ -39,64 +43,74 @@ interface PostulanteVista {
   ],
 })
 export class OrganizacionPostulantesComponent {
-  readonly organizacion = ORGANIZACIONES[0];
+  private readonly authService = inject(AuthService);
+  private readonly organizacionesService = inject(OrganizacionesService);
+  private readonly postulacionesService = inject(PostulacionesService);
+  private readonly oportunidadesService = inject(OportunidadesService);
 
-  private readonly idsOportunidades = new Set(
-    OPORTUNIDADES.filter(
-      (item) =>
-        item.organizacionId === this.organizacion.id ||
-        item.organizacion === this.organizacion.nombre,
-    ).map((item) => item.id),
-  );
-
-  readonly estado = signal<EstadoPostulante | ''>('');
-
-  readonly postulantes = signal<PostulanteVista[]>(
-    (POSTULACIONES as unknown as Record<string, unknown>[])
-      .map((item, index) => this.normalizar(item, index))
-      .filter((item) => !item.oportunidadId || this.idsOportunidades.has(item.oportunidadId)),
-  );
-
+  readonly organizacion = signal<Organizacion | null>(null);
+  readonly estado = signal<EstadoPostulacion | ''>('');
+  readonly postulantes = signal<PostulanteVista[]>([]);
   readonly filtrados = computed(() =>
     this.postulantes().filter((item) => !this.estado() || item.estado === this.estado()),
   );
 
-  actualizarEstado(item: PostulanteVista, estado: EstadoPostulante): void {
-    item.estado = estado;
-    this.postulantes.set([...this.postulantes()]);
+  constructor() {
+    this.cargarPostulantes();
   }
 
-  private normalizar(item: Record<string, unknown>, index: number): PostulanteVista {
-    const oportunidadId = String(
-      item['oportunidadId'] ?? item['jobId'] ?? item['idOportunidad'] ?? '',
-    );
+  private async cargarPostulantes(): Promise<void> {
+    await this.authService.ready;
+    const usuario = this.authService.usuario();
+    if (!usuario) {
+      return;
+    }
+    try {
+      const organizacion = await this.organizacionesService.porUsuario(usuario.id);
+      if (!organizacion) {
+        console.error('No se encontró una organización asociada al usuario.');
 
-    const oportunidad = OPORTUNIDADES.find((opp) => opp.id === oportunidadId);
+        return;
+      }
+      this.organizacion.set(organizacion);
+      const [postulaciones, oportunidades] = await Promise.all([
+        this.postulacionesService.porOrganizacion(organizacion.id),
+        this.oportunidadesService.porOrganizacion(organizacion.id),
+      ]);
+      const vista = postulaciones.map((postulacion) => {
+        const oportunidad = oportunidades.find((item) => item.id === postulacion.oportunidadId);
 
+        return this.crearVista(postulacion, oportunidad);
+      });
+      this.postulantes.set(vista);
+    } catch (error) {
+      console.error('Error al cargar postulantes:', error);
+    }
+  }
+
+  private crearVista(postulacion: Postulacion, oportunidad?: Oportunidad): PostulanteVista {
     return {
-      id: String(item['id'] ?? `post-${index + 1}`),
-      oportunidadId,
-      oportunidad: String(
-        item['tituloOportunidad'] ?? item['oportunidad'] ?? oportunidad?.titulo ?? 'Oportunidad',
-      ),
-      nombre: String(
-        item['nombrePostulante'] ?? item['postulante'] ?? item['nombre'] ?? 'Postulante',
-      ),
-      email: String(item['emailPostulante'] ?? item['email'] ?? 'Sin correo registrado'),
-      fecha: String(item['fechaPostulacion'] ?? item['fecha'] ?? 'Sin fecha'),
-      estado: this.estadoSeguro(item['estado']),
+      id: postulacion.id,
+      oportunidadId: postulacion.oportunidadId,
+      oportunidad: oportunidad?.titulo ?? 'Oportunidad',
+      nombre: postulacion.nombrePostulante,
+      correo: postulacion.correoPostulante,
+      fecha: postulacion.fechaPostulacion,
+      estado: postulacion.estado,
     };
   }
 
-  private estadoSeguro(valor: unknown): EstadoPostulante {
-    const permitidos: EstadoPostulante[] = [
-      'Enviada',
-      'En revisión',
-      'Entrevista',
-      'Seleccionada',
-      'Rechazada',
-    ];
-
-    return permitidos.includes(valor as EstadoPostulante) ? (valor as EstadoPostulante) : 'Enviada';
+  async actualizarEstado(item: PostulanteVista, estado: EstadoPostulacion): Promise<void> {
+    try {
+      await this.postulacionesService.cambiarEstado(
+        item.id,
+        estado,
+        `Estado actualizado por la organización a "${estado}".`,
+      );
+      item.estado = estado;
+      this.postulantes.set([...this.postulantes()]);
+    } catch (error) {
+      console.error('Error al actualizar estado de la postulación:', error);
+    }
   }
 }

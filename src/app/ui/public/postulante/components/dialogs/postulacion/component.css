@@ -1,0 +1,253 @@
+:host {
+  display: block;
+}
+
+.postulacion-dialog {
+  width: min(560px, 90vw);
+  padding: 28px 30px 30px;
+  box-sizing: border-box;
+}
+
+/* CABECERA */
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.subtitulo {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--mat-sys-primary);
+}
+
+.cabecera h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+/* PASOS */
+.pasos {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.paso {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.72;
+}
+
+.numero {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--mat-sys-primary) 10%, transparent);
+  font-weight: 700;
+}
+
+.paso.activo {
+  opacity: 1;
+}
+
+.paso.activo .numero {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.paso.completado .numero {
+  background: color-mix(in srgb, var(--mat-sys-primary) 16%, transparent);
+  color: var(--mat-sys-primary);
+}
+
+.linea {
+  height: 1px;
+  flex: 1;
+  margin: 0 10px;
+  background: color-mix(in srgb, currentColor 15%, transparent);
+}
+
+/* CONTENIDO */
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* AVISO PERFIL INCOMPLETO */
+
+.aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--mat-sys-tertiary) 8%, transparent);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.aviso mat-icon {
+  flex-shrink: 0;
+}
+
+/* CV */
+
+.label-campo {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.zona-cv {
+  min-height: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 18px;
+  border: 2px dashed color-mix(in srgb, var(--mat-sys-primary) 25%, transparent);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.zona-cv:hover {
+  border-color: var(--mat-sys-primary);
+  background: color-mix(in srgb, var(--mat-sys-primary) 4%, transparent);
+}
+
+.zona-cv mat-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  color: var(--mat-sys-primary);
+}
+
+.zona-cv span {
+  font-size: 0.88rem;
+  opacity: 0.75;
+}
+
+.carta textarea {
+  resize: vertical;
+}
+
+/* RESUMEN */
+
+.resumen {
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: color-mix(in srgb, currentColor 4%, transparent);
+}
+
+.resumen p {
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.resumen p:last-child {
+  margin-bottom: 0;
+}
+
+.archivo {
+  color: var(--mat-sys-primary);
+  font-weight: 500;
+}
+
+.sin-cv {
+  opacity: 0.6;
+}
+
+.resumen-carta {
+  margin-top: 15px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.resumen-carta p {
+  margin-top: 7px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* BOTONES */
+
+.acciones-doble {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.acciones-doble button {
+  min-height: 50px;
+}
+
+.boton-completo {
+  width: 100%;
+  min-height: 50px;
+}
+
+.boton-principal {
+  background: var(--mat-sys-primary) !important;
+  color: var(--mat-sys-on-primary) !important;
+}
+
+.boton-enviar {
+  min-height: 50px;
+  background: var(--mat-sys-tertiary) !important;
+  color: var(--mat-sys-on-tertiary) !important;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  .postulacion-dialog {
+    width: 92vw;
+    padding: 22px 18px;
+  }
+  .pasos {
+    align-items: flex-start;
+  }
+  .paso {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.72rem;
+    text-align: center;
+  }
+  .linea {
+    margin-top: 20px;
+  }
+  .numero {
+    width: 34px;
+    height: 34px;
+  }
+  .acciones-doble {
+    grid-template-columns: 1fr;
+  }
+}

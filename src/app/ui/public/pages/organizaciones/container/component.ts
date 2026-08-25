@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
-import { ORGANIZACIONES, Organizacion } from '../../../../../data/organizaciones.data';
+import { Organizacion } from '../../../../../domain/organizacion';
+import { OrganizacionesService } from '../../../../../services/organizaciones';
 
 @Component({
   selector: 'organizaciones',
@@ -31,18 +32,32 @@ import { ORGANIZACIONES, Organizacion } from '../../../../../data/organizaciones
   ],
 })
 export class OrganizacionesPublicComponent {
+  private readonly organizacionesService = inject(OrganizacionesService);
+
   buscar = '';
   paginaActual = 0;
   tamanoPagina = 6;
 
-  readonly organizaciones: Organizacion[] = ORGANIZACIONES;
+  readonly organizaciones = signal<Organizacion[]>([]);
+
+  constructor() {
+    this.cargarOrganizaciones();
+  }
+  private async cargarOrganizaciones(): Promise<void> {
+    try {
+      const organizaciones = await this.organizacionesService.todas();
+      this.organizaciones.set(organizaciones);
+    } catch (error) {
+      console.error('Error al cargar organizaciones:', error);
+    }
+  }
 
   get filtradoOrganizaciones(): Organizacion[] {
     const value = this.buscar.toLowerCase().trim();
     if (!value) {
-      return this.organizaciones;
+      return this.organizaciones();
     }
-    return this.organizaciones.filter(
+    return this.organizaciones().filter(
       (org) =>
         org.nombre.toLowerCase().includes(value) ||
         org.categoria.toLowerCase().includes(value) ||

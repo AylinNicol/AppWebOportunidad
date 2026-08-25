@@ -1,0 +1,178 @@
+<div class="postulacion-dialog">
+  <!-- CABECERA -->
+  <div class="cabecera">
+    <div>
+      <span class="subtitulo">FORMULARIO DE POSTULACIÓN</span>
+      <h2>
+        {{ data.oportunidad.titulo }}
+      </h2>
+    </div>
+    <button mat-icon-button type="button" aria-label="Cerrar" (click)="cerrar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <!-- INDICADOR DE PASOS -->
+  <div class="pasos">
+    <div class="paso" [class.activo]="pasoActual() === 1" [class.completado]="pasoActual() > 1">
+      <span class="numero">1</span>
+      <span>Datos</span>
+    </div>
+    <div class="linea"></div>
+    <div class="paso" [class.activo]="pasoActual() === 2" [class.completado]="pasoActual() > 2">
+      <span class="numero">2</span>
+      <span>CV & Carta</span>
+    </div>
+    <div class="linea"></div>
+    <div class="paso" [class.activo]="pasoActual() === 3">
+      <span class="numero">3</span>
+      <span>Confirmar</span>
+    </div>
+  </div>
+  <!-- PASO 1 -->
+  @if (pasoActual() === 1) {
+    <div class="contenido">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nombre completo</mat-label>
+        <input matInput [(ngModel)]="nombre" placeholder="Nombre completo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Teléfono de contacto</mat-label>
+        <input matInput [(ngModel)]="telefono" placeholder="+591 70000000" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Carrera / Área de estudio</mat-label>
+        <input matInput [(ngModel)]="carrera" placeholder="Ej. Ingeniería Informática" />
+      </mat-form-field>
+
+      @if (!nombre || !telefono || !carrera) {
+        <div class="aviso">
+          <mat-icon>info</mat-icon>
+          <span>
+            Algunos datos de tu perfil están incompletos. Puedes completarlos aquí para continuar.
+          </span>
+        </div>
+      }
+
+      <button
+        mat-flat-button
+        type="button"
+        class="boton-principal boton-completo"
+        [disabled]="!nombre.trim() || !telefono.trim() || !carrera.trim()"
+        (click)="siguientePaso()"
+      >
+        Siguiente paso
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </button>
+    </div>
+  }
+  <!-- PASO 2 -->
+  @if (pasoActual() === 2) {
+    <div class="contenido">
+      <div>
+        <label class="label-campo"> Curriculum Vitae (PDF) * </label>
+        <label class="zona-cv">
+          <input
+            #cvInput
+            hidden
+            type="file"
+            accept="application/pdf"
+            (change)="seleccionarCv($event)"
+          />
+          <mat-icon>upload_file</mat-icon>
+          @if (nombreArchivoCv) {
+            <strong>{{ nombreArchivoCv }}</strong>
+
+            <span> Haz clic para seleccionar otro archivo </span>
+          } @else {
+            <span> Haz clic para subir tu CV en PDF (Max 5MB) </span>
+          }
+        </label>
+      </div>
+
+      <mat-form-field appearance="outline" class="w-full carta">
+        <mat-label> Carta de presentación / Motivación </mat-label>
+
+        <textarea
+          matInput
+          rows="4"
+          [(ngModel)]="cartaPresentacion"
+          placeholder="¿Por qué te interesa esta oportunidad?"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="acciones-doble">
+        <button mat-stroked-button type="button" (click)="anteriorPaso()">Atrás</button>
+        <button
+          mat-flat-button
+          type="button"
+          class="boton-principal"
+          [disabled]="!archivoCv"
+          (click)="siguientePaso()"
+        >
+          Revisar postulación
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </div>
+  }
+  <!-- PASO 3 -->
+  @if (pasoActual() === 3) {
+    <div class="contenido">
+      <div class="resumen">
+        <p>
+          <strong>Postulante:</strong>
+          {{ nombre }}
+        </p>
+        <p>
+          <strong>Correo:</strong>
+          {{ authService.usuario()?.correo }}
+        </p>
+        <p>
+          <strong>Carrera:</strong>
+          {{ carrera }}
+        </p>
+        <p>
+          <strong>Teléfono:</strong>
+          {{ telefono }}
+        </p>
+        <p>
+          <strong>CV adjunto:</strong>
+          @if (nombreArchivoCv) {
+            <span class="archivo">
+              {{ nombreArchivoCv }}
+            </span>
+          } @else {
+            <span class="sin-cv"> Sin CV adjunto </span>
+          }
+        </p>
+        @if (cartaPresentacion.trim()) {
+          <div class="resumen-carta">
+            <strong>Carta de presentación:</strong>
+            <p>
+              {{ cartaPresentacion }}
+            </p>
+          </div>
+        }
+      </div>
+      <mat-checkbox [(ngModel)]="confirmacion">
+        Confirmo que toda la información provista es verídica.
+      </mat-checkbox>
+
+      <div class="acciones-doble">
+        <button mat-stroked-button type="button" (click)="anteriorPaso()">Atrás</button>
+        <button
+          mat-flat-button
+          type="button"
+          class="boton-enviar"
+          [disabled]="!confirmacion"
+          (click)="enviarPostulacion()"
+        >
+          <mat-icon>send</mat-icon>
+          Enviar Postulación
+        </button>
+      </div>
+    </div>
+  }
+</div>

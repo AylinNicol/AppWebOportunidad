@@ -1,7 +1,9 @@
 <div class="space-y-6">
   <section>
     <p class="admin-eyebrow">Gestión</p>
+
     <h1 class="text-2xl sm:text-3xl font-bold">Publicaciones</h1>
+
     <p class="admin-description mt-1">
       Consulta las oportunidades aprobadas y controla si permanecen visibles públicamente.
     </p>
@@ -12,7 +14,9 @@
       <div class="grid grid-cols-1 md:grid-cols-[1fr_240px_auto] gap-3 items-start">
         <mat-form-field appearance="outline" class="w-full admin-filter-field">
           <mat-label>Buscar publicación</mat-label>
-          <mat-icon matPrefix>search</mat-icon>
+
+          <mat-icon matPrefix> search </mat-icon>
+
           <input
             matInput
             type="text"
@@ -24,14 +28,22 @@
 
         <mat-form-field appearance="outline" class="w-full admin-filter-field">
           <mat-label>Estado</mat-label>
+
           <mat-select [ngModel]="estado()" (ngModelChange)="estado.set($event)">
-            <mat-option value="">Todos los estados</mat-option>
-            <mat-option value="Publicada">Publicada</mat-option>
-            <mat-option value="Cerrada">Cerrada</mat-option>
+            <mat-option value=""> Todos los estados </mat-option>
+
+            <mat-option value="Publicada"> Publicada </mat-option>
+
+            <mat-option value="Cerrada"> Cerrada </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <button mat-stroked-button type="button" (click)="limpiarFiltros()" class="admin-filter-button">
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="limpiarFiltros()"
+          class="admin-filter-button"
+        >
           <mat-icon>filter_alt_off</mat-icon>
           Limpiar
         </button>
@@ -39,7 +51,30 @@
     </mat-card-content>
   </mat-card>
 
-  @if (filtradas().length > 0) {
+  @if (cargando()) {
+    <mat-card appearance="outlined" class="admin-empty-card">
+      <mat-card-content class="text-center py-12">
+        <mat-icon>sync</mat-icon>
+
+        <h3 class="font-semibold mt-2">Cargando publicaciones...</h3>
+      </mat-card-content>
+    </mat-card>
+  } @else if (error()) {
+    <mat-card appearance="outlined" class="admin-empty-card">
+      <mat-card-content class="text-center py-12">
+        <mat-icon>error_outline</mat-icon>
+
+        <h3 class="font-semibold mt-2">
+          {{ error() }}
+        </h3>
+
+        <button mat-stroked-button type="button" class="mt-4" (click)="cargarPublicaciones()">
+          <mat-icon>refresh</mat-icon>
+          Reintentar
+        </button>
+      </mat-card-content>
+    </mat-card>
+  } @else if (filtradas().length > 0) {
     <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
       @for (item of filtradas(); track item.id) {
         <mat-card appearance="outlined" class="publicacion-card h-full flex flex-col">
@@ -47,13 +82,22 @@
             <div mat-card-avatar class="publicacion-icon flex items-center justify-center">
               <mat-icon>campaign</mat-icon>
             </div>
-            <mat-card-title>{{ item.titulo }}</mat-card-title>
-            <mat-card-subtitle>{{ item.organizacion }}</mat-card-subtitle>
+
+            <mat-card-title>
+              {{ item.titulo }}
+            </mat-card-title>
+
+            <mat-card-subtitle>
+              {{ item.organizacion }}
+            </mat-card-subtitle>
           </mat-card-header>
 
           <mat-card-content class="flex-1">
             <div class="mt-4 flex flex-wrap gap-2">
-              <mat-chip>{{ item.categoria }}</mat-chip>
+              <mat-chip>
+                {{ item.categoria }}
+              </mat-chip>
+
               <mat-chip
                 [class.estado-publicada]="item.estado === 'Publicada'"
                 [class.estado-cerrada]="item.estado === 'Cerrada'"
@@ -64,13 +108,29 @@
 
             <div class="admin-description flex items-center gap-2 mt-5 text-sm">
               <mat-icon>calendar_today</mat-icon>
-              <span>Publicada: {{ item.fechaPublicacion }}</span>
+
+              <span>
+                Publicada:
+                {{ formatearFecha(item.fechaPublicacion) }}
+              </span>
+            </div>
+
+            <div class="admin-description flex items-center gap-2 mt-2 text-sm">
+              <mat-icon>event_busy</mat-icon>
+
+              <span>
+                Fecha límite:
+                {{ formatearFecha(item.fechaLimite) }}
+              </span>
             </div>
           </mat-card-content>
 
           <mat-card-actions align="end">
-            <button mat-stroked-button type="button" (click)="alternarEstado(item.id)">
-              <mat-icon>{{ item.estado === 'Publicada' ? 'archive' : 'publish' }}</mat-icon>
+            <button mat-stroked-button type="button" (click)="alternarEstado(item)">
+              <mat-icon>
+                {{ item.estado === 'Publicada' ? 'archive' : 'publish' }}
+              </mat-icon>
+
               {{ item.estado === 'Publicada' ? 'Cerrar' : 'Volver a publicar' }}
             </button>
           </mat-card-actions>
@@ -81,7 +141,9 @@
     <mat-card appearance="outlined" class="admin-empty-card">
       <mat-card-content class="text-center py-12">
         <mat-icon>search_off</mat-icon>
+
         <h3 class="font-semibold mt-2">No se encontraron publicaciones</h3>
+
         <p class="admin-description text-sm mt-1">Prueba cambiando los filtros.</p>
       </mat-card-content>
     </mat-card>

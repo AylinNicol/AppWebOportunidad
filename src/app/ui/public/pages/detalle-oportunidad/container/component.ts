@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -9,8 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialog } from '@angular/material/dialog';
 
-import { OPORTUNIDADES, Oportunidad } from '../../../../../data/oportunidades.data';
+import { Oportunidad } from '../../../../../domain/oportunidad';
+import { OportunidadesService } from '../../../../../services/oportunidades';
+
+import { AuthService } from '../../../../../services/auth';
 import { AuthDialogComponent } from '../../../auth/dialog/component';
+import { PostulacionDialogComponent } from '../../../postulante/components/dialogs/postulacion/component';
 
 @Component({
   selector: 'oportunidad',
@@ -30,17 +34,48 @@ import { AuthDialogComponent } from '../../../auth/dialog/component';
 export class DetalleOportunidadPublicComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly dialog = inject(MatDialog);
+  private readonly oportunidadesService = inject(OportunidadesService);
 
-  get oportunidad(): Oportunidad | null {
-    const slug = this.route.snapshot.paramMap.get('slug');
+  readonly authService = inject(AuthService);
+  readonly oportunidad = signal<Oportunidad | null>(null);
 
-    return OPORTUNIDADES.find((opr) => opr.slug === slug) ?? null;
+  constructor() {
+    this.cargarOportunidad();
   }
 
-  abrirLogin(): void {
-    this.dialog.open(AuthDialogComponent, {
+  private async cargarOportunidad(): Promise<void> {
+    const slug = this.route.snapshot.paramMap.get('slug');
+    if (!slug) {
+      return;
+    }
+    try {
+      const oportunidad = await this.oportunidadesService.porSlug(slug);
+      this.oportunidad.set(oportunidad);
+    } catch (error) {
+      console.error('Error al cargar la oportunidad:', error);
+    }
+  }
+
+  postular(): void {
+    if (!this.authService.autenticado()) {
+      this.dialog.open(AuthDialogComponent, {
+        data: {
+          modo: 'login',
+        },
+      });
+
+      return;
+    }
+    if (this.authService.rol() !== 'Postulante') {
+      return;
+    }
+    const oportunidad = this.oportunidad();
+    if (!oportunidad) {
+      return;
+    }
+    this.dialog.open(PostulacionDialogComponent, {
       data: {
-        modo: 'login',
+        oportunidad,
       },
     });
   }

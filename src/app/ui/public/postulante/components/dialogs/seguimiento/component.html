@@ -1,0 +1,103 @@
+<div class="seguimiento-dialog">
+  <div class="cabecera">
+    <div>
+      <p class="eyebrow">Seguimiento de postulación</p>
+
+      <h2>
+        {{ data.tituloOportunidad || 'Postulación' }}
+      </h2>
+
+      @if (data.organizacion) {
+        <p class="organizacion">
+          {{ data.organizacion }}
+        </p>
+      }
+    </div>
+
+    <button mat-icon-button type="button" aria-label="Cerrar" (click)="cerrar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="estado-actual">
+    <span>Estado actual</span>
+
+    <strong>
+      {{ data.postulacion.estado }}
+    </strong>
+  </div>
+
+  <div class="timeline">
+    @for (estado of estados; track estado; let ultimo = $last) {
+      @let evento = eventoPorEstado(estado);
+
+      <div class="timeline-item">
+        <div class="timeline-columna">
+          <div class="circulo" [class.completado]="estadoAlcanzado(estado)">
+            @if (estadoAlcanzado(estado)) {
+              <mat-icon>check</mat-icon>
+            } @else {
+              <span></span>
+            }
+          </div>
+
+          @if (!ultimo) {
+            <div class="linea" [class.completada]="estadoAlcanzado(estado)"></div>
+          }
+        </div>
+
+        <div class="timeline-contenido">
+          <div class="estado-titulo">
+            {{ estado }}
+          </div>
+
+          @if (evento) {
+            <div class="fecha">
+              {{ evento.fecha | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+
+            @if (evento.observacion) {
+              <p class="observacion">
+                {{ evento.observacion }}
+              </p>
+            }
+          } @else {
+            <div class="pendiente">Pendiente</div>
+          }
+        </div>
+      </div>
+    }
+
+    @if (esRechazada()) {
+      @let rechazo = eventoPorEstado('Rechazada');
+
+      <div class="timeline-item rechazo-item">
+        <div class="timeline-columna">
+          <div class="circulo rechazo">
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+
+        <div class="timeline-contenido">
+          <div class="estado-titulo rechazo-texto">Rechazada</div>
+
+          @if (rechazo) {
+            <div class="fecha">
+              {{ rechazo.fecha | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+
+            @if (rechazo.observacion) {
+              <p class="observacion">
+                {{ rechazo.observacion }}
+              </p>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="acciones">
+    <button mat-flat-button type="button" (click)="cerrar()">Cerrar</button>
+  </div>
+</div>
