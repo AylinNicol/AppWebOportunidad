@@ -21,15 +21,14 @@
             matInput
             type="text"
             [ngModel]="busqueda()"
-            (ngModelChange)="busqueda.set($event); paginaActual = 0"
+            (ngModelChange)="busqueda.set($event); paginaActual.set(0)"
             placeholder="Título u organización"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full admin-filter-field">
           <mat-label>Estado</mat-label>
-
-          <mat-select [ngModel]="estado()" (ngModelChange)="estado.set($event); paginaActual = 0">
+          <mat-select [ngModel]="estado()" (ngModelChange)="cambiarFiltroEstado($event)">
             <mat-option value=""> Todos los estados </mat-option>
             <mat-option value="Pendiente"> Pendiente </mat-option>
             <mat-option value="Publicada"> Publicada </mat-option>
@@ -164,8 +163,8 @@
       }
       <mat-paginator
         [length]="filtradas().length"
-        [pageIndex]="paginaActual"
-        [pageSize]="tamanoPagina"
+        [pageIndex]="paginaActual()"
+        [pageSize]="tamanoPagina()"
         [pageSizeOptions]="[5, 10]"
         (page)="cambiarPagina($event)"
         aria-label="Paginación de oportunidades administrativas"

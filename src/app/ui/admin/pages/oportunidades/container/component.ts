@@ -44,8 +44,8 @@ export class AdminOportunidadesComponent {
   readonly cargando = signal(true);
   readonly error = signal<string | null>(null);
 
-  paginaActual = 0;
-  tamanoPagina = 5;
+  readonly paginaActual = signal(0);
+  readonly tamanoPagina = signal(5);
 
   readonly columnas = ['oportunidad', 'tipo', 'modalidad', 'fecha', 'estado', 'acciones'];
 
@@ -66,9 +66,8 @@ export class AdminOportunidadesComponent {
   });
 
   readonly paginadas = computed(() => {
-    const inicio = this.paginaActual * this.tamanoPagina;
-
-    return this.filtradas().slice(inicio, inicio + this.tamanoPagina);
+    const inicio = this.paginaActual() * this.tamanoPagina();
+    return this.filtradas().slice(inicio, inicio + this.tamanoPagina());
   });
 
   constructor() {
@@ -115,15 +114,18 @@ export class AdminOportunidadesComponent {
       });
     }
   }
-
+  cambiarFiltroEstado(valor: Oportunidad['estado'] | ''): void {
+    this.estado.set(valor);
+    this.paginaActual.set(0);
+  }
   limpiarFiltros(): void {
     this.busqueda.set('');
     this.estado.set('');
-    this.paginaActual = 0;
+    this.paginaActual.set(0);
   }
 
   cambiarPagina(evento: PageEvent): void {
-    this.paginaActual = evento.pageIndex;
-    this.tamanoPagina = evento.pageSize;
+    this.paginaActual.set(evento.pageIndex);
+    this.tamanoPagina.set(evento.pageSize);
   }
 }
