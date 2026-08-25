@@ -90,7 +90,7 @@
       </a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (item of oportunidades; track item.id) {
+      @for (item of oportunidades(); track item.id) {
         <mat-card appearance="outlined" class="inicio-oportunidad-card h-full flex flex-col">
           <mat-card-header>
             <div mat-card-avatar class="inicio-oportunidad-avatar flex items-center justify-center">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -11,7 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { OPORTUNIDADES, Oportunidad } from '../../../../../data/oportunidades.data';
+import { Oportunidad } from '../../../../../domain/oportunidad';
+import { OportunidadesService } from '../../../../../services/oportunidades';
 
 import { AuthDialogComponent } from '../../../auth/dialog/component';
 
@@ -33,18 +34,33 @@ import { AuthDialogComponent } from '../../../auth/dialog/component';
   ],
 })
 export class InicioPublicComponent {
+  private readonly oportunidadesService = inject(OportunidadesService);
+
+  readonly oportunidades = signal<Oportunidad[]>([]);
   busqueda = '';
   categoria = '';
   modalidad = '';
 
-  oportunidades: Oportunidad[] = OPORTUNIDADES.filter(
-    (oportunidad) => oportunidad.estado === 'Publicada',
-  ).slice(0, 3);
-
   constructor(
     private router: Router,
     private dialog: MatDialog,
-  ) {}
+  ) {
+    this.cargarOportunidades();
+  }
+  private async cargarOportunidades(): Promise<void> {
+    try {
+      const oportunidades = await this.oportunidadesService.publicadas();
+
+      this.oportunidades.set(
+        oportunidades
+          .slice()
+          .sort((a, b) => new Date(b.fechaCreacion).getTime() - new Date(a.fechaCreacion).getTime())
+          .slice(0, 3),
+      );
+    } catch (error) {
+      console.error('Error al cargar oportunidades destacadas:', error);
+    }
+  }
 
   buscar(): void {
     const queryParams: Record<string, string> = {};
