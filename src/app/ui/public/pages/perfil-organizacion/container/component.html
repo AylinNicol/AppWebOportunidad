@@ -16,14 +16,17 @@
         <mat-card-content class="flex-1 mt-1">
           <mat-card-title>
             <div class="flex items-center gap-1 titulo">
-              <h1 class="font-semibold">{{ org.nombre }}</h1>
+              <h1 class="font-semibold">
+                {{ org.nombre }}
+              </h1>
               @if (org.verificada) {
                 <mat-icon
                   class="verified-icon"
                   matTooltip="Organización verificada"
                   aria-label="Organización verificada"
-                  >verified</mat-icon
                 >
+                  verified
+                </mat-icon>
               }
             </div>
           </mat-card-title>
@@ -33,41 +36,50 @@
           <p class="leading-relaxed">
             {{ org.descripcion }}
           </p>
+
           <div class="flex items-center gap-2 mt-2 org-location">
             <mat-icon>location_on</mat-icon>
-            <span>
-              {{ org.ubicacion }}
-            </span>
+            <span>{{ org.ubicacion }}</span>
           </div>
         </mat-card-content>
       </div>
     </mat-card>
-
     <!-- Información -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+      <!-- Contacto -->
       <mat-card appearance="outlined" class="h-full flex flex-col org-card">
         <mat-card-header>
           <mat-card-title>
             <div class="flex items-center gap-1">
-              <span class="font-semibold">Información de contacto</span>
+              <span class="font-semibold"> Información de contacto </span>
             </div>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div class="flex items-center gap-2 mt-2">
             <mat-icon>mail</mat-icon>
-            <span>
-              {{ org.correo }}
-            </span>
+            <span>{{ org.correo }}</span>
           </div>
+          @if (org.telefono) {
+            <div class="flex items-center gap-2 mt-2">
+              <mat-icon>phone</mat-icon>
+              <span>{{ org.telefono }}</span>
+            </div>
+          }
+          @if (org.sitioWeb) {
+            <div class="flex items-center gap-2 mt-2">
+              <mat-icon>language</mat-icon>
+              <span>{{ org.sitioWeb }}</span>
+            </div>
+          }
         </mat-card-content>
       </mat-card>
-
+      <!-- Número de oportunidades -->
       <mat-card appearance="outlined" class="h-full flex flex-col org-card">
         <mat-card-header>
           <mat-card-title>
             <div class="flex items-center gap-1">
-              <span class="font-semibold">Oportunidades disponibles</span>
+              <span class="font-semibold"> Oportunidades disponibles </span>
             </div>
           </mat-card-title>
         </mat-card-header>
@@ -75,7 +87,12 @@
           <mat-chip-set>
             <mat-chip>
               <mat-icon matChipAvatar>work_outline</mat-icon>
-              {{ org.cantidadOportunidades }} oportunidades
+              {{ oportunidades().length }}
+              @if (oportunidades().length === 1) {
+                oportunidad
+              } @else {
+                oportunidades
+              }
             </mat-chip>
           </mat-chip-set>
         </mat-card-content>
@@ -85,69 +102,85 @@
     <!-- Oportunidades -->
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
       <div class="titulo leading-tight">
-        <h2>Oportunidades activas (1)</h2>
+        <h2>Oportunidades activas ({{ oportunidades().length }})</h2>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <mat-card appearance="outlined" class="h-full flex flex-col opr-card">
-        <!-- Cabecera -->
-        <mat-card-header>
-          <div mat-card-avatar class="flex items-center justify-center opr-avatar">XYZ</div>
-          <div class="flex-1 min-w-0 pl-2">
-            <mat-card-subtitle>
-              <span>Empresa XYZ</span>
-            </mat-card-subtitle>
-            <mat-card-title> Pasantía Frontend Angular </mat-card-title>
-          </div>
-          <mat-chip class="tipo-chip"> Pasantía </mat-chip>
-        </mat-card-header>
-        <!-- Contenido -->
-        <mat-card-content class="flex-1 pt-3">
-          <!-- Descripción -->
-          <p class="leading-relaxed">
-            Buscamos un estudiante o recién egresado interesado en el desarrollo web frontend para
-            apoyar en la creación y mejora de interfaces de aplicaciones web.
-          </p>
-          <!-- Datos -->
-          <mat-chip-set class="mt-4 info-chips">
-            <mat-chip>
-              <mat-icon matChipAvatar>location_on</mat-icon>
-              Oruro
-            </mat-chip>
-            <mat-chip>
-              <mat-icon matChipAvatar>wifi</mat-icon>
-              Remoto
-            </mat-chip>
-            <mat-chip>
-              <mat-icon matChipAvatar>sell</mat-icon>
-              Desarrollo Web
-            </mat-chip>
-          </mat-chip-set>
-        </mat-card-content>
-        <!-- Acciones -->
-        <mat-card-actions class="flex items-center justify-between gap-3 px-4 pb-4 org-actions">
-          <div class="opr-fecha">
-            <mat-icon>schedule</mat-icon>
-            <span> Hace 2 días </span>
-          </div>
-          <a mat-button routerLink="/oportunidades" class="shrink-0">
-            Ver detalle
-            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-          </a>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    <section>
-      <h2>else para cuando no hay oportunidades activas</h2>
-      <mat-card appearance="outlined">
-        <mat-card-content>
-          <p>Aquí se mostrarán las oportunidades activas publicadas por esta organización.</p>
-        </mat-card-content>
-      </mat-card>
-    </section>
+    @if (oportunidades().length > 0) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (opr of oportunidades(); track opr.id) {
+          <mat-card appearance="outlined" class="h-full flex flex-col opr-card">
+            <!-- Cabecera -->
+            <mat-card-header>
+              <div mat-card-avatar class="flex items-center justify-center opr-avatar">
+                {{ org.nombre.charAt(0) }}
+              </div>
+              <div class="flex-1 min-w-0 pl-2">
+                <mat-card-subtitle>
+                  <span>{{ org.nombre }}</span>
+                </mat-card-subtitle>
+                <mat-card-title>
+                  {{ opr.titulo }}
+                </mat-card-title>
+              </div>
+              <mat-chip class="tipo-chip">
+                {{ opr.tipo }}
+              </mat-chip>
+            </mat-card-header>
+            <!-- Contenido -->
+            <mat-card-content class="flex-1 pt-3">
+              <!-- Descripción -->
+              <p class="leading-relaxed">
+                {{ opr.descripcion }}
+              </p>
+              <!-- Datos -->
+              <mat-chip-set class="mt-4 info-chips">
+                <mat-chip>
+                  <mat-icon matChipAvatar> location_on </mat-icon>
+                  {{ opr.ubicacion }}
+                </mat-chip>
+                <mat-chip>
+                  <mat-icon matChipAvatar> wifi </mat-icon>
+                  {{ opr.modalidad }}
+                </mat-chip>
+                <mat-chip>
+                  <mat-icon matChipAvatar> sell </mat-icon>
+                  {{ opr.categoria }}
+                </mat-chip>
+              </mat-chip-set>
+            </mat-card-content>
+
+            <!-- Acciones -->
+            <mat-card-actions class="flex items-center justify-between gap-3 px-4 pb-4 org-actions">
+              <div class="opr-fecha">
+                <mat-icon>schedule</mat-icon>
+                <span>{{ opr.fechaPublicacion }}</span>
+              </div>
+
+              <!-- AQUÍ SE USA EL SLUG DE LA OPORTUNIDAD -->
+              <a mat-button [routerLink]="['/oportunidades', opr.slug]" class="shrink-0">
+                Ver detalle
+                <mat-icon iconPositionEnd> arrow_forward </mat-icon>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+    } @else {
+      <!-- Sin oportunidades -->
+      <section>
+        <mat-card appearance="outlined">
+          <mat-card-content class="text-center py-8">
+            <mat-icon>work_off</mat-icon>
+            <h2>No hay oportunidades activas</h2>
+            <p>Esta organización no tiene oportunidades publicadas actualmente.</p>
+          </mat-card-content>
+        </mat-card>
+      </section>
+    }
   </div>
 } @else {
+  <!-- Organización no encontrada -->
   <div class="max-w-4xl mx-auto px-4 py-12">
     <mat-card appearance="outlined">
       <mat-card-content class="text-center">

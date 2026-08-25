@@ -62,7 +62,7 @@ export const ORGANIZACIONES: Organizacion[] = [
     ubicacion: 'Oruro / La Paz',
     descripcion:
       'Organización sin fines de lucro enfocada en el empoderamiento juvenil y becas educativas.',
-    cantidadOportunidades: 2,
+    cantidadOportunidades: 1,
     verificada: true,
     correo: 'contacto@estrelladelsur.org',
     logo: 'https://placehold.co/100x100/f59e0b/white?text=FES',

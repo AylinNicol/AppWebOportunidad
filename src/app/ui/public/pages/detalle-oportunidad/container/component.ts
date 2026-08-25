@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Oportunidad } from '../../../../../domain/oportunidad';
 import { OportunidadesService } from '../../../../../services/oportunidades';
+import { OrganizacionesService } from '../../../../../services/organizaciones';
 
 import { AuthService } from '../../../../../services/auth';
 import { AuthDialogComponent } from '../../../auth/dialog/component';
@@ -35,7 +36,9 @@ export class DetalleOportunidadPublicComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly dialog = inject(MatDialog);
   private readonly oportunidadesService = inject(OportunidadesService);
+  private readonly organizacionesService = inject(OrganizacionesService);
 
+  readonly organizacionSlug = signal<string | null>(null);
   readonly authService = inject(AuthService);
   readonly oportunidad = signal<Oportunidad | null>(null);
 
@@ -51,6 +54,10 @@ export class DetalleOportunidadPublicComponent {
     try {
       const oportunidad = await this.oportunidadesService.porSlug(slug);
       this.oportunidad.set(oportunidad);
+      if (oportunidad) {
+        const organizacion = await this.organizacionesService.porId(oportunidad.organizacionId);
+        this.organizacionSlug.set(organizacion?.slug ?? null);
+      }
     } catch (error) {
       console.error('Error al cargar la oportunidad:', error);
     }
